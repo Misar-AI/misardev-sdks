@@ -1,0 +1,176 @@
+name: Auto-tag on version bump
+
+# Turns a deliberate version bump into a release tag, which is what actually
+# triggers publishing (see publish.yml).
+#
+# It fires only when an SDK's manifest version CHANGES between the previous
+# commit and this one. A code-only sync tags nothing, so routine mirrors are
+# silent — the version number is the release signal, and bumping it is always a
+# deliberate act.
+#
+# Tag shape is `<language>/vX.Y.Z`, matching misarmail-sdks, misarblog-sdks and
+# misarreach-sdks.
+# This is not cosmetic: a Go module in the go/ subdirectory is ONLY resolvable
+# by a `go/vX.Y.Z` tag, and a bare `vX.Y.Z` would leave `go get` unable to find
+# any version at all.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          # MUST be a PAT, not the default GITHUB_TOKEN.
+          #
+          # GitHub deliberately does not start a workflow run from an event
+          # created with GITHUB_TOKEN — it is loop prevention. A tag pushed with
+          # it is created perfectly and then triggers NOTHING, so publish.yml
+          # never fires and the release silently stops halfway.
+          #
+          # This is not theoretical: misarmail-sdks and misarblog-sdks are wired
+          # this way, and neither has ever run a publish workflow. Their Go
+          # modules resolve only because proxy.golang.org serves straight from
+          # the git tag without CI. (Verified both ways on misarreach-sdks: the
+          # same tag pushed by GITHUB_TOKEN started no run; pushed by a user
+          # token it started publish.yml immediately.)
+          token: ${{ secrets.RELEASE_TOKEN || github.token }}
+
+      # Checked at runtime, not with `if:` — the `secrets` context is not
+      # available in step conditionals, and referencing it there fails the whole
+      # workflow at validation time with no job ever starting.
+      - name: Warn if tags cannot trigger a publish
+        env:
+          RELEASE_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        run: |
+          if [ -z "${RELEASE_TOKEN:-}" ]; then
+            echo "::warning::RELEASE_TOKEN is not set. Tags will be created with GITHUB_TOKEN, which cannot trigger publish.yml — each SDK will need publish.yml run manually. See the comment in this file."
+          else
+            echo "RELEASE_TOKEN present — tags will trigger publish.yml."
+          fi
+
+      - name: Tag every SDK whose version changed
+        run: |
+          set -euo pipefail
+
+          # Read the shipped version out of one SDK's manifest at a given ref.
+          # Prints nothing when the SDK has no manifest version (go, swift, php
+          # are tag-versioned) or the file does not exist at that ref.
+          version_at() {
+            local ref="$1" lang="$2" file expr
+            case "$lang" in
+              typescript) file="typescript/package.json" ;;
+              cli)        file="cli/package.json" ;;
+              python)     file="python/pyproject.toml" ;;
+              rust)       file="rust/Cargo.toml" ;;
+              ruby)       file="ruby/misardev.gemspec" ;;
+              dart)       file="dart/pubspec.yaml" ;;
+              flutter)    file="flutter/pubspec.yaml" ;;
+              java)       file="java/pom.xml" ;;
+              kotlin)     file="kotlin/build.gradle.kts" ;;
+              csharp)     file="csharp/MisarDev.csproj" ;;
+              *)          return 0 ;;
+            esac
+
+            local content
+            content="$(git show "${ref}:${file}" 2>/dev/null)" || return 0
+
+            case "$lang" in
+              typescript|cli) printf '%s' "$content" | jq -r '.version // empty' ;;
+              python|rust) printf '%s' "$content" | grep -m1 -E '^version[[:space:]]*=' | grep -oE '"[^"]+"' | tr -d '"' ;;
+              ruby|kotlin) printf '%s' "$content" | grep -m1 -E 'version[[:space:]]*=' | grep -oE '"[^"]+"' | tr -d '"' ;;
+              dart|flutter) printf '%s' "$content" | grep -m1 -E '^version:' | awk '{print $2}' ;;
+              java) printf '%s' "$content" | grep -m1 -oE '<version>[^<]+</version>' | sed 's/<[^>]*>//g' ;;
+              csharp) printf '%s' "$content" | grep -m1 -oE '<Version>[^<]+</Version>' | sed 's/<[^>]*>//g' ;;
+            esac
+          }
+
+          # First push to a fresh mirror has no parent to diff against; tag
+          # everything so the initial release is complete rather than empty.
+          if git rev-parse HEAD~1 >/dev/null 2>&1; then
+            PREV="HEAD~1"
+          else
+            PREV=""
+            echo "No parent commit — treating this as the initial release."
+          fi
+
+          # One author for everything in every Misar repo, mirrors included.
+          git config user.name  "Misar.AI"
+          git config user.email "noreply@misar.io"
+
+          TAGGED=0
+          for LANG in typescript cli python rust ruby dart flutter java kotlin csharp; do
+            NOW="$(version_at HEAD "$LANG" || true)"
+            [ -n "$NOW" ] || continue
+
+            if [ -n "$PREV" ]; then
+              OLD="$(version_at "$PREV" "$LANG" || true)"
+              if [ "$NOW" = "$OLD" ]; then
+                echo "· $LANG unchanged at $NOW"
+                continue
+              fi
+            fi
+
+            TAG="$LANG/v$NOW"
+            if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+              echo "! $TAG already exists — refusing to move a released tag"
+              continue
+            fi
+
+            echo "+ $TAG"
+            git tag "$TAG"
+            git push origin "$TAG"
+            TAGGED=$((TAGGED + 1))
+          done
+
+          # go, swift and php carry no manifest version. Their release version is
+          # the VERSION file at the mirror root (synced from the monorepo's
+          # sdks/VERSION, which scripts/sdk-versions.mjs reads too). Tag them when
+          # that file changes, or whenever anything else was tagged.
+          tag_version_at() {
+            git show "$1:VERSION" 2>/dev/null | sed 's/#.*//' | tr -d '[:space:]' || true
+          }
+          FLEET="$(tag_version_at HEAD)"
+          [ -n "$FLEET" ] || FLEET="$(version_at HEAD typescript || true)"
+          FLEET_CHANGED=0
+          if [ -z "$PREV" ] || [ "$(tag_version_at "$PREV")" != "$FLEET" ]; then FLEET_CHANGED=1; fi
+          if [ "$TAGGED" -gt 0 ] || [ "$FLEET_CHANGED" -eq 1 ]; then
+            if [ -n "$FLEET" ]; then
+              for LANG in go swift php; do
+                TAG="$LANG/v$FLEET"
+                if git rev-parse -q --verify "refs/tags/$TAG" >/dev/null; then
+                  echo "! $TAG already exists"
+                  continue
+                fi
+                echo "+ $TAG (tag-versioned SDK, riding fleet version)"
+                git tag "$TAG"
+                git push origin "$TAG"
+              done
+
+              # Swift PM additionally needs a BARE semver tag. It reads versions
+              # from the repository root and does not recognise a prefixed tag as
+              # a version at all — `swift/v1.0.0` resolves to "no versions match".
+              # Verified against a real consumer package: with only the prefixed
+              # tag, resolution fails; with `v1.0.0` present it resolves to 1.0.0.
+              #
+              # Safe alongside Go, which needs the OPPOSITE convention: its module
+              # lives in go/ so it is versioned by `go/vX.Y.Z`, and there is no
+              # go.mod at the repository root for a bare tag to collide with.
+              if git rev-parse -q --verify "refs/tags/v$FLEET" >/dev/null; then
+                echo "! v$FLEET already exists"
+              else
+                echo "+ v$FLEET (bare tag — the only form Swift PM accepts)"
+                git tag "v$FLEET"
+                git push origin "v$FLEET"
+              fi
+            fi
+          fi
+
+          echo "Tagged $TAGGED versioned SDK(s)."
