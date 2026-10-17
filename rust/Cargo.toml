@@ -1,0 +1,33 @@
+[package]
+name = "misardev"
+version = "1.0.0"
+edition = "2021"
+rust-version = "1.75"
+description = "Async Rust client for the Misar.Dev API: create projects, write files, build and deploy, start from templates, run OpenAI-compatible chat completions, search code and read usage. Retries, typed plan-limit errors, SSE streaming."
+license = "MIT"
+authors = ["Misar.AI <hello@misar.io>"]
+homepage = "https://www.misar.dev"
+repository = "https://github.com/Misar-AI/misardev-sdks"
+documentation = "https://docs.misar.io/dev"
+# crates.io allows at most five keywords, each <= 20 chars.
+keywords = ["misardev", "app-builder", "deploy", "sdk", "api-client"]
+categories = ["api-bindings", "web-programming::http-client", "asynchronous", "development-tools"]
+readme = "README.md"
+include = ["src/**/*.rs", "Cargo.toml", "README.md", "CHANGELOG.md", "LICENSE"]
+
+[package.metadata.misardev]
+issues = "https://github.com/Misar-AI/misardev-sdks/issues"
+subdirectory = "rust"
+
+[dependencies]
+reqwest = { version = "0.12", default-features = false, features = ["rustls-tls", "json", "stream"] }
+tokio = { version = "1", features = ["time"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+futures = "0.3"
+urlencoding = "2"
+httpdate = "1"
+
+[dev-dependencies]
+wiremock = "0.6"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net"] }

@@ -1,0 +1,74 @@
+{
+  "name": "@misardev/sdk",
+  "version": "1.0.0",
+  "description": "Misar.Dev's API in TypeScript: create, build and deploy projects, manage files, domains, environment variables and collaborators, run templates, search code, stream OpenAI-compatible chat completions — every route generated from the live API, retries, typed plan-limit errors with upgrade offers, SSE streaming, ESM+CJS.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build"
+  },
+  "keywords": [
+    "misardev",
+    "misar",
+    "app-builder",
+    "ai-app-builder",
+    "no-code",
+    "deploy",
+    "hosting",
+    "projects",
+    "templates",
+    "code-search",
+    "chat-completions",
+    "openai-compatible",
+    "sse",
+    "sdk",
+    "api-client",
+    "typescript",
+    "javascript",
+    "esm"
+  ],
+  "author": "Misar.AI <hello@misar.io> (https://misar.io)",
+  "license": "MIT",
+  "homepage": "https://www.misar.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Misar-AI/misardev-sdks.git",
+    "directory": "typescript"
+  },
+  "bugs": {
+    "url": "https://github.com/Misar-AI/misardev-sdks/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "@vitest/coverage-v8": "^4.0.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.0"
+  }
+}

@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>MisarDev</RootNamespace>
+    <AssemblyName>MisarDev</AssemblyName>
+
+    <!-- NuGet metadata -->
+    <PackageId>MisarDev</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Misar.AI</Authors>
+    <Company>Misar.AI</Company>
+    <Description>.NET client for the MisarDev API: create projects, write files, build and deploy, start from templates, OpenAI-compatible chat completions with streaming, code search, and usage and plan reads. Every route in 21 resources, async/await with cancellation, Retry-After-aware retries, typed plan-limit errors carrying the upgrade offer, and SSE streaming.</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright (c) 2026 Misar.AI</Copyright>
+    <PackageProjectUrl>https://www.misar.dev</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Misar-AI/misardev-sdks</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>main</RepositoryBranch>
+    <PackageTags>misardev;misar;app-builder;deploy;hosting;templates;chat-completions;openai-compatible;code-search;rag;sse;api-client;dotnet</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageReleaseNotes>https://github.com/Misar-AI/misardev-sdks/blob/main/csharp/CHANGELOG.md</PackageReleaseNotes>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Missing XML doc comments must not fail the build. -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
+    <None Include="LICENSE" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <!--
+    Tests/ is its own project (Tests/MisarDevTests.csproj) and references xUnit.
+    Without this exclusion the SDK's default **/*.cs glob pulls the test sources
+    (and Tests/obj's generated files) into the library build, which then fails
+    on the missing xUnit reference.
+  -->
+  <ItemGroup>
+    <Compile Remove="Tests/**" />
+    <None Remove="Tests/**" />
+    <EmbeddedResource Remove="Tests/**" />
+    <Content Remove="Tests/**" />
+  </ItemGroup>
+
+</Project>

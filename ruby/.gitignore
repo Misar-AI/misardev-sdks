@@ -1,0 +1,11 @@
+vendor/
+.bundle/
+Gemfile.lock
+*.gem
+coverage/
+pkg/
+bin/
+obj/
+.build/
+target/
+node_modules/

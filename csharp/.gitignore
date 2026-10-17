@@ -1,0 +1,13 @@
+bin/
+obj/
+Tests/bin/
+Tests/obj/
+TestResults/
+*.user
+*.nupkg
+*.snupkg
+.vs/
+vendor/
+.build/
+target/
+node_modules/

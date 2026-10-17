@@ -1,0 +1,30 @@
+name: misardev_flutter
+description: "Build, deploy and chat with your apps from Flutter: the MisarDev API with secure key storage, typed plan-limit errors, retries and SSE streaming on iOS, Android, macOS and web."
+version: 1.0.0
+homepage: https://www.misar.dev
+repository: https://github.com/Misar-AI/misardev-sdks/tree/main/flutter
+issue_tracker: https://github.com/Misar-AI/misardev-sdks/issues
+documentation: https://docs.misar.io/dev
+
+topics:
+  - ai
+  - app-builder
+  - api-client
+  - sse
+  - secure-storage
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_secure_storage: ">=9.0.0 <11.0.0"
+  http: ^1.2.0
+  http_parser: ^4.0.2
+
+dev_dependencies:
+  flutter_lints: ">=3.0.0 <7.0.0"
+  flutter_test:
+    sdk: flutter

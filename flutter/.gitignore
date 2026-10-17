@@ -1,0 +1,16 @@
+# Dart / Flutter
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+doc/api/
+pubspec.lock
+
+# Other toolchains (kept uniform across the SDK fleet)
+vendor/
+bin/
+obj/
+.build/
+target/
+node_modules/

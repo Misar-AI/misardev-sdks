@@ -1,0 +1,8 @@
+target/
+vendor/
+bin/
+obj/
+.build/
+node_modules/
+build/
+**/*.rs.bk

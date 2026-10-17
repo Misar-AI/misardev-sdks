@@ -1,0 +1,11 @@
+vendor/
+bin/
+obj/
+.build/
+target/
+node_modules/
+build/
+dist/
+coverage.out
+*.test
+*.prof

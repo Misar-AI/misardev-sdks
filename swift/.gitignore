@@ -1,0 +1,11 @@
+.build/
+.swiftpm/
+Package.resolved
+*.xcodeproj
+xcuserdata/
+DerivedData/
+vendor/
+bin/
+obj/
+target/
+node_modules/

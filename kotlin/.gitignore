@@ -1,0 +1,15 @@
+build/
+.gradle/
+.kotlin/
+bin/
+obj/
+target/
+vendor/
+.build/
+node_modules/
+out/
+*.class
+*.log
+.idea/
+*.iml
+local.properties
