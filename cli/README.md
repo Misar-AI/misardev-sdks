@@ -275,7 +275,11 @@ A plan refusal carries `code: "plan_limit_exceeded"` and arrives with one of two
 It is detected by `code`, never by status — so a spent quota is never mistaken for an ordinary
 throttle and retried. The CLI prints an upgrade card built entirely from the server's offer
 (`headline`, current plan, usage, each of `plans` with name, price and what it unlocks, `cta`,
-and the upgrade URL — `urls.billing`, falling back to `urls.pricing`) and exits `2`:
+and the upgrade URL — `urls.billing`, falling back to `urls.pricing`) and exits `2`.
+
+API keys work on every Misar.Dev plan today, Free included, so www.misar.dev does not
+currently send this refusal; the card below shows its shape for a deployment that limits API
+access by plan:
 
 ```text
 Upgrade required — Misar.Dev
@@ -284,7 +288,7 @@ API access isn't included in your Starter plan.
 Current plan: Starter
 
 Plans:
-  • Pro — $29/mo  (recommended)
+  • Pro — $19/month or $182.4/year — 20% off  (recommended)
       unlocks: API access
 
 Upgrade to Pro to continue.
