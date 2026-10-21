@@ -288,7 +288,7 @@ API access isn't included in your Starter plan.
 Current plan: Starter
 
 Plans:
-  • Pro — $19/month or $182.4/year — 20% off  (recommended)
+  • Pro — $19/month or $114/year — 50% off  (recommended)
       unlocks: API access
 
 Upgrade to Pro to continue.
