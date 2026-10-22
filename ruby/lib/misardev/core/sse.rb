@@ -42,6 +42,7 @@ module MisarDev
       end
 
       # JSON-decode a payload when possible, else hand back the raw string.
+      # nosemgrep ruby.rails.security.audit.xss.avoid-raw.avoid-raw
       def self.decode(raw)
         JSON.parse(raw)
       rescue JSON::ParserError

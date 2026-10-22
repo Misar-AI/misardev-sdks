@@ -323,6 +323,8 @@ func (c *Client) Request(ctx context.Context, method, path string, query Query, 
 				return nil, newNetworkError(ctx.Err())
 			}
 			if !last && idempotent[verb] {
+				// math/rand: only used for backoff jitter (not secrets). Safe.
+				// nosemgrep go.lang.security.audit.crypto.math_random.math-random-used
 				if serr := c.sleep(ctx, backoff(attempt, "", rand.Float64)); serr != nil {
 					return nil, newNetworkError(serr)
 				}
@@ -348,6 +350,8 @@ func (c *Client) Request(ctx context.Context, method, path string, query Query, 
 			return nil, apiErr
 		}
 		if retryable[status] && (status == 429 || idempotent[verb]) && !last {
+			// math/rand is fine here: used only for backoff jitter, never for secrets.
+			// nosemgrep go.lang.security.audit.crypto.math_random.math-random-used
 			if serr := c.sleep(ctx, backoff(attempt, header.Get("Retry-After"), rand.Float64)); serr != nil {
 				return nil, newNetworkError(serr)
 			}
