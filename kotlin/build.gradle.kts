@@ -24,7 +24,7 @@ dependencies {
     // `implementation` the POM scopes them to runtime and a consumer cannot
     // compile against the published artifact.
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0")
-    api("com.fasterxml.jackson.core:jackson-databind:2.18.9")
+    api("com.fasterxml.jackson.core:jackson-databind:2.18.11")
     testImplementation(kotlin("test"))
     testImplementation(kotlin("reflect"))
     // Gradle 9 no longer puts the JUnit Platform launcher on the test runtime
