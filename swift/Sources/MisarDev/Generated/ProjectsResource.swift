@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// The `projects` resource — 41 operation(s).
+/// The `projects` resource — 42 operation(s).
 public struct ProjectsResource: Sendable {
     let transport: Transport
 
@@ -237,6 +237,14 @@ public struct ProjectsResource: Sendable {
     @discardableResult
     public func provisionBackend(_ id: String, _ body: [String: JSONValue] = [:]) async throws -> JSONValue {
         try await transport.request("POST", "/projects/\(Transport.encodePath(id))/backend", body: .object(body))
+    }
+
+    /// `GET /projects/:id/domains/recommend`
+    ///
+    /// misardev:method projects.recommendDomains
+    @discardableResult
+    public func recommendDomains(_ id: String) async throws -> JSONValue {
+        try await transport.request("GET", "/projects/\(Transport.encodePath(id))/domains/recommend")
     }
 
     /// `DELETE /projects/:id/collaborators`

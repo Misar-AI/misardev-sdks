@@ -6,12 +6,74 @@ package io.misar.dev.generated;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.misar.dev.Transport;
 
-/** The {@code domains} resource — 1 operation(s). */
+import java.util.Collections;
+import java.util.Map;
+
+/** The {@code domains} resource — 8 operation(s). */
 public final class DomainsResource {
     private final Transport t;
 
     public DomainsResource(Transport t) {
         this.t = t;
+    }
+
+    /**
+     * {@code POST /domains/checkout}
+     *
+     * misardev:method domains.checkout
+     */
+    public JsonNode checkout(Map<String, ?> body) {
+        return t.request("POST", "/domains/checkout", null, body);
+    }
+
+    /**
+     * {@code POST /domains/checkout} — same as {@link #checkout(Map)} with the optional arguments left empty.
+     */
+    public JsonNode checkout() {
+        return checkout(Collections.emptyMap());
+    }
+
+    /**
+     * {@code POST /domains/:id/dns}
+     *
+     * misardev:method domains.createDnsRecord
+     */
+    public JsonNode createDnsRecord(String id, Map<String, ?> body) {
+        return t.request("POST", "/domains/" + Transport.encode(id) + "/dns", null, body);
+    }
+
+    /**
+     * {@code POST /domains/:id/dns} — same as {@link #createDnsRecord(String, Map)} with the optional arguments left empty.
+     */
+    public JsonNode createDnsRecord(String id) {
+        return createDnsRecord(id, Collections.emptyMap());
+    }
+
+    /**
+     * {@code DELETE /domains/:id/dns}
+     *
+     * misardev:method domains.deleteDnsRecord
+     */
+    public JsonNode deleteDnsRecord(String id, String recordId) {
+        return t.request("DELETE", "/domains/" + Transport.encode(id) + "/dns", Transport.query(null, "recordId", recordId), null);
+    }
+
+    /**
+     * {@code GET /domains}
+     *
+     * misardev:method domains.list
+     */
+    public JsonNode list() {
+        return t.request("GET", "/domains", null, null);
+    }
+
+    /**
+     * {@code GET /domains/:id/dns}
+     *
+     * misardev:method domains.listDnsRecords
+     */
+    public JsonNode listDnsRecords(String id) {
+        return t.request("GET", "/domains/" + Transport.encode(id) + "/dns", null, null);
     }
 
     /**
@@ -21,5 +83,37 @@ public final class DomainsResource {
      */
     public JsonNode lookup(String domain) {
         return t.request("GET", "/domains/lookup", Transport.query(null, "domain", domain), null);
+    }
+
+    /**
+     * {@code POST /domains/search}
+     *
+     * misardev:method domains.search
+     */
+    public JsonNode search(Map<String, ?> body) {
+        return t.request("POST", "/domains/search", null, body);
+    }
+
+    /**
+     * {@code POST /domains/search} — same as {@link #search(Map)} with the optional arguments left empty.
+     */
+    public JsonNode search() {
+        return search(Collections.emptyMap());
+    }
+
+    /**
+     * {@code PATCH /domains/:id}
+     *
+     * misardev:method domains.update
+     */
+    public JsonNode update(String id, Map<String, ?> body) {
+        return t.request("PATCH", "/domains/" + Transport.encode(id), null, body);
+    }
+
+    /**
+     * {@code PATCH /domains/:id} — same as {@link #update(String, Map)} with the optional arguments left empty.
+     */
+    public JsonNode update(String id) {
+        return update(id, Collections.emptyMap());
     }
 }

@@ -6,7 +6,10 @@ package io.misar.dev.generated;
 import com.fasterxml.jackson.databind.JsonNode;
 import io.misar.dev.Transport;
 
-/** The {@code profile} resource — 3 operation(s). */
+import java.util.Collections;
+import java.util.Map;
+
+/** The {@code profile} resource — 10 operation(s). */
 public final class ProfileResource {
     private final Transport t;
 
@@ -15,12 +18,28 @@ public final class ProfileResource {
     }
 
     /**
+     * {@code POST /blocks/:handle}
+     *
+     * misardev:method profile.block
+     */
+    public JsonNode block(String handle) {
+        return t.request("POST", "/blocks/" + Transport.encode(handle), null, null);
+    }
+
+    /**
      * {@code POST /follow/:handle}
      *
      * misardev:method profile.follow
      */
+    public JsonNode follow(String handle, Map<String, ?> body) {
+        return t.request("POST", "/follow/" + Transport.encode(handle), null, body);
+    }
+
+    /**
+     * {@code POST /follow/:handle} — same as {@link #follow(String, Map)} with the optional arguments left empty.
+     */
     public JsonNode follow(String handle) {
-        return t.request("POST", "/follow/" + Transport.encode(handle), null, null);
+        return follow(handle, Collections.emptyMap());
     }
 
     /**
@@ -35,11 +54,79 @@ public final class ProfileResource {
     }
 
     /**
+     * {@code GET /blocks}
+     *
+     * misardev:method profile.listBlocks
+     */
+    public JsonNode listBlocks() {
+        return t.request("GET", "/blocks", null, null);
+    }
+
+    /**
+     * {@code GET /profile/:handle/:list}
+     *
+     * misardev:method profile.listConnections
+     */
+    public JsonNode listConnections(String handle, String list, Map<String, ?> query) {
+        return t.request("GET", "/profile/" + Transport.encode(handle) + "/" + Transport.encode(list), Transport.query(query), null);
+    }
+
+    /**
+     * {@code GET /profile/:handle/:list} — same as {@link #listConnections(String, String, Map)} with the optional arguments left empty.
+     */
+    public JsonNode listConnections(String handle, String list) {
+        return listConnections(handle, list, null);
+    }
+
+    /**
+     * {@code GET /profile/:handle/highlights}
+     *
+     * misardev:method profile.listHighlights
+     */
+    public JsonNode listHighlights(String handle) {
+        return t.request("GET", "/profile/" + Transport.encode(handle) + "/highlights", null, null);
+    }
+
+    /**
+     * {@code POST /mutes/:handle}
+     *
+     * misardev:method profile.mute
+     */
+    public JsonNode mute(String handle, Map<String, ?> body) {
+        return t.request("POST", "/mutes/" + Transport.encode(handle), null, body);
+    }
+
+    /**
+     * {@code POST /mutes/:handle} — same as {@link #mute(String, Map)} with the optional arguments left empty.
+     */
+    public JsonNode mute(String handle) {
+        return mute(handle, Collections.emptyMap());
+    }
+
+    /**
+     * {@code DELETE /blocks/:handle}
+     *
+     * misardev:method profile.unblock
+     */
+    public JsonNode unblock(String handle) {
+        return t.request("DELETE", "/blocks/" + Transport.encode(handle), null, null);
+    }
+
+    /**
      * {@code DELETE /follow/:handle}
      *
      * misardev:method profile.unfollow
      */
     public JsonNode unfollow(String handle) {
         return t.request("DELETE", "/follow/" + Transport.encode(handle), null, null);
+    }
+
+    /**
+     * {@code DELETE /mutes/:handle}
+     *
+     * misardev:method profile.unmute
+     */
+    public JsonNode unmute(String handle) {
+        return t.request("DELETE", "/mutes/" + Transport.encode(handle), null, null);
     }
 }

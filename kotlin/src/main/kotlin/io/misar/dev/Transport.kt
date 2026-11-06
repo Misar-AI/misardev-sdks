@@ -191,7 +191,7 @@ class Transport internal constructor(
         const val DEFAULT_BASE_URL = "https://api.misar.io/dev"
 
         /** This SDK's version, sent in `X-Misar-SDK`. */
-        const val SDK_VERSION = "1.0.0"
+        const val SDK_VERSION = "1.1.0"
 
         /** Where users create API keys; quoted in the missing-key error. */
         const val API_KEYS_URL = "https://www.misar.dev/settings/api-keys"

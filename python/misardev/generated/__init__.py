@@ -11,18 +11,28 @@ from .billing import BillingResource
 from .builds import BuildsResource
 from .chat import ChatResource
 from .checkpoints import CheckpointsResource
+from .close_friends import CloseFriendsResource
+from .collections import CollectionsResource
+from .comments import CommentsResource
 from .connectors import ConnectorsResource
+from .dm import DmResource
 from .domains import DomainsResource
+from .feed import FeedResource
 from .gallery import GalleryResource
 from .github import GithubResource
+from .highlights import HighlightsResource
 from .notifications import NotificationsResource
 from .organizations import OrganizationsResource
+from .posts import PostsResource
 from .profile import ProfileResource
 from .projects import ProjectsResource
 from .rag import RagResource
 from .reports import ReportsResource
 from .search import SearchResource
 from .skills import SkillsResource
+from .social import SocialResource
+from .stories import StoriesResource
+from .tags import TagsResource
 from .templates import TemplatesResource
 from .usage import UsageResource
 
@@ -36,18 +46,28 @@ __all__ = [
     "BuildsResource",
     "ChatResource",
     "CheckpointsResource",
+    "CloseFriendsResource",
+    "CollectionsResource",
+    "CommentsResource",
     "ConnectorsResource",
+    "DmResource",
     "DomainsResource",
+    "FeedResource",
     "GalleryResource",
     "GithubResource",
+    "HighlightsResource",
     "NotificationsResource",
     "OrganizationsResource",
+    "PostsResource",
     "ProfileResource",
     "ProjectsResource",
     "RagResource",
     "ReportsResource",
     "SearchResource",
     "SkillsResource",
+    "SocialResource",
+    "StoriesResource",
+    "TagsResource",
     "TemplatesResource",
     "UsageResource",
 ]
@@ -63,18 +83,28 @@ class MisarDevResources:
     builds: BuildsResource
     chat: ChatResource
     checkpoints: CheckpointsResource
+    close_friends: CloseFriendsResource
+    collections: CollectionsResource
+    comments: CommentsResource
     connectors: ConnectorsResource
+    dm: DmResource
     domains: DomainsResource
+    feed: FeedResource
     gallery: GalleryResource
     github: GithubResource
+    highlights: HighlightsResource
     notifications: NotificationsResource
     organizations: OrganizationsResource
+    posts: PostsResource
     profile: ProfileResource
     projects: ProjectsResource
     rag: RagResource
     reports: ReportsResource
     search: SearchResource
     skills: SkillsResource
+    social: SocialResource
+    stories: StoriesResource
+    tags: TagsResource
     templates: TemplatesResource
     usage: UsageResource
 
@@ -86,21 +116,31 @@ class MisarDevResources:
         self.builds = BuildsResource(transport)
         self.chat = ChatResource(transport)
         self.checkpoints = CheckpointsResource(transport)
+        self.close_friends = CloseFriendsResource(transport)
+        self.collections = CollectionsResource(transport)
+        self.comments = CommentsResource(transport)
         self.connectors = ConnectorsResource(transport)
+        self.dm = DmResource(transport)
         self.domains = DomainsResource(transport)
+        self.feed = FeedResource(transport)
         self.gallery = GalleryResource(transport)
         self.github = GithubResource(transport)
+        self.highlights = HighlightsResource(transport)
         self.notifications = NotificationsResource(transport)
         self.organizations = OrganizationsResource(transport)
+        self.posts = PostsResource(transport)
         self.profile = ProfileResource(transport)
         self.projects = ProjectsResource(transport)
         self.rag = RagResource(transport)
         self.reports = ReportsResource(transport)
         self.search = SearchResource(transport)
         self.skills = SkillsResource(transport)
+        self.social = SocialResource(transport)
+        self.stories = StoriesResource(transport)
+        self.tags = TagsResource(transport)
         self.templates = TemplatesResource(transport)
         self.usage = UsageResource(transport)
 
 
 #: Operation count (methods + streams), for the coverage gate and the README.
-OPERATION_COUNT = 109
+OPERATION_COUNT = 182

@@ -23,7 +23,7 @@ public struct GalleryResource: Sendable {
     ///
     /// Public — works without a key, but the client still sends it.
     ///
-    /// Optional query: `limit`, `offset`, `q`, `search`.
+    /// Optional query: `limit`, `offset`, `public`, `q`, `search`.
     ///
     /// misardev:method gallery.list
     @discardableResult

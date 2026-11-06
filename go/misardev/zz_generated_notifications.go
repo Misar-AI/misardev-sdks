@@ -8,8 +8,15 @@ import (
 	"net/url"
 )
 
-// NotificationsResource is the `notifications` resource — 3 operation(s). In-app notifications and read state.
+// NotificationsResource is the `notifications` resource — 5 operation(s). In-app notifications and read state.
 type NotificationsResource struct{ c *Client }
+
+// GetPreferences calls `GET /notifications/preferences`.
+//
+// misardev:method notifications.getPreferences
+func (r *NotificationsResource) GetPreferences(ctx context.Context, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "GET", "/notifications/preferences", nil, nil, opts...)
+}
 
 // List calls `GET /notifications`.
 //
@@ -32,4 +39,11 @@ func (r *NotificationsResource) MarkAllRead(ctx context.Context, body Body, opts
 // misardev:method notifications.markRead
 func (r *NotificationsResource) MarkRead(ctx context.Context, id string, body Body, opts ...CallOption) (any, error) {
 	return r.c.Request(ctx, "PATCH", "/notifications/"+url.PathEscape(id), nil, orEmpty(body), opts...)
+}
+
+// UpdatePreferences calls `PATCH /notifications/preferences`.
+//
+// misardev:method notifications.updatePreferences
+func (r *NotificationsResource) UpdatePreferences(ctx context.Context, body Body, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "PATCH", "/notifications/preferences", nil, orEmpty(body), opts...)
 }

@@ -82,6 +82,45 @@ var generatedOperations = []generatedOperation{
 	{"checkpoints.update", "PATCH", "/checkpoints/id-1", true, func(ctx context.Context, c *Client) (any, error) {
 		return c.Checkpoints.Update(ctx, "id-1", Body{"probe": true})
 	}},
+	{"closeFriends.add", "POST", "/close-friends", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.CloseFriends.Add(ctx, Body{"probe": true})
+	}},
+	{"closeFriends.list", "GET", "/close-friends", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.CloseFriends.List(ctx, nil)
+	}},
+	{"closeFriends.remove", "DELETE", "/close-friends", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.CloseFriends.Remove(ctx, Body{"probe": true})
+	}},
+	{"collections.addPost", "POST", "/collections/id-1/items", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Collections.AddPost(ctx, "id-1", Body{"probe": true}, nil)
+	}},
+	{"collections.create", "POST", "/collections", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Collections.Create(ctx, Body{"probe": true})
+	}},
+	{"collections.delete", "DELETE", "/collections/id-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Collections.Delete(ctx, "id-1")
+	}},
+	{"collections.list", "GET", "/collections", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Collections.List(ctx)
+	}},
+	{"collections.removePost", "DELETE", "/collections/id-1/items", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Collections.RemovePost(ctx, "id-1", Body{"probe": true}, nil)
+	}},
+	{"collections.update", "PATCH", "/collections/id-1", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Collections.Update(ctx, "id-1", Body{"probe": true})
+	}},
+	{"comments.delete", "DELETE", "/comments/id-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Comments.Delete(ctx, "id-1")
+	}},
+	{"comments.like", "POST", "/comments/id-1/like", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Comments.Like(ctx, "id-1")
+	}},
+	{"comments.unlike", "DELETE", "/comments/id-1/like", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Comments.Unlike(ctx, "id-1")
+	}},
+	{"comments.update", "PATCH", "/comments/id-1", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Comments.Update(ctx, "id-1", Body{"probe": true})
+	}},
 	{"connectors.available", "GET", "/connectors/available", false, func(ctx context.Context, c *Client) (any, error) {
 		return c.Connectors.Available(ctx)
 	}},
@@ -106,8 +145,65 @@ var generatedOperations = []generatedOperation{
 	{"connectors.updateConnection", "PATCH", "/connectors/connections/id-1", true, func(ctx context.Context, c *Client) (any, error) {
 		return c.Connectors.UpdateConnection(ctx, "id-1", Body{"probe": true})
 	}},
+	{"dm.acceptThread", "POST", "/dm/threads/id-1/accept", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Dm.AcceptThread(ctx, "id-1")
+	}},
+	{"dm.createThread", "POST", "/dm/threads", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Dm.CreateThread(ctx, Body{"probe": true})
+	}},
+	{"dm.createThreadsMute", "POST", "/dm/threads/id-1/mute", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Dm.CreateThreadsMute(ctx, "id-1")
+	}},
+	{"dm.declineThread", "POST", "/dm/threads/id-1/decline", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Dm.DeclineThread(ctx, "id-1")
+	}},
+	{"dm.deleteThreadsMute", "DELETE", "/dm/threads/id-1/mute", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Dm.DeleteThreadsMute(ctx, "id-1")
+	}},
+	{"dm.listMessages", "GET", "/dm/threads/id-1/messages", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Dm.ListMessages(ctx, "id-1", nil)
+	}},
+	{"dm.listThreads", "GET", "/dm/threads", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Dm.ListThreads(ctx, nil)
+	}},
+	{"dm.markThreadRead", "POST", "/dm/threads/id-1/read", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Dm.MarkThreadRead(ctx, "id-1")
+	}},
+	{"dm.sendMessage", "POST", "/dm/threads/id-1/messages", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Dm.SendMessage(ctx, "id-1", Body{"probe": true})
+	}},
+	{"dm.unreadCounts", "GET", "/dm/unread", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Dm.UnreadCounts(ctx)
+	}},
+	{"domains.checkout", "POST", "/domains/checkout", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Domains.Checkout(ctx, Body{"probe": true})
+	}},
+	{"domains.createDnsRecord", "POST", "/domains/id-1/dns", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Domains.CreateDnsRecord(ctx, "id-1", Body{"probe": true})
+	}},
+	{"domains.deleteDnsRecord", "DELETE", "/domains/id-1/dns?recordId=recordId-v", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Domains.DeleteDnsRecord(ctx, "id-1", "recordId-v")
+	}},
+	{"domains.list", "GET", "/domains", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Domains.List(ctx)
+	}},
+	{"domains.listDnsRecords", "GET", "/domains/id-1/dns", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Domains.ListDnsRecords(ctx, "id-1")
+	}},
 	{"domains.lookup", "GET", "/domains/lookup?domain=domain-v", false, func(ctx context.Context, c *Client) (any, error) {
 		return c.Domains.Lookup(ctx, "domain-v")
+	}},
+	{"domains.search", "POST", "/domains/search", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Domains.Search(ctx, Body{"probe": true})
+	}},
+	{"domains.update", "PATCH", "/domains/id-1", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Domains.Update(ctx, "id-1", Body{"probe": true})
+	}},
+	{"feed.following", "GET", "/feed", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Feed.Following(ctx, nil)
+	}},
+	{"feed.forYou", "GET", "/feed/for-you", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Feed.ForYou(ctx, nil)
 	}},
 	{"gallery.like", "POST", "/gallery/projectId-1/like", false, func(ctx context.Context, c *Client) (any, error) {
 		return c.Gallery.Like(ctx, "projectId-1")
@@ -124,6 +220,27 @@ var generatedOperations = []generatedOperation{
 	{"github.getConnection", "GET", "/github/connection", false, func(ctx context.Context, c *Client) (any, error) {
 		return c.GitHub.GetConnection(ctx)
 	}},
+	{"highlights.addStory", "POST", "/highlights/id-1/items", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Highlights.AddStory(ctx, "id-1", Body{"probe": true})
+	}},
+	{"highlights.create", "POST", "/highlights", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Highlights.Create(ctx, Body{"probe": true})
+	}},
+	{"highlights.delete", "DELETE", "/highlights/id-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Highlights.Delete(ctx, "id-1")
+	}},
+	{"highlights.list", "GET", "/highlights", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Highlights.List(ctx, nil)
+	}},
+	{"highlights.removeStory", "DELETE", "/highlights/id-1/items", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Highlights.RemoveStory(ctx, "id-1", Body{"probe": true})
+	}},
+	{"highlights.update", "PATCH", "/highlights/id-1", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Highlights.Update(ctx, "id-1", Body{"probe": true})
+	}},
+	{"notifications.getPreferences", "GET", "/notifications/preferences", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Notifications.GetPreferences(ctx)
+	}},
 	{"notifications.list", "GET", "/notifications", false, func(ctx context.Context, c *Client) (any, error) {
 		return c.Notifications.List(ctx, nil)
 	}},
@@ -132,6 +249,9 @@ var generatedOperations = []generatedOperation{
 	}},
 	{"notifications.markRead", "PATCH", "/notifications/id-1", true, func(ctx context.Context, c *Client) (any, error) {
 		return c.Notifications.MarkRead(ctx, "id-1", Body{"probe": true})
+	}},
+	{"notifications.updatePreferences", "PATCH", "/notifications/preferences", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Notifications.UpdatePreferences(ctx, Body{"probe": true})
 	}},
 	{"organizations.acceptInvitation", "POST", "/invitations/accept", true, func(ctx context.Context, c *Client) (any, error) {
 		return c.Organizations.AcceptInvitation(ctx, Body{"probe": true})
@@ -160,14 +280,71 @@ var generatedOperations = []generatedOperation{
 	{"organizations.updateMember", "PATCH", "/organizations/id-1/members", true, func(ctx context.Context, c *Client) (any, error) {
 		return c.Organizations.UpdateMember(ctx, "id-1", Body{"probe": true})
 	}},
-	{"profile.follow", "POST", "/follow/handle-1", false, func(ctx context.Context, c *Client) (any, error) {
-		return c.Profile.Follow(ctx, "handle-1")
+	{"posts.create", "POST", "/posts", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Posts.Create(ctx, Body{"probe": true})
+	}},
+	{"posts.createComment", "POST", "/posts/id-1/comments", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Posts.CreateComment(ctx, "id-1", Body{"probe": true})
+	}},
+	{"posts.get", "GET", "/posts/id-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Posts.Get(ctx, "id-1")
+	}},
+	{"posts.like", "POST", "/posts/id-1/like", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Posts.Like(ctx, "id-1")
+	}},
+	{"posts.list", "GET", "/posts", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Posts.List(ctx, nil)
+	}},
+	{"posts.listComments", "GET", "/posts/id-1/comments", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Posts.ListComments(ctx, "id-1", nil)
+	}},
+	{"posts.listSaved", "GET", "/me/saved", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Posts.ListSaved(ctx, nil)
+	}},
+	{"posts.save", "POST", "/posts/id-1/save", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Posts.Save(ctx, "id-1", Body{"probe": true})
+	}},
+	{"posts.shareToDm", "POST", "/posts/id-1/share-dm", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Posts.ShareToDm(ctx, "id-1", Body{"probe": true})
+	}},
+	{"posts.unlike", "DELETE", "/posts/id-1/like", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Posts.Unlike(ctx, "id-1")
+	}},
+	{"posts.unsave", "DELETE", "/posts/id-1/save", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Posts.Unsave(ctx, "id-1")
+	}},
+	{"posts.update", "PATCH", "/posts/id-1", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Posts.Update(ctx, "id-1", Body{"probe": true})
+	}},
+	{"profile.block", "POST", "/blocks/handle-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Profile.Block(ctx, "handle-1")
+	}},
+	{"profile.follow", "POST", "/follow/handle-1", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Profile.Follow(ctx, "handle-1", Body{"probe": true})
 	}},
 	{"profile.get", "GET", "/profile/handle-1", false, func(ctx context.Context, c *Client) (any, error) {
 		return c.Profile.Get(ctx, "handle-1")
 	}},
+	{"profile.listBlocks", "GET", "/blocks", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Profile.ListBlocks(ctx)
+	}},
+	{"profile.listConnections", "GET", "/profile/handle-1/list-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Profile.ListConnections(ctx, "handle-1", "list-1", nil)
+	}},
+	{"profile.listHighlights", "GET", "/profile/handle-1/highlights", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Profile.ListHighlights(ctx, "handle-1")
+	}},
+	{"profile.mute", "POST", "/mutes/handle-1", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Profile.Mute(ctx, "handle-1", Body{"probe": true})
+	}},
+	{"profile.unblock", "DELETE", "/blocks/handle-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Profile.Unblock(ctx, "handle-1")
+	}},
 	{"profile.unfollow", "DELETE", "/follow/handle-1", false, func(ctx context.Context, c *Client) (any, error) {
 		return c.Profile.Unfollow(ctx, "handle-1")
+	}},
+	{"profile.unmute", "DELETE", "/mutes/handle-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Profile.Unmute(ctx, "handle-1")
 	}},
 	{"projects.addCollaborator", "POST", "/projects/id-1/collaborators", true, func(ctx context.Context, c *Client) (any, error) {
 		return c.Projects.AddCollaborator(ctx, "id-1", Body{"probe": true})
@@ -253,6 +430,9 @@ var generatedOperations = []generatedOperation{
 	{"projects.provisionBackend", "POST", "/projects/id-1/backend", true, func(ctx context.Context, c *Client) (any, error) {
 		return c.Projects.ProvisionBackend(ctx, "id-1", Body{"probe": true})
 	}},
+	{"projects.recommendDomains", "GET", "/projects/id-1/domains/recommend", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Projects.RecommendDomains(ctx, "id-1")
+	}},
 	{"projects.removeCollaborator", "DELETE", "/projects/id-1/collaborators?collaboratorId=collaboratorId-v", false, func(ctx context.Context, c *Client) (any, error) {
 		return c.Projects.RemoveCollaborator(ctx, "id-1", "collaboratorId-v")
 	}},
@@ -312,6 +492,45 @@ var generatedOperations = []generatedOperation{
 	}},
 	{"skills.list", "GET", "/skills/misarai", false, func(ctx context.Context, c *Client) (any, error) {
 		return c.Skills.List(ctx)
+	}},
+	{"social.dismissSuggestion", "POST", "/social/suggestions/handle-1/dismiss", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Social.DismissSuggestion(ctx, "handle-1")
+	}},
+	{"social.listSuggestions", "GET", "/social/suggestions", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Social.ListSuggestions(ctx, nil)
+	}},
+	{"social.meMutuals", "GET", "/social/me/mutuals", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Social.MeMutuals(ctx, nil)
+	}},
+	{"social.relationship", "GET", "/social/relationship/handle-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Social.Relationship(ctx, "handle-1")
+	}},
+	{"stories.create", "POST", "/stories", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Stories.Create(ctx, Body{"probe": true})
+	}},
+	{"stories.delete", "DELETE", "/stories/id-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Stories.Delete(ctx, "id-1")
+	}},
+	{"stories.get", "GET", "/stories/id-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Stories.Get(ctx, "id-1")
+	}},
+	{"stories.listMyPosts", "GET", "/stories/my-posts", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Stories.ListMyPosts(ctx, nil)
+	}},
+	{"stories.listViewers", "GET", "/stories/id-1/viewers", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Stories.ListViewers(ctx, "id-1", nil)
+	}},
+	{"stories.markSeen", "POST", "/stories/id-1/view", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Stories.MarkSeen(ctx, "id-1")
+	}},
+	{"stories.reply", "POST", "/stories/id-1/reply", true, func(ctx context.Context, c *Client) (any, error) {
+		return c.Stories.Reply(ctx, "id-1", Body{"probe": true})
+	}},
+	{"stories.tray", "GET", "/stories/tray", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Stories.Tray(ctx)
+	}},
+	{"tags.get", "GET", "/tags/tag-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Tags.Get(ctx, "tag-1", nil)
 	}},
 	{"templates.create", "POST", "/templates", true, func(ctx context.Context, c *Client) (any, error) {
 		return c.Templates.Create(ctx, Body{"probe": true})

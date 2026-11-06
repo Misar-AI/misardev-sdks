@@ -249,6 +249,171 @@
         }
       ]
     },
+    "closeFriends": {
+      "methods": [
+        {
+          "name": "add",
+          "verb": "POST",
+          "path": "/close-friends",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "list",
+          "verb": "GET",
+          "path": "/close-friends",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [
+            "cursor",
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "remove",
+          "verb": "DELETE",
+          "path": "/close-friends",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        }
+      ]
+    },
+    "collections": {
+      "methods": [
+        {
+          "name": "addPost",
+          "verb": "POST",
+          "path": "/collections/:id/items",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [
+            "postId"
+          ],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "create",
+          "verb": "POST",
+          "path": "/collections",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "delete",
+          "verb": "DELETE",
+          "path": "/collections/:id",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "list",
+          "verb": "GET",
+          "path": "/collections",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "removePost",
+          "verb": "DELETE",
+          "path": "/collections/:id/items",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [
+            "postId"
+          ],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "update",
+          "verb": "PATCH",
+          "path": "/collections/:id",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        }
+      ]
+    },
+    "comments": {
+      "methods": [
+        {
+          "name": "delete",
+          "verb": "DELETE",
+          "path": "/comments/:id",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "like",
+          "verb": "POST",
+          "path": "/comments/:id/like",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "unlike",
+          "verb": "DELETE",
+          "path": "/comments/:id/like",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "update",
+          "verb": "PATCH",
+          "path": "/comments/:id",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        }
+      ]
+    },
     "connectors": {
       "methods": [
         {
@@ -343,8 +508,193 @@
         }
       ]
     },
+    "dm": {
+      "methods": [
+        {
+          "name": "acceptThread",
+          "verb": "POST",
+          "path": "/dm/threads/:id/accept",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "createThread",
+          "verb": "POST",
+          "path": "/dm/threads",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "createThreadsMute",
+          "verb": "POST",
+          "path": "/dm/threads/:id/mute",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "declineThread",
+          "verb": "POST",
+          "path": "/dm/threads/:id/decline",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "deleteThreadsMute",
+          "verb": "DELETE",
+          "path": "/dm/threads/:id/mute",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "listMessages",
+          "verb": "GET",
+          "path": "/dm/threads/:id/messages",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [
+            "cursor",
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "listThreads",
+          "verb": "GET",
+          "path": "/dm/threads",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [
+            "box",
+            "cursor",
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "markThreadRead",
+          "verb": "POST",
+          "path": "/dm/threads/:id/read",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "sendMessage",
+          "verb": "POST",
+          "path": "/dm/threads/:id/messages",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "unreadCounts",
+          "verb": "GET",
+          "path": "/dm/unread",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        }
+      ]
+    },
     "domains": {
       "methods": [
+        {
+          "name": "checkout",
+          "verb": "POST",
+          "path": "/domains/checkout",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "createDnsRecord",
+          "verb": "POST",
+          "path": "/domains/:id/dns",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "deleteDnsRecord",
+          "verb": "DELETE",
+          "path": "/domains/:id/dns",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [
+            "recordId"
+          ],
+          "queryParams": [
+            "recordId"
+          ],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "list",
+          "verb": "GET",
+          "path": "/domains",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "listDnsRecords",
+          "verb": "GET",
+          "path": "/domains/:id/dns",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
         {
           "name": "lookup",
           "verb": "GET",
@@ -358,6 +708,59 @@
           ],
           "hasBody": false,
           "auth": "api_key"
+        },
+        {
+          "name": "search",
+          "verb": "POST",
+          "path": "/domains/search",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "update",
+          "verb": "PATCH",
+          "path": "/domains/:id",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        }
+      ]
+    },
+    "feed": {
+      "methods": [
+        {
+          "name": "following",
+          "verb": "GET",
+          "path": "/feed",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [
+            "cursor",
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "forYou",
+          "verb": "GET",
+          "path": "/feed/for-you",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [
+            "cursor",
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "public",
+          "note": "public ranked feed; a key personalises the ranking"
         }
       ]
     },
@@ -384,6 +787,7 @@
           "queryParams": [
             "limit",
             "offset",
+            "public",
             "q",
             "search"
           ],
@@ -429,8 +833,92 @@
         }
       ]
     },
+    "highlights": {
+      "methods": [
+        {
+          "name": "addStory",
+          "verb": "POST",
+          "path": "/highlights/:id/items",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "create",
+          "verb": "POST",
+          "path": "/highlights",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "delete",
+          "verb": "DELETE",
+          "path": "/highlights/:id",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "list",
+          "verb": "GET",
+          "path": "/highlights",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [
+            "handle"
+          ],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "removeStory",
+          "verb": "DELETE",
+          "path": "/highlights/:id/items",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "update",
+          "verb": "PATCH",
+          "path": "/highlights/:id",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        }
+      ]
+    },
     "notifications": {
       "methods": [
+        {
+          "name": "getPreferences",
+          "verb": "GET",
+          "path": "/notifications/preferences",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
         {
           "name": "list",
           "verb": "GET",
@@ -461,6 +949,16 @@
           "pathParams": [
             "id"
           ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "updatePreferences",
+          "verb": "PATCH",
+          "path": "/notifications/preferences",
+          "pathParams": [],
           "requiredQuery": [],
           "queryParams": [],
           "hasBody": true,
@@ -582,8 +1080,176 @@
         }
       ]
     },
+    "posts": {
+      "methods": [
+        {
+          "name": "create",
+          "verb": "POST",
+          "path": "/posts",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "createComment",
+          "verb": "POST",
+          "path": "/posts/:id/comments",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "get",
+          "verb": "GET",
+          "path": "/posts/:id",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "public",
+          "note": "public post (viewer flags need a browser session)"
+        },
+        {
+          "name": "like",
+          "verb": "POST",
+          "path": "/posts/:id/like",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "list",
+          "verb": "GET",
+          "path": "/posts",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [
+            "cursor",
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "public",
+          "note": "public explore grid (viewer flags need a browser session)"
+        },
+        {
+          "name": "listComments",
+          "verb": "GET",
+          "path": "/posts/:id/comments",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [
+            "cursor",
+            "limit",
+            "parentId"
+          ],
+          "hasBody": false,
+          "auth": "public",
+          "note": "public comments; a key adds viewer flags and block filtering"
+        },
+        {
+          "name": "listSaved",
+          "verb": "GET",
+          "path": "/me/saved",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [
+            "collection",
+            "cursor",
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "save",
+          "verb": "POST",
+          "path": "/posts/:id/save",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "shareToDm",
+          "verb": "POST",
+          "path": "/posts/:id/share-dm",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "unlike",
+          "verb": "DELETE",
+          "path": "/posts/:id/like",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "unsave",
+          "verb": "DELETE",
+          "path": "/posts/:id/save",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "update",
+          "verb": "PATCH",
+          "path": "/posts/:id",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        }
+      ]
+    },
     "profile": {
       "methods": [
+        {
+          "name": "block",
+          "verb": "POST",
+          "path": "/blocks/:handle",
+          "pathParams": [
+            "handle"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
         {
           "name": "follow",
           "verb": "POST",
@@ -593,7 +1259,7 @@
           ],
           "requiredQuery": [],
           "queryParams": [],
-          "hasBody": false,
+          "hasBody": true,
           "auth": "api_key"
         },
         {
@@ -610,9 +1276,83 @@
           "note": "public builder profile"
         },
         {
+          "name": "listBlocks",
+          "verb": "GET",
+          "path": "/blocks",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "listConnections",
+          "verb": "GET",
+          "path": "/profile/:handle/:list",
+          "pathParams": [
+            "handle",
+            "list"
+          ],
+          "requiredQuery": [],
+          "queryParams": [
+            "cursor",
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "listHighlights",
+          "verb": "GET",
+          "path": "/profile/:handle/highlights",
+          "pathParams": [
+            "handle"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "mute",
+          "verb": "POST",
+          "path": "/mutes/:handle",
+          "pathParams": [
+            "handle"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "unblock",
+          "verb": "DELETE",
+          "path": "/blocks/:handle",
+          "pathParams": [
+            "handle"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
           "name": "unfollow",
           "verb": "DELETE",
           "path": "/follow/:handle",
+          "pathParams": [
+            "handle"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "unmute",
+          "verb": "DELETE",
+          "path": "/mutes/:handle",
           "pathParams": [
             "handle"
           ],
@@ -976,6 +1716,18 @@
           "auth": "api_key"
         },
         {
+          "name": "recommendDomains",
+          "verb": "GET",
+          "path": "/projects/:id/domains/recommend",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
           "name": "removeCollaborator",
           "verb": "DELETE",
           "path": "/projects/:id/collaborators",
@@ -1192,8 +1944,10 @@
           "pathParams": [],
           "requiredQuery": [],
           "queryParams": [
+            "cursor",
             "limit",
             "q",
+            "type",
             "types"
           ],
           "hasBody": false,
@@ -1234,6 +1988,179 @@
           "queryParams": [],
           "hasBody": false,
           "auth": "api_key"
+        }
+      ]
+    },
+    "social": {
+      "methods": [
+        {
+          "name": "dismissSuggestion",
+          "verb": "POST",
+          "path": "/social/suggestions/:handle/dismiss",
+          "pathParams": [
+            "handle"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "listSuggestions",
+          "verb": "GET",
+          "path": "/social/suggestions",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "meMutuals",
+          "verb": "GET",
+          "path": "/social/me/mutuals",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [
+            "include",
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "relationship",
+          "verb": "GET",
+          "path": "/social/relationship/:handle",
+          "pathParams": [
+            "handle"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        }
+      ]
+    },
+    "stories": {
+      "methods": [
+        {
+          "name": "create",
+          "verb": "POST",
+          "path": "/stories",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "delete",
+          "verb": "DELETE",
+          "path": "/stories/:id",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "get",
+          "verb": "GET",
+          "path": "/stories/:id",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "listMyPosts",
+          "verb": "GET",
+          "path": "/stories/my-posts",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [
+            "cursor",
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "listViewers",
+          "verb": "GET",
+          "path": "/stories/:id/viewers",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [
+            "cursor",
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "markSeen",
+          "verb": "POST",
+          "path": "/stories/:id/view",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
+          "name": "reply",
+          "verb": "POST",
+          "path": "/stories/:id/reply",
+          "pathParams": [
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": true,
+          "auth": "api_key"
+        },
+        {
+          "name": "tray",
+          "verb": "GET",
+          "path": "/stories/tray",
+          "pathParams": [],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        }
+      ]
+    },
+    "tags": {
+      "methods": [
+        {
+          "name": "get",
+          "verb": "GET",
+          "path": "/tags/:tag",
+          "pathParams": [
+            "tag"
+          ],
+          "requiredQuery": [],
+          "queryParams": [
+            "cursor",
+            "limit"
+          ],
+          "hasBody": false,
+          "auth": "public",
+          "note": "public hashtag page; a key adds viewer flags and mute/block filtering"
         }
       ]
     },

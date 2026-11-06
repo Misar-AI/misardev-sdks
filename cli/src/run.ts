@@ -34,7 +34,7 @@ import {
   renderPlanLimitCard,
 } from "./render.js";
 
-export const CLI_VERSION = "1.0.0";
+export const CLI_VERSION = "1.1.0";
 export const API_KEYS_URL = "https://www.misar.dev/settings/api-keys";
 
 /** Exit codes: 0 ok, 1 error, 2 blocked by the plan behind the key. */

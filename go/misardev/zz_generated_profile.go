@@ -8,14 +8,21 @@ import (
 	"net/url"
 )
 
-// ProfileResource is the `profile` resource — 3 operation(s). Public builder profiles, follow and unfollow.
+// ProfileResource is the `profile` resource — 10 operation(s). Public builder profiles; follow, block and mute people.
 type ProfileResource struct{ c *Client }
+
+// Block calls `POST /blocks/:handle`.
+//
+// misardev:method profile.block
+func (r *ProfileResource) Block(ctx context.Context, handle string, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "POST", "/blocks/"+url.PathEscape(handle), nil, nil, opts...)
+}
 
 // Follow calls `POST /follow/:handle`.
 //
 // misardev:method profile.follow
-func (r *ProfileResource) Follow(ctx context.Context, handle string, opts ...CallOption) (any, error) {
-	return r.c.Request(ctx, "POST", "/follow/"+url.PathEscape(handle), nil, nil, opts...)
+func (r *ProfileResource) Follow(ctx context.Context, handle string, body Body, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "POST", "/follow/"+url.PathEscape(handle), nil, orEmpty(body), opts...)
 }
 
 // Get calls `GET /profile/:handle`.
@@ -27,9 +34,53 @@ func (r *ProfileResource) Get(ctx context.Context, handle string, opts ...CallOp
 	return r.c.Request(ctx, "GET", "/profile/"+url.PathEscape(handle), nil, nil, opts...)
 }
 
+// ListBlocks calls `GET /blocks`.
+//
+// misardev:method profile.listBlocks
+func (r *ProfileResource) ListBlocks(ctx context.Context, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "GET", "/blocks", nil, nil, opts...)
+}
+
+// ListConnections calls `GET /profile/:handle/:list`.
+//
+// Optional query: cursor, limit.
+//
+// misardev:method profile.listConnections
+func (r *ProfileResource) ListConnections(ctx context.Context, handle string, list string, query Query, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "GET", "/profile/"+url.PathEscape(handle)+"/"+url.PathEscape(list), query, nil, opts...)
+}
+
+// ListHighlights calls `GET /profile/:handle/highlights`.
+//
+// misardev:method profile.listHighlights
+func (r *ProfileResource) ListHighlights(ctx context.Context, handle string, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "GET", "/profile/"+url.PathEscape(handle)+"/highlights", nil, nil, opts...)
+}
+
+// Mute calls `POST /mutes/:handle`.
+//
+// misardev:method profile.mute
+func (r *ProfileResource) Mute(ctx context.Context, handle string, body Body, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "POST", "/mutes/"+url.PathEscape(handle), nil, orEmpty(body), opts...)
+}
+
+// Unblock calls `DELETE /blocks/:handle`.
+//
+// misardev:method profile.unblock
+func (r *ProfileResource) Unblock(ctx context.Context, handle string, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "DELETE", "/blocks/"+url.PathEscape(handle), nil, nil, opts...)
+}
+
 // Unfollow calls `DELETE /follow/:handle`.
 //
 // misardev:method profile.unfollow
 func (r *ProfileResource) Unfollow(ctx context.Context, handle string, opts ...CallOption) (any, error) {
 	return r.c.Request(ctx, "DELETE", "/follow/"+url.PathEscape(handle), nil, nil, opts...)
+}
+
+// Unmute calls `DELETE /mutes/:handle`.
+//
+// misardev:method profile.unmute
+func (r *ProfileResource) Unmute(ctx context.Context, handle string, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "DELETE", "/mutes/"+url.PathEscape(handle), nil, nil, opts...)
 }

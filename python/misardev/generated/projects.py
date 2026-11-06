@@ -11,7 +11,7 @@ from ..core.transport import encode_path as _p  # noqa: F401
 
 
 class ProjectsResource:
-    """The ``projects`` resource — 41 operation(s), each with an ``a``-prefixed async twin."""
+    """The ``projects`` resource — 42 operation(s), each with an ``a``-prefixed async twin."""
 
     def __init__(self, transport: Transport) -> None:
         self._t = transport
@@ -471,6 +471,22 @@ class ProjectsResource:
         misardev:method projects.provisionBackend
         """
         return await self._t.arequest("POST", f"/projects/{_p(id_)}/backend", body=dict(body or {}), headers=headers)
+
+    def recommend_domains(self, id_: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /projects/:id/domains/recommend``
+
+        misardev:method projects.recommendDomains
+        """
+        return self._t.request("GET", f"/projects/{_p(id_)}/domains/recommend", headers=headers)
+
+    async def arecommend_domains(self, id_: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /projects/:id/domains/recommend``
+
+        Async twin of :meth:`recommend_domains`.
+
+        misardev:method projects.recommendDomains
+        """
+        return await self._t.arequest("GET", f"/projects/{_p(id_)}/domains/recommend", headers=headers)
 
     def remove_collaborator(self, id_: str, collaborator_id: Any, *, headers: Optional[Mapping[str, str]] = None) -> Any:
         """``DELETE /projects/:id/collaborators``

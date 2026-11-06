@@ -8,7 +8,7 @@ import io.misar.dev.Transport;
 /** Every MisarDev resource, attached to the client by name. */
 public abstract class MisarDevResources {
     /** Operation count, for the coverage gate and the README. */
-    public static final int OPERATION_COUNT = 109;
+    public static final int OPERATION_COUNT = 182;
 
     public final AccountResource account;
     public final ApiKeysResource apiKeys;
@@ -17,18 +17,28 @@ public abstract class MisarDevResources {
     public final BuildsResource builds;
     public final ChatResource chat;
     public final CheckpointsResource checkpoints;
+    public final CloseFriendsResource closeFriends;
+    public final CollectionsResource collections;
+    public final CommentsResource comments;
     public final ConnectorsResource connectors;
+    public final DmResource dm;
     public final DomainsResource domains;
+    public final FeedResource feed;
     public final GalleryResource gallery;
     public final GithubResource github;
+    public final HighlightsResource highlights;
     public final NotificationsResource notifications;
     public final OrganizationsResource organizations;
+    public final PostsResource posts;
     public final ProfileResource profile;
     public final ProjectsResource projects;
     public final RagResource rag;
     public final ReportsResource reports;
     public final SearchResource search;
     public final SkillsResource skills;
+    public final SocialResource social;
+    public final StoriesResource stories;
+    public final TagsResource tags;
     public final TemplatesResource templates;
     public final UsageResource usage;
 
@@ -40,18 +50,28 @@ public abstract class MisarDevResources {
         this.builds = new BuildsResource(transport);
         this.chat = new ChatResource(transport);
         this.checkpoints = new CheckpointsResource(transport);
+        this.closeFriends = new CloseFriendsResource(transport);
+        this.collections = new CollectionsResource(transport);
+        this.comments = new CommentsResource(transport);
         this.connectors = new ConnectorsResource(transport);
+        this.dm = new DmResource(transport);
         this.domains = new DomainsResource(transport);
+        this.feed = new FeedResource(transport);
         this.gallery = new GalleryResource(transport);
         this.github = new GithubResource(transport);
+        this.highlights = new HighlightsResource(transport);
         this.notifications = new NotificationsResource(transport);
         this.organizations = new OrganizationsResource(transport);
+        this.posts = new PostsResource(transport);
         this.profile = new ProfileResource(transport);
         this.projects = new ProjectsResource(transport);
         this.rag = new RagResource(transport);
         this.reports = new ReportsResource(transport);
         this.search = new SearchResource(transport);
         this.skills = new SkillsResource(transport);
+        this.social = new SocialResource(transport);
+        this.stories = new StoriesResource(transport);
+        this.tags = new TagsResource(transport);
         this.templates = new TemplatesResource(transport);
         this.usage = new UsageResource(transport);
     }

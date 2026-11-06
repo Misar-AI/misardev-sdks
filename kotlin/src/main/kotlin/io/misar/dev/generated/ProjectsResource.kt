@@ -8,7 +8,7 @@ import io.misar.dev.SseEvent
 import io.misar.dev.Transport
 import kotlinx.coroutines.flow.Flow
 
-/** The `projects` resource — 41 operation(s). */
+/** The `projects` resource — 42 operation(s). */
 class ProjectsResource internal constructor(private val t: Transport) {
     /**
      * `POST /projects/:id/collaborators`
@@ -233,6 +233,14 @@ class ProjectsResource internal constructor(private val t: Transport) {
      */
     suspend fun provisionBackend(id: String, body: Map<String, Any?> = emptyMap()): JsonNode? =
         t.request("POST", "/projects/${Transport.encode(id)}/backend", null, body)
+
+    /**
+     * `GET /projects/:id/domains/recommend`
+     *
+     * misardev:method projects.recommendDomains
+     */
+    suspend fun recommendDomains(id: String): JsonNode? =
+        t.request("GET", "/projects/${Transport.encode(id)}/domains/recommend", null, null)
 
     /**
      * `DELETE /projects/:id/collaborators`

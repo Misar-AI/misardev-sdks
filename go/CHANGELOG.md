@@ -5,6 +5,33 @@ All notable changes to this SDK are documented here. The format follows
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are tagged
 `go/vX.Y.Z` on https://github.com/Misar-AI/misardev-sdks.
 
+## [1.1.0] — 2026-11-07
+
+### Added
+
+- The social API, generated from the route tree like everything else. New methods:
+  - `dev.Posts`: `Create`, `CreateComment`, `Get`, `Like`, `List`, `ListComments`, `ListSaved`, `Save`, `ShareToDm`, `Unlike`, `Unsave`, `Update`
+  - `dev.Comments`: `Delete`, `Like`, `Unlike`, `Update`
+  - `dev.Feed`: `Following`, `ForYou`
+  - `dev.Tags`: `Get`
+  - `dev.Collections`: `AddPost`, `Create`, `Delete`, `List`, `RemovePost`, `Update`
+  - `dev.Stories`: `Create`, `Delete`, `Get`, `ListMyPosts`, `ListViewers`, `MarkSeen`, `Reply`, `Tray`
+  - `dev.Highlights`: `AddStory`, `Create`, `Delete`, `List`, `RemoveStory`, `Update`
+  - `dev.CloseFriends`: `Add`, `List`, `Remove`
+  - `dev.Dm`: `AcceptThread`, `CreateThread`, `DeclineThread`, `ListMessages`, `ListThreads`, `MarkThreadRead`, `SendMessage`, `UnreadCounts`
+  - `dev.Social`: `DismissSuggestion`, `ListSuggestions`, `Relationship`
+  - `dev.Profile`: `Block`, `Mute`, `Unblock`, `Unmute`
+- Routes that had landed without reaching the manifest:
+  - `dev.Domains`: `Checkout`, `CreateDnsRecord`, `DeleteDnsRecord`, `List`, `ListDnsRecords`, `Search`, `Update`
+  - `dev.Projects`: `RecommendDomains`
+- `dev.Search.Code` now takes the `cursor` and `type` query parameters the route already read.
+- The surface is now 31 resources, 179 methods and 3 streams (182 operations).
+
+### Notes
+
+- `dev.Posts.List`, `dev.Posts.Get`, `dev.Posts.ListComments`, `dev.Tags.Get` and `dev.Feed.ForYou` are public reads: they answer without a key, and a key only adds viewer flags and filtering.
+- Not exposed on purpose: `POST /api/media/upload-url` (the signed URL needs a raw browser `PUT`) and `POST /api/posts/{id}/view` (a cookie-deduplicated page beacon).
+
 ## [1.0.0] — 2026-10-16
 
 First release under the `misardev` name, at `github.com/Misar-AI/misardev-sdks/go`.

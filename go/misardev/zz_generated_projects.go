@@ -8,7 +8,7 @@ import (
 	"net/url"
 )
 
-// ProjectsResource is the `projects` resource — 41 operation(s). Projects end to end: create, edit, files, builds, deploys, domains, env vars, collaborators, knowledge, skills, tools, export.
+// ProjectsResource is the `projects` resource — 42 operation(s). Projects end to end: create, edit, files, builds, deploys, domains, env vars, collaborators, knowledge, skills, tools, export.
 type ProjectsResource struct{ c *Client }
 
 // AddCollaborator calls `POST /projects/:id/collaborators`.
@@ -209,6 +209,13 @@ func (r *ProjectsResource) ListFiles(ctx context.Context, id string, opts ...Cal
 // misardev:method projects.provisionBackend
 func (r *ProjectsResource) ProvisionBackend(ctx context.Context, id string, body Body, opts ...CallOption) (any, error) {
 	return r.c.Request(ctx, "POST", "/projects/"+url.PathEscape(id)+"/backend", nil, orEmpty(body), opts...)
+}
+
+// RecommendDomains calls `GET /projects/:id/domains/recommend`.
+//
+// misardev:method projects.recommendDomains
+func (r *ProjectsResource) RecommendDomains(ctx context.Context, id string, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "GET", "/projects/"+url.PathEscape(id)+"/domains/recommend", nil, nil, opts...)
 }
 
 // RemoveCollaborator calls `DELETE /projects/:id/collaborators`.

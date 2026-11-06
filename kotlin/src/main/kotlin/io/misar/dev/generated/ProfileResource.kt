@@ -6,15 +6,23 @@ package io.misar.dev.generated
 import com.fasterxml.jackson.databind.JsonNode
 import io.misar.dev.Transport
 
-/** The `profile` resource — 3 operation(s). */
+/** The `profile` resource — 10 operation(s). */
 class ProfileResource internal constructor(private val t: Transport) {
+    /**
+     * `POST /blocks/:handle`
+     *
+     * misardev:method profile.block
+     */
+    suspend fun block(handle: String): JsonNode? =
+        t.request("POST", "/blocks/${Transport.encode(handle)}", null, null)
+
     /**
      * `POST /follow/:handle`
      *
      * misardev:method profile.follow
      */
-    suspend fun follow(handle: String): JsonNode? =
-        t.request("POST", "/follow/${Transport.encode(handle)}", null, null)
+    suspend fun follow(handle: String, body: Map<String, Any?> = emptyMap()): JsonNode? =
+        t.request("POST", "/follow/${Transport.encode(handle)}", null, body)
 
     /**
      * `GET /profile/:handle`
@@ -27,10 +35,58 @@ class ProfileResource internal constructor(private val t: Transport) {
         t.request("GET", "/profile/${Transport.encode(handle)}", null, null)
 
     /**
+     * `GET /blocks`
+     *
+     * misardev:method profile.listBlocks
+     */
+    suspend fun listBlocks(): JsonNode? =
+        t.request("GET", "/blocks", null, null)
+
+    /**
+     * `GET /profile/:handle/:list`
+     *
+     * misardev:method profile.listConnections
+     */
+    suspend fun listConnections(handle: String, list: String, query: Map<String, Any?> = emptyMap()): JsonNode? =
+        t.request("GET", "/profile/${Transport.encode(handle)}/${Transport.encode(list)}", Transport.query(query), null)
+
+    /**
+     * `GET /profile/:handle/highlights`
+     *
+     * misardev:method profile.listHighlights
+     */
+    suspend fun listHighlights(handle: String): JsonNode? =
+        t.request("GET", "/profile/${Transport.encode(handle)}/highlights", null, null)
+
+    /**
+     * `POST /mutes/:handle`
+     *
+     * misardev:method profile.mute
+     */
+    suspend fun mute(handle: String, body: Map<String, Any?> = emptyMap()): JsonNode? =
+        t.request("POST", "/mutes/${Transport.encode(handle)}", null, body)
+
+    /**
+     * `DELETE /blocks/:handle`
+     *
+     * misardev:method profile.unblock
+     */
+    suspend fun unblock(handle: String): JsonNode? =
+        t.request("DELETE", "/blocks/${Transport.encode(handle)}", null, null)
+
+    /**
      * `DELETE /follow/:handle`
      *
      * misardev:method profile.unfollow
      */
     suspend fun unfollow(handle: String): JsonNode? =
         t.request("DELETE", "/follow/${Transport.encode(handle)}", null, null)
+
+    /**
+     * `DELETE /mutes/:handle`
+     *
+     * misardev:method profile.unmute
+     */
+    suspend fun unmute(handle: String): JsonNode? =
+        t.request("DELETE", "/mutes/${Transport.encode(handle)}", null, null)
 }

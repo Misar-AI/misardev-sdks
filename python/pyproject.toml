@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "misardev"
-version = "1.0.0"
+version = "1.1.0"
 description = "Build, ship and run apps on MisarDev from Python: projects, files, builds, deploys, templates, OpenAI-compatible chat, code search, usage and billing — every API route, sync and async, with retries, typed plan-limit errors and SSE streaming."
 readme = "README.md"
 requires-python = ">=3.9"

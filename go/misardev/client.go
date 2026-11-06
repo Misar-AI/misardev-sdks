@@ -18,7 +18,8 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
-	"math/rand"
+	// Retry-backoff jitter only; nothing security-sensitive is drawn from it.
+	"math/rand" // nosemgrep: go.lang.security.audit.crypto.math_random.math-random-used
 	"net/http"
 	"net/url"
 	"os"
@@ -32,7 +33,7 @@ const (
 	// DefaultBaseURL is where the client sends requests unless told otherwise.
 	DefaultBaseURL = "https://api.misar.io/dev"
 	// Version is this SDK's release, sent in the X-Misar-SDK header.
-	Version = "1.0.0"
+	Version = "1.1.0"
 
 	defaultMaxRetries = 3
 	defaultTimeout    = 60 * time.Second

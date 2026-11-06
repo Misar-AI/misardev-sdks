@@ -58,7 +58,7 @@ class ResourcesTest {
     fun `covers every manifest operation`() {
         val methods = manifest["resources"].sumOf { it["methods"].size() }
         assertEquals(methods + manifest.at("/streams/sse").size(), MisarDevResources.OPERATION_COUNT)
-        assertEquals(109, MisarDevResources.OPERATION_COUNT)
+        assertEquals(182, MisarDevResources.OPERATION_COUNT)
     }
 
     @Test

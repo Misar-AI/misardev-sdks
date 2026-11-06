@@ -66,7 +66,7 @@ public sealed class ResourceTests
         if (manifest is null) return; // public mirror: no manifest alongside
         var ops = Ops(manifest).ToList();
         Assert.Equal(MisarDevClient.OperationCount, ops.Count);
-        Assert.Equal(109, ops.Count);
+        Assert.Equal(182, ops.Count);
 
         foreach (var op in ops)
         {

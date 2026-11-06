@@ -9,12 +9,21 @@ import io.misar.dev.Transport;
 import java.util.Collections;
 import java.util.Map;
 
-/** The {@code notifications} resource — 3 operation(s). */
+/** The {@code notifications} resource — 5 operation(s). */
 public final class NotificationsResource {
     private final Transport t;
 
     public NotificationsResource(Transport t) {
         this.t = t;
+    }
+
+    /**
+     * {@code GET /notifications/preferences}
+     *
+     * misardev:method notifications.getPreferences
+     */
+    public JsonNode getPreferences() {
+        return t.request("GET", "/notifications/preferences", null, null);
     }
 
     /**
@@ -63,5 +72,21 @@ public final class NotificationsResource {
      */
     public JsonNode markRead(String id) {
         return markRead(id, Collections.emptyMap());
+    }
+
+    /**
+     * {@code PATCH /notifications/preferences}
+     *
+     * misardev:method notifications.updatePreferences
+     */
+    public JsonNode updatePreferences(Map<String, ?> body) {
+        return t.request("PATCH", "/notifications/preferences", null, body);
+    }
+
+    /**
+     * {@code PATCH /notifications/preferences} — same as {@link #updatePreferences(Map)} with the optional arguments left empty.
+     */
+    public JsonNode updatePreferences() {
+        return updatePreferences(Collections.emptyMap());
     }
 }

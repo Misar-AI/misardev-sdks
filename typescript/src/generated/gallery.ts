@@ -25,7 +25,7 @@ export class GalleryResource {
    *
    * misardev:method gallery.list
    */
-  async list<T = unknown>(query: { "limit"?: QueryValue; "offset"?: QueryValue; "q"?: QueryValue; "search"?: QueryValue } = {}, opts: CallOptions = {}): Promise<T> {
+  async list<T = unknown>(query: { "limit"?: QueryValue; "offset"?: QueryValue; "public"?: QueryValue; "q"?: QueryValue; "search"?: QueryValue } = {}, opts: CallOptions = {}): Promise<T> {
     return this.t.request("GET", "/gallery", { ...opts, query: { ...query } }) as Promise<T>;
   }
 

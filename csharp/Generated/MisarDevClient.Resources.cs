@@ -7,7 +7,7 @@ namespace MisarDev;
 public sealed partial class MisarDevClient
 {
     /// <summary>Operation count, for the coverage gate and the README.</summary>
-    public const int OperationCount = 109;
+    public const int OperationCount = 182;
 
     /// <summary>The <c>account</c> resource.</summary>
     public AccountResource Account { get; private set; } = null!;
@@ -30,11 +30,26 @@ public sealed partial class MisarDevClient
     /// <summary>The <c>checkpoints</c> resource.</summary>
     public CheckpointsResource Checkpoints { get; private set; } = null!;
 
+    /// <summary>The <c>closeFriends</c> resource.</summary>
+    public CloseFriendsResource CloseFriends { get; private set; } = null!;
+
+    /// <summary>The <c>collections</c> resource.</summary>
+    public CollectionsResource Collections { get; private set; } = null!;
+
+    /// <summary>The <c>comments</c> resource.</summary>
+    public CommentsResource Comments { get; private set; } = null!;
+
     /// <summary>The <c>connectors</c> resource.</summary>
     public ConnectorsResource Connectors { get; private set; } = null!;
 
+    /// <summary>The <c>dm</c> resource.</summary>
+    public DmResource Dm { get; private set; } = null!;
+
     /// <summary>The <c>domains</c> resource.</summary>
     public DomainsResource Domains { get; private set; } = null!;
+
+    /// <summary>The <c>feed</c> resource.</summary>
+    public FeedResource Feed { get; private set; } = null!;
 
     /// <summary>The <c>gallery</c> resource.</summary>
     public GalleryResource Gallery { get; private set; } = null!;
@@ -42,11 +57,17 @@ public sealed partial class MisarDevClient
     /// <summary>The <c>github</c> resource.</summary>
     public GithubResource Github { get; private set; } = null!;
 
+    /// <summary>The <c>highlights</c> resource.</summary>
+    public HighlightsResource Highlights { get; private set; } = null!;
+
     /// <summary>The <c>notifications</c> resource.</summary>
     public NotificationsResource Notifications { get; private set; } = null!;
 
     /// <summary>The <c>organizations</c> resource.</summary>
     public OrganizationsResource Organizations { get; private set; } = null!;
+
+    /// <summary>The <c>posts</c> resource.</summary>
+    public PostsResource Posts { get; private set; } = null!;
 
     /// <summary>The <c>profile</c> resource.</summary>
     public ProfileResource Profile { get; private set; } = null!;
@@ -66,6 +87,15 @@ public sealed partial class MisarDevClient
     /// <summary>The <c>skills</c> resource.</summary>
     public SkillsResource Skills { get; private set; } = null!;
 
+    /// <summary>The <c>social</c> resource.</summary>
+    public SocialResource Social { get; private set; } = null!;
+
+    /// <summary>The <c>stories</c> resource.</summary>
+    public StoriesResource Stories { get; private set; } = null!;
+
+    /// <summary>The <c>tags</c> resource.</summary>
+    public TagsResource Tags { get; private set; } = null!;
+
     /// <summary>The <c>templates</c> resource.</summary>
     public TemplatesResource Templates { get; private set; } = null!;
 
@@ -81,18 +111,28 @@ public sealed partial class MisarDevClient
         Builds = new BuildsResource(transport);
         Chat = new ChatResource(transport);
         Checkpoints = new CheckpointsResource(transport);
+        CloseFriends = new CloseFriendsResource(transport);
+        Collections = new CollectionsResource(transport);
+        Comments = new CommentsResource(transport);
         Connectors = new ConnectorsResource(transport);
+        Dm = new DmResource(transport);
         Domains = new DomainsResource(transport);
+        Feed = new FeedResource(transport);
         Gallery = new GalleryResource(transport);
         Github = new GithubResource(transport);
+        Highlights = new HighlightsResource(transport);
         Notifications = new NotificationsResource(transport);
         Organizations = new OrganizationsResource(transport);
+        Posts = new PostsResource(transport);
         Profile = new ProfileResource(transport);
         Projects = new ProjectsResource(transport);
         Rag = new RagResource(transport);
         Reports = new ReportsResource(transport);
         Search = new SearchResource(transport);
         Skills = new SkillsResource(transport);
+        Social = new SocialResource(transport);
+        Stories = new StoriesResource(transport);
+        Tags = new TagsResource(transport);
         Templates = new TemplatesResource(transport);
         Usage = new UsageResource(transport);
     }

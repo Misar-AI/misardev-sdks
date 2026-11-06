@@ -5,7 +5,7 @@ build and deploy apps, manage their files, domains, environment variables and
 collaborators, start from templates, search your code, and call the
 OpenAI-compatible chat completions endpoint.
 
-Every SDK covers the full public API surface: **21 resources, 106 methods and 3
+Every SDK covers the full public API surface: **31 resources, 171 methods and 3
 Server-Sent Events streams**, generated from one manifest
 ([`manifest.json`](manifest.json)) that is itself derived from the API's route
 tree — so no language can fall behind another, or behind the server. They speak
@@ -22,8 +22,8 @@ one at [misar.dev/settings/api-keys](https://www.misar.dev/settings/api-keys).
 | Go                      | module proxy  | `github.com/Misar-AI/misardev-sdks/go` | `go get github.com/Misar-AI/misardev-sdks/go`                               |
 | Rust                    | crates.io     | `misardev`                             | `cargo add misardev`                                                        |
 | Java                    | Maven Central | `io.misar:misardev`                    | `<artifactId>misardev</artifactId>`                                         |
-| Kotlin                  | Maven Central | `io.misar:misardev-kotlin`             | `implementation("io.misar:misardev-kotlin:1.0.0")`                          |
-| Swift                   | Swift PM      | `MisarDev`                             | `.package(url: "https://github.com/Misar-AI/misardev-sdks", from: "1.0.0")` |
+| Kotlin                  | Maven Central | `io.misar:misardev-kotlin`             | `implementation("io.misar:misardev-kotlin:1.1.0")`                          |
+| Swift                   | Swift PM      | `MisarDev`                             | `.package(url: "https://github.com/Misar-AI/misardev-sdks", from: "1.1.0")` |
 | Ruby                    | RubyGems      | `misardev`                             | `gem install misardev`                                                      |
 | PHP                     | Packagist     | `misarai/misardev-php`                 | `composer require misarai/misardev-php`                                     |
 | C# / .NET               | NuGet         | `MisarDev`                             | `dotnet add package MisarDev`                                               |

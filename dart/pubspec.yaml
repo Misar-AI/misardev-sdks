@@ -1,6 +1,6 @@
 name: misardev
 description: "Build, deploy and chat with your apps from Dart: the MisarDev API with typed plan-limit errors, Retry-After-aware retries, SSE streaming and pagination."
-version: 1.0.0
+version: 1.1.0
 homepage: https://www.misar.dev
 repository: https://github.com/Misar-AI/misardev-sdks/tree/main/dart
 issue_tracker: https://github.com/Misar-AI/misardev-sdks/issues

@@ -31,7 +31,7 @@ public sealed class GalleryResource
     /// <remarks>
     /// misardev:method gallery.list
     /// </remarks>
-    /// <param name="query">Optional query parameters (limit, offset, q, search) as an anonymous object or dictionary; null values are dropped.</param>
+    /// <param name="query">Optional query parameters (limit, offset, public, q, search) as an anonymous object or dictionary; null values are dropped.</param>
     /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
     public Task<JsonNode?> List(object? query = null, CancellationToken cancellationToken = default) =>
         _t.RequestAsync("GET", "/gallery", query: Transport.Query(query), cancellationToken: cancellationToken);

@@ -5,9 +5,54 @@
 import type { CallOptions } from "../core/types.js";
 import type { QueryValue, Transport } from "../core/transport.js";
 
-/** The `domains` resource — 1 operation(s). */
+/** The `domains` resource — 8 operation(s). */
 export class DomainsResource {
   constructor(private readonly t: Transport) {}
+
+  /**
+   * `POST /domains/checkout`
+   *
+   * misardev:method domains.checkout
+   */
+  async checkout<T = unknown>(body: Record<string, unknown> = {}, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("POST", "/domains/checkout", { ...opts, body }) as Promise<T>;
+  }
+
+  /**
+   * `POST /domains/:id/dns`
+   *
+   * misardev:method domains.createDnsRecord
+   */
+  async createDnsRecord<T = unknown>(id: string, body: Record<string, unknown> = {}, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("POST", `/domains/${encodeURIComponent(id)}/dns`, { ...opts, body }) as Promise<T>;
+  }
+
+  /**
+   * `DELETE /domains/:id/dns`
+   *
+   * misardev:method domains.deleteDnsRecord
+   */
+  async deleteDnsRecord<T = unknown>(id: string, recordId: QueryValue, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("DELETE", `/domains/${encodeURIComponent(id)}/dns`, { ...opts, query: { "recordId": recordId } }) as Promise<T>;
+  }
+
+  /**
+   * `GET /domains`
+   *
+   * misardev:method domains.list
+   */
+  async list<T = unknown>(opts: CallOptions = {}): Promise<T> {
+    return this.t.request("GET", "/domains", { ...opts }) as Promise<T>;
+  }
+
+  /**
+   * `GET /domains/:id/dns`
+   *
+   * misardev:method domains.listDnsRecords
+   */
+  async listDnsRecords<T = unknown>(id: string, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("GET", `/domains/${encodeURIComponent(id)}/dns`, { ...opts }) as Promise<T>;
+  }
 
   /**
    * `GET /domains/lookup`
@@ -16,5 +61,23 @@ export class DomainsResource {
    */
   async lookup<T = unknown>(domain: QueryValue, opts: CallOptions = {}): Promise<T> {
     return this.t.request("GET", "/domains/lookup", { ...opts, query: { "domain": domain } }) as Promise<T>;
+  }
+
+  /**
+   * `POST /domains/search`
+   *
+   * misardev:method domains.search
+   */
+  async search<T = unknown>(body: Record<string, unknown> = {}, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("POST", "/domains/search", { ...opts, body }) as Promise<T>;
+  }
+
+  /**
+   * `PATCH /domains/:id`
+   *
+   * misardev:method domains.update
+   */
+  async update<T = unknown>(id: string, body: Record<string, unknown> = {}, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("PATCH", `/domains/${encodeURIComponent(id)}`, { ...opts, body }) as Promise<T>;
   }
 }

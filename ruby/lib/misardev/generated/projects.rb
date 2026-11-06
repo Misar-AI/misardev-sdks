@@ -4,7 +4,7 @@
 
 module MisarDev
   module Generated
-    # The `projects` resource — 41 operation(s).
+    # The `projects` resource — 42 operation(s).
     class ProjectsResource
       def initialize(transport)
         @t = transport
@@ -329,6 +329,17 @@ module MisarDev
       # @raise [MisarDev::MisarDevError]
       def provision_backend(id, body = {})
         @t.request("POST", "/projects/#{Core::Transport.segment(id)}/backend", body: body)
+      end
+
+      # `GET /projects/:id/domains/recommend`
+      #
+      # misardev:method projects.recommendDomains
+      #
+      # @param id [String] path parameter `id`
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def recommend_domains(id)
+        @t.request("GET", "/projects/#{Core::Transport.segment(id)}/domains/recommend")
       end
 
       # `DELETE /projects/:id/collaborators`

@@ -21,7 +21,7 @@ pub struct SearchResource<'a> {
 impl SearchResource<'_> {
     /// `GET /search`
     ///
-    /// Optional query: `limit`, `q`, `types`.
+    /// Optional query: `cursor`, `limit`, `q`, `type`, `types`.
     ///
     /// misardev:method search.code
     pub async fn code(self, query: Option<Value>) -> Result<Value, MisarDevError> {

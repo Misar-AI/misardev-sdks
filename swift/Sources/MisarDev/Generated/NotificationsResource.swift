@@ -3,12 +3,20 @@
 
 import Foundation
 
-/// The `notifications` resource — 3 operation(s).
+/// The `notifications` resource — 5 operation(s).
 public struct NotificationsResource: Sendable {
     let transport: Transport
 
     init(transport: Transport) {
         self.transport = transport
+    }
+
+    /// `GET /notifications/preferences`
+    ///
+    /// misardev:method notifications.getPreferences
+    @discardableResult
+    public func getPreferences() async throws -> JSONValue {
+        try await transport.request("GET", "/notifications/preferences")
     }
 
     /// `GET /notifications`
@@ -35,5 +43,13 @@ public struct NotificationsResource: Sendable {
     @discardableResult
     public func markRead(_ id: String, _ body: [String: JSONValue] = [:]) async throws -> JSONValue {
         try await transport.request("PATCH", "/notifications/\(Transport.encodePath(id))", body: .object(body))
+    }
+
+    /// `PATCH /notifications/preferences`
+    ///
+    /// misardev:method notifications.updatePreferences
+    @discardableResult
+    public func updatePreferences(_ body: [String: JSONValue] = [:]) async throws -> JSONValue {
+        try await transport.request("PATCH", "/notifications/preferences", body: .object(body))
     }
 }

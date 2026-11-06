@@ -10,7 +10,7 @@ namespace MisarDev\Generated;
 use MisarDev\Core\Transport;
 use MisarDev\StreamEvent;
 
-/** The `projects` resource — 41 operation(s). */
+/** The `projects` resource — 42 operation(s). */
 final class ProjectsResource
 {
     public function __construct(private readonly Transport $t)
@@ -416,6 +416,20 @@ final class ProjectsResource
     public function provisionBackend(string|int $id, array $body = []): mixed
     {
         return $this->t->request('POST', '/projects/' . Transport::segment($id) . '/backend', body: $body);
+    }
+
+    /**
+     * `GET /projects/:id/domains/recommend`
+     *
+     * misardev:method projects.recommendDomains
+     *
+     * @param string|int $id Path parameter `id`.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function recommendDomains(string|int $id): mixed
+    {
+        return $this->t->request('GET', '/projects/' . Transport::segment($id) . '/domains/recommend');
     }
 
     /**

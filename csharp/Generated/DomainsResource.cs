@@ -6,12 +6,68 @@ using System.Text.Json.Nodes;
 
 namespace MisarDev;
 
-/// <summary>The <c>domains</c> resource — 1 operation(s).</summary>
+/// <summary>The <c>domains</c> resource — 8 operation(s).</summary>
 public sealed class DomainsResource
 {
     private readonly Transport _t;
 
     internal DomainsResource(Transport transport) => _t = transport;
+
+    /// <summary>
+    /// <c>POST /domains/checkout</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method domains.checkout
+    /// </remarks>
+    /// <param name="body">JSON body: an anonymous object, dictionary or <see cref="JsonNode"/>. Defaults to <c>{}</c>.</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> Checkout(object? body = null, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("POST", "/domains/checkout", body: body ?? Transport.EmptyBody(), cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>POST /domains/:id/dns</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method domains.createDnsRecord
+    /// </remarks>
+    /// <param name="id">Path parameter <c>id</c> (URL-encoded for you).</param>
+    /// <param name="body">JSON body: an anonymous object, dictionary or <see cref="JsonNode"/>. Defaults to <c>{}</c>.</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> CreateDnsRecord(string id, object? body = null, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("POST", $"/domains/{Transport.EncodePath(id)}/dns", body: body ?? Transport.EmptyBody(), cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>DELETE /domains/:id/dns</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method domains.deleteDnsRecord
+    /// </remarks>
+    /// <param name="id">Path parameter <c>id</c> (URL-encoded for you).</param>
+    /// <param name="recordId">Required query parameter <c>recordId</c>.</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> DeleteDnsRecord(string id, string recordId, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("DELETE", $"/domains/{Transport.EncodePath(id)}/dns", query: Transport.Query(null, ("recordId", recordId)), cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>GET /domains</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method domains.list
+    /// </remarks>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> List(CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("GET", "/domains", cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>GET /domains/:id/dns</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method domains.listDnsRecords
+    /// </remarks>
+    /// <param name="id">Path parameter <c>id</c> (URL-encoded for you).</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> ListDnsRecords(string id, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("GET", $"/domains/{Transport.EncodePath(id)}/dns", cancellationToken: cancellationToken);
 
     /// <summary>
     /// <c>GET /domains/lookup</c>
@@ -23,4 +79,27 @@ public sealed class DomainsResource
     /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
     public Task<JsonNode?> Lookup(string domain, CancellationToken cancellationToken = default) =>
         _t.RequestAsync("GET", "/domains/lookup", query: Transport.Query(null, ("domain", domain)), cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>POST /domains/search</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method domains.search
+    /// </remarks>
+    /// <param name="body">JSON body: an anonymous object, dictionary or <see cref="JsonNode"/>. Defaults to <c>{}</c>.</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> Search(object? body = null, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("POST", "/domains/search", body: body ?? Transport.EmptyBody(), cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>PATCH /domains/:id</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method domains.update
+    /// </remarks>
+    /// <param name="id">Path parameter <c>id</c> (URL-encoded for you).</param>
+    /// <param name="body">JSON body: an anonymous object, dictionary or <see cref="JsonNode"/>. Defaults to <c>{}</c>.</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> Update(string id, object? body = null, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("PATCH", $"/domains/{Transport.EncodePath(id)}", body: body ?? Transport.EmptyBody(), cancellationToken: cancellationToken);
 }

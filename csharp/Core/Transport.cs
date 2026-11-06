@@ -19,7 +19,7 @@ namespace MisarDev;
 internal sealed class Transport
 {
     public const string DefaultBaseUrl = "https://api.misar.io/dev";
-    public const string SdkVersion = "1.0.0";
+    public const string SdkVersion = "1.1.0";
     public const string SdkHeader = "misardev-csharp/" + SdkVersion;
 
     /// <summary>Statuses worth retrying. 429 only when it is NOT a plan limit.</summary>

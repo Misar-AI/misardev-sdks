@@ -58,6 +58,32 @@ dynamic dispatchOperation(MisarDevResources dev, String operation, List<Object?>
       return dev.checkpoints.restore(args[0] as String);
     case 'checkpoints.update':
       return dev.checkpoints.update(args[0] as String, _map(args, 1));
+    case 'closeFriends.add':
+      return dev.closeFriends.add(_map(args, 0));
+    case 'closeFriends.list':
+      return dev.closeFriends.list(_map(args, 0));
+    case 'closeFriends.remove':
+      return dev.closeFriends.remove(_map(args, 0));
+    case 'collections.addPost':
+      return dev.collections.addPost(args[0] as String, _map(args, 1), _map(args, 2));
+    case 'collections.create':
+      return dev.collections.create(_map(args, 0));
+    case 'collections.delete':
+      return dev.collections.delete(args[0] as String);
+    case 'collections.list':
+      return dev.collections.list();
+    case 'collections.removePost':
+      return dev.collections.removePost(args[0] as String, _map(args, 1), _map(args, 2));
+    case 'collections.update':
+      return dev.collections.update(args[0] as String, _map(args, 1));
+    case 'comments.delete':
+      return dev.comments.delete(args[0] as String);
+    case 'comments.like':
+      return dev.comments.like(args[0] as String);
+    case 'comments.unlike':
+      return dev.comments.unlike(args[0] as String);
+    case 'comments.update':
+      return dev.comments.update(args[0] as String, _map(args, 1));
     case 'connectors.available':
       return dev.connectors.available();
     case 'connectors.createConnection':
@@ -74,8 +100,46 @@ dynamic dispatchOperation(MisarDevResources dev, String operation, List<Object?>
       return dev.connectors.toggle(args[0] as String, _map(args, 1));
     case 'connectors.updateConnection':
       return dev.connectors.updateConnection(args[0] as String, _map(args, 1));
+    case 'dm.acceptThread':
+      return dev.dm.acceptThread(args[0] as String);
+    case 'dm.createThread':
+      return dev.dm.createThread(_map(args, 0));
+    case 'dm.createThreadsMute':
+      return dev.dm.createThreadsMute(args[0] as String);
+    case 'dm.declineThread':
+      return dev.dm.declineThread(args[0] as String);
+    case 'dm.deleteThreadsMute':
+      return dev.dm.deleteThreadsMute(args[0] as String);
+    case 'dm.listMessages':
+      return dev.dm.listMessages(args[0] as String, _map(args, 1));
+    case 'dm.listThreads':
+      return dev.dm.listThreads(_map(args, 0));
+    case 'dm.markThreadRead':
+      return dev.dm.markThreadRead(args[0] as String);
+    case 'dm.sendMessage':
+      return dev.dm.sendMessage(args[0] as String, _map(args, 1));
+    case 'dm.unreadCounts':
+      return dev.dm.unreadCounts();
+    case 'domains.checkout':
+      return dev.domains.checkout(_map(args, 0));
+    case 'domains.createDnsRecord':
+      return dev.domains.createDnsRecord(args[0] as String, _map(args, 1));
+    case 'domains.deleteDnsRecord':
+      return dev.domains.deleteDnsRecord(args[0] as String, args[1]!);
+    case 'domains.list':
+      return dev.domains.list();
+    case 'domains.listDnsRecords':
+      return dev.domains.listDnsRecords(args[0] as String);
     case 'domains.lookup':
       return dev.domains.lookup(args[0]!);
+    case 'domains.search':
+      return dev.domains.search(_map(args, 0));
+    case 'domains.update':
+      return dev.domains.update(args[0] as String, _map(args, 1));
+    case 'feed.following':
+      return dev.feed.following(_map(args, 0));
+    case 'feed.forYou':
+      return dev.feed.forYou(_map(args, 0));
     case 'gallery.like':
       return dev.gallery.like(args[0] as String);
     case 'gallery.list':
@@ -86,12 +150,28 @@ dynamic dispatchOperation(MisarDevResources dev, String operation, List<Object?>
       return dev.github.disconnect();
     case 'github.getConnection':
       return dev.github.getConnection();
+    case 'highlights.addStory':
+      return dev.highlights.addStory(args[0] as String, _map(args, 1));
+    case 'highlights.create':
+      return dev.highlights.create(_map(args, 0));
+    case 'highlights.delete':
+      return dev.highlights.delete(args[0] as String);
+    case 'highlights.list':
+      return dev.highlights.list(_map(args, 0));
+    case 'highlights.removeStory':
+      return dev.highlights.removeStory(args[0] as String, _map(args, 1));
+    case 'highlights.update':
+      return dev.highlights.update(args[0] as String, _map(args, 1));
+    case 'notifications.getPreferences':
+      return dev.notifications.getPreferences();
     case 'notifications.list':
       return dev.notifications.list(_map(args, 0));
     case 'notifications.markAllRead':
       return dev.notifications.markAllRead(_map(args, 0));
     case 'notifications.markRead':
       return dev.notifications.markRead(args[0] as String, _map(args, 1));
+    case 'notifications.updatePreferences':
+      return dev.notifications.updatePreferences(_map(args, 0));
     case 'organizations.acceptInvitation':
       return dev.organizations.acceptInvitation(_map(args, 0));
     case 'organizations.create':
@@ -110,12 +190,50 @@ dynamic dispatchOperation(MisarDevResources dev, String operation, List<Object?>
       return dev.organizations.revokeInvitation(args[0] as String, args[1]!);
     case 'organizations.updateMember':
       return dev.organizations.updateMember(args[0] as String, _map(args, 1));
+    case 'posts.create':
+      return dev.posts.create(_map(args, 0));
+    case 'posts.createComment':
+      return dev.posts.createComment(args[0] as String, _map(args, 1));
+    case 'posts.get':
+      return dev.posts.get(args[0] as String);
+    case 'posts.like':
+      return dev.posts.like(args[0] as String);
+    case 'posts.list':
+      return dev.posts.list(_map(args, 0));
+    case 'posts.listComments':
+      return dev.posts.listComments(args[0] as String, _map(args, 1));
+    case 'posts.listSaved':
+      return dev.posts.listSaved(_map(args, 0));
+    case 'posts.save':
+      return dev.posts.save(args[0] as String, _map(args, 1));
+    case 'posts.shareToDm':
+      return dev.posts.shareToDm(args[0] as String, _map(args, 1));
+    case 'posts.unlike':
+      return dev.posts.unlike(args[0] as String);
+    case 'posts.unsave':
+      return dev.posts.unsave(args[0] as String);
+    case 'posts.update':
+      return dev.posts.update(args[0] as String, _map(args, 1));
+    case 'profile.block':
+      return dev.profile.block(args[0] as String);
     case 'profile.follow':
-      return dev.profile.follow(args[0] as String);
+      return dev.profile.follow(args[0] as String, _map(args, 1));
     case 'profile.get':
       return dev.profile.get(args[0] as String);
+    case 'profile.listBlocks':
+      return dev.profile.listBlocks();
+    case 'profile.listConnections':
+      return dev.profile.listConnections(args[0] as String, args[1] as String, _map(args, 2));
+    case 'profile.listHighlights':
+      return dev.profile.listHighlights(args[0] as String);
+    case 'profile.mute':
+      return dev.profile.mute(args[0] as String, _map(args, 1));
+    case 'profile.unblock':
+      return dev.profile.unblock(args[0] as String);
     case 'profile.unfollow':
       return dev.profile.unfollow(args[0] as String);
+    case 'profile.unmute':
+      return dev.profile.unmute(args[0] as String);
     case 'projects.addCollaborator':
       return dev.projects.addCollaborator(args[0] as String, _map(args, 1));
     case 'projects.archive':
@@ -172,6 +290,8 @@ dynamic dispatchOperation(MisarDevResources dev, String operation, List<Object?>
       return dev.projects.listFiles(args[0] as String);
     case 'projects.provisionBackend':
       return dev.projects.provisionBackend(args[0] as String, _map(args, 1));
+    case 'projects.recommendDomains':
+      return dev.projects.recommendDomains(args[0] as String);
     case 'projects.removeCollaborator':
       return dev.projects.removeCollaborator(args[0] as String, args[1]!);
     case 'projects.removeDomain':
@@ -214,6 +334,32 @@ dynamic dispatchOperation(MisarDevResources dev, String operation, List<Object?>
       return dev.skills.get(args[0] as String);
     case 'skills.list':
       return dev.skills.list();
+    case 'social.dismissSuggestion':
+      return dev.social.dismissSuggestion(args[0] as String);
+    case 'social.listSuggestions':
+      return dev.social.listSuggestions(_map(args, 0));
+    case 'social.meMutuals':
+      return dev.social.meMutuals(_map(args, 0));
+    case 'social.relationship':
+      return dev.social.relationship(args[0] as String);
+    case 'stories.create':
+      return dev.stories.create(_map(args, 0));
+    case 'stories.delete':
+      return dev.stories.delete(args[0] as String);
+    case 'stories.get':
+      return dev.stories.get(args[0] as String);
+    case 'stories.listMyPosts':
+      return dev.stories.listMyPosts(_map(args, 0));
+    case 'stories.listViewers':
+      return dev.stories.listViewers(args[0] as String, _map(args, 1));
+    case 'stories.markSeen':
+      return dev.stories.markSeen(args[0] as String);
+    case 'stories.reply':
+      return dev.stories.reply(args[0] as String, _map(args, 1));
+    case 'stories.tray':
+      return dev.stories.tray();
+    case 'tags.get':
+      return dev.tags.get(args[0] as String, _map(args, 1));
     case 'templates.create':
       return dev.templates.create(_map(args, 0));
     case 'templates.delete':

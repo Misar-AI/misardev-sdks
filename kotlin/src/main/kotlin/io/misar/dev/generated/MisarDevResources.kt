@@ -14,23 +14,33 @@ abstract class MisarDevResources internal constructor(transport: Transport) {
     val builds: BuildsResource = BuildsResource(transport)
     val chat: ChatResource = ChatResource(transport)
     val checkpoints: CheckpointsResource = CheckpointsResource(transport)
+    val closeFriends: CloseFriendsResource = CloseFriendsResource(transport)
+    val collections: CollectionsResource = CollectionsResource(transport)
+    val comments: CommentsResource = CommentsResource(transport)
     val connectors: ConnectorsResource = ConnectorsResource(transport)
+    val dm: DmResource = DmResource(transport)
     val domains: DomainsResource = DomainsResource(transport)
+    val feed: FeedResource = FeedResource(transport)
     val gallery: GalleryResource = GalleryResource(transport)
     val github: GithubResource = GithubResource(transport)
+    val highlights: HighlightsResource = HighlightsResource(transport)
     val notifications: NotificationsResource = NotificationsResource(transport)
     val organizations: OrganizationsResource = OrganizationsResource(transport)
+    val posts: PostsResource = PostsResource(transport)
     val profile: ProfileResource = ProfileResource(transport)
     val projects: ProjectsResource = ProjectsResource(transport)
     val rag: RagResource = RagResource(transport)
     val reports: ReportsResource = ReportsResource(transport)
     val search: SearchResource = SearchResource(transport)
     val skills: SkillsResource = SkillsResource(transport)
+    val social: SocialResource = SocialResource(transport)
+    val stories: StoriesResource = StoriesResource(transport)
+    val tags: TagsResource = TagsResource(transport)
     val templates: TemplatesResource = TemplatesResource(transport)
     val usage: UsageResource = UsageResource(transport)
 
     companion object {
         /** Operation count, for the coverage gate and the README. */
-        const val OPERATION_COUNT: Int = 109
+        const val OPERATION_COUNT: Int = 182
     }
 }

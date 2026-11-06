@@ -9,18 +9,28 @@ require_relative "billing"
 require_relative "builds"
 require_relative "chat"
 require_relative "checkpoints"
+require_relative "close_friends"
+require_relative "collections"
+require_relative "comments"
 require_relative "connectors"
+require_relative "dm"
 require_relative "domains"
+require_relative "feed"
 require_relative "gallery"
 require_relative "github"
+require_relative "highlights"
 require_relative "notifications"
 require_relative "organizations"
+require_relative "posts"
 require_relative "profile"
 require_relative "projects"
 require_relative "rag"
 require_relative "reports"
 require_relative "search"
 require_relative "skills"
+require_relative "social"
+require_relative "stories"
+require_relative "tags"
 require_relative "templates"
 require_relative "usage"
 
@@ -29,7 +39,7 @@ module MisarDev
     # Every MisarDev resource, attached to the client by name.
     module Resources
       # Operation count, for the coverage gate and the README.
-      OPERATION_COUNT = 109
+      OPERATION_COUNT = 182
 
       # @return [AccountResource]
       attr_reader :account
@@ -52,11 +62,26 @@ module MisarDev
       # @return [CheckpointsResource]
       attr_reader :checkpoints
 
+      # @return [CloseFriendsResource]
+      attr_reader :close_friends
+
+      # @return [CollectionsResource]
+      attr_reader :collections
+
+      # @return [CommentsResource]
+      attr_reader :comments
+
       # @return [ConnectorsResource]
       attr_reader :connectors
 
+      # @return [DmResource]
+      attr_reader :dm
+
       # @return [DomainsResource]
       attr_reader :domains
+
+      # @return [FeedResource]
+      attr_reader :feed
 
       # @return [GalleryResource]
       attr_reader :gallery
@@ -64,11 +89,17 @@ module MisarDev
       # @return [GithubResource]
       attr_reader :github
 
+      # @return [HighlightsResource]
+      attr_reader :highlights
+
       # @return [NotificationsResource]
       attr_reader :notifications
 
       # @return [OrganizationsResource]
       attr_reader :organizations
+
+      # @return [PostsResource]
+      attr_reader :posts
 
       # @return [ProfileResource]
       attr_reader :profile
@@ -88,6 +119,15 @@ module MisarDev
       # @return [SkillsResource]
       attr_reader :skills
 
+      # @return [SocialResource]
+      attr_reader :social
+
+      # @return [StoriesResource]
+      attr_reader :stories
+
+      # @return [TagsResource]
+      attr_reader :tags
+
       # @return [TemplatesResource]
       attr_reader :templates
 
@@ -104,18 +144,28 @@ module MisarDev
         @builds = BuildsResource.new(transport)
         @chat = ChatResource.new(transport)
         @checkpoints = CheckpointsResource.new(transport)
+        @close_friends = CloseFriendsResource.new(transport)
+        @collections = CollectionsResource.new(transport)
+        @comments = CommentsResource.new(transport)
         @connectors = ConnectorsResource.new(transport)
+        @dm = DmResource.new(transport)
         @domains = DomainsResource.new(transport)
+        @feed = FeedResource.new(transport)
         @gallery = GalleryResource.new(transport)
         @github = GithubResource.new(transport)
+        @highlights = HighlightsResource.new(transport)
         @notifications = NotificationsResource.new(transport)
         @organizations = OrganizationsResource.new(transport)
+        @posts = PostsResource.new(transport)
         @profile = ProfileResource.new(transport)
         @projects = ProjectsResource.new(transport)
         @rag = RagResource.new(transport)
         @reports = ReportsResource.new(transport)
         @search = SearchResource.new(transport)
         @skills = SkillsResource.new(transport)
+        @social = SocialResource.new(transport)
+        @stories = StoriesResource.new(transport)
+        @tags = TagsResource.new(transport)
         @templates = TemplatesResource.new(transport)
         @usage = UsageResource.new(transport)
       end

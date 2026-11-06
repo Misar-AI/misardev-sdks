@@ -21,7 +21,7 @@ class GalleryResource {
   ///
   /// Public — works without a key, but the client still sends it.
   ///
-  /// Optional [query] keys: `limit`, `offset`, `q`, `search`.
+  /// Optional [query] keys: `limit`, `offset`, `public`, `q`, `search`.
   ///
   /// misardev:method gallery.list
   Future<dynamic> list([Map<String, Object?>? query]) =>

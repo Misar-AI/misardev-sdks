@@ -4,7 +4,7 @@
 
 module MisarDev
   module Generated
-    # The `notifications` resource — 3 operation(s).
+    # The `notifications` resource — 5 operation(s).
     class NotificationsResource
       def initialize(transport)
         @t = transport
@@ -12,6 +12,16 @@ module MisarDev
 
       def inspect
         "#<#{self.class.name}>"
+      end
+
+      # `GET /notifications/preferences`
+      #
+      # misardev:method notifications.getPreferences
+      #
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def get_preferences
+        @t.request("GET", "/notifications/preferences")
       end
 
       # `GET /notifications`
@@ -46,6 +56,17 @@ module MisarDev
       # @raise [MisarDev::MisarDevError]
       def mark_read(id, body = {})
         @t.request("PATCH", "/notifications/#{Core::Transport.segment(id)}", body: body)
+      end
+
+      # `PATCH /notifications/preferences`
+      #
+      # misardev:method notifications.updatePreferences
+      #
+      # @param body [Hash] JSON request body
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def update_preferences(body = {})
+        @t.request("PATCH", "/notifications/preferences", body: body)
       end
     end
   end

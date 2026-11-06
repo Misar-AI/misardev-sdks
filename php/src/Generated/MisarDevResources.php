@@ -13,7 +13,7 @@ use MisarDev\Core\Transport;
 abstract class MisarDevResources
 {
     /** Operation count, for the coverage gate and the README. */
-    public const OPERATION_COUNT = 109;
+    public const OPERATION_COUNT = 182;
 
     public readonly AccountResource $account;
     public readonly ApiKeysResource $apiKeys;
@@ -22,18 +22,28 @@ abstract class MisarDevResources
     public readonly BuildsResource $builds;
     public readonly ChatResource $chat;
     public readonly CheckpointsResource $checkpoints;
+    public readonly CloseFriendsResource $closeFriends;
+    public readonly CollectionsResource $collections;
+    public readonly CommentsResource $comments;
     public readonly ConnectorsResource $connectors;
+    public readonly DmResource $dm;
     public readonly DomainsResource $domains;
+    public readonly FeedResource $feed;
     public readonly GalleryResource $gallery;
     public readonly GithubResource $github;
+    public readonly HighlightsResource $highlights;
     public readonly NotificationsResource $notifications;
     public readonly OrganizationsResource $organizations;
+    public readonly PostsResource $posts;
     public readonly ProfileResource $profile;
     public readonly ProjectsResource $projects;
     public readonly RagResource $rag;
     public readonly ReportsResource $reports;
     public readonly SearchResource $search;
     public readonly SkillsResource $skills;
+    public readonly SocialResource $social;
+    public readonly StoriesResource $stories;
+    public readonly TagsResource $tags;
     public readonly TemplatesResource $templates;
     public readonly UsageResource $usage;
 
@@ -46,18 +56,28 @@ abstract class MisarDevResources
         $this->builds = new BuildsResource($transport);
         $this->chat = new ChatResource($transport);
         $this->checkpoints = new CheckpointsResource($transport);
+        $this->closeFriends = new CloseFriendsResource($transport);
+        $this->collections = new CollectionsResource($transport);
+        $this->comments = new CommentsResource($transport);
         $this->connectors = new ConnectorsResource($transport);
+        $this->dm = new DmResource($transport);
         $this->domains = new DomainsResource($transport);
+        $this->feed = new FeedResource($transport);
         $this->gallery = new GalleryResource($transport);
         $this->github = new GithubResource($transport);
+        $this->highlights = new HighlightsResource($transport);
         $this->notifications = new NotificationsResource($transport);
         $this->organizations = new OrganizationsResource($transport);
+        $this->posts = new PostsResource($transport);
         $this->profile = new ProfileResource($transport);
         $this->projects = new ProjectsResource($transport);
         $this->rag = new RagResource($transport);
         $this->reports = new ReportsResource($transport);
         $this->search = new SearchResource($transport);
         $this->skills = new SkillsResource($transport);
+        $this->social = new SocialResource($transport);
+        $this->stories = new StoriesResource($transport);
+        $this->tags = new TagsResource($transport);
         $this->templates = new TemplatesResource($transport);
         $this->usage = new UsageResource($transport);
     }

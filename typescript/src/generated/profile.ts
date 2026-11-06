@@ -5,17 +5,26 @@
 import type { CallOptions } from "../core/types.js";
 import type { QueryValue, Transport } from "../core/transport.js";
 
-/** The `profile` resource — 3 operation(s). */
+/** The `profile` resource — 10 operation(s). */
 export class ProfileResource {
   constructor(private readonly t: Transport) {}
+
+  /**
+   * `POST /blocks/:handle`
+   *
+   * misardev:method profile.block
+   */
+  async block<T = unknown>(handle: string, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("POST", `/blocks/${encodeURIComponent(handle)}`, { ...opts }) as Promise<T>;
+  }
 
   /**
    * `POST /follow/:handle`
    *
    * misardev:method profile.follow
    */
-  async follow<T = unknown>(handle: string, opts: CallOptions = {}): Promise<T> {
-    return this.t.request("POST", `/follow/${encodeURIComponent(handle)}`, { ...opts }) as Promise<T>;
+  async follow<T = unknown>(handle: string, body: Record<string, unknown> = {}, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("POST", `/follow/${encodeURIComponent(handle)}`, { ...opts, body }) as Promise<T>;
   }
 
   /**
@@ -30,11 +39,65 @@ export class ProfileResource {
   }
 
   /**
+   * `GET /blocks`
+   *
+   * misardev:method profile.listBlocks
+   */
+  async listBlocks<T = unknown>(opts: CallOptions = {}): Promise<T> {
+    return this.t.request("GET", "/blocks", { ...opts }) as Promise<T>;
+  }
+
+  /**
+   * `GET /profile/:handle/:list`
+   *
+   * misardev:method profile.listConnections
+   */
+  async listConnections<T = unknown>(handle: string, list: string, query: { "cursor"?: QueryValue; "limit"?: QueryValue } = {}, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("GET", `/profile/${encodeURIComponent(handle)}/${encodeURIComponent(list)}`, { ...opts, query: { ...query } }) as Promise<T>;
+  }
+
+  /**
+   * `GET /profile/:handle/highlights`
+   *
+   * misardev:method profile.listHighlights
+   */
+  async listHighlights<T = unknown>(handle: string, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("GET", `/profile/${encodeURIComponent(handle)}/highlights`, { ...opts }) as Promise<T>;
+  }
+
+  /**
+   * `POST /mutes/:handle`
+   *
+   * misardev:method profile.mute
+   */
+  async mute<T = unknown>(handle: string, body: Record<string, unknown> = {}, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("POST", `/mutes/${encodeURIComponent(handle)}`, { ...opts, body }) as Promise<T>;
+  }
+
+  /**
+   * `DELETE /blocks/:handle`
+   *
+   * misardev:method profile.unblock
+   */
+  async unblock<T = unknown>(handle: string, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("DELETE", `/blocks/${encodeURIComponent(handle)}`, { ...opts }) as Promise<T>;
+  }
+
+  /**
    * `DELETE /follow/:handle`
    *
    * misardev:method profile.unfollow
    */
   async unfollow<T = unknown>(handle: string, opts: CallOptions = {}): Promise<T> {
     return this.t.request("DELETE", `/follow/${encodeURIComponent(handle)}`, { ...opts }) as Promise<T>;
+  }
+
+  /**
+   * `DELETE /mutes/:handle`
+   *
+   * misardev:method profile.unmute
+   */
+  async unmute<T = unknown>(handle: string, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("DELETE", `/mutes/${encodeURIComponent(handle)}`, { ...opts }) as Promise<T>;
   }
 }

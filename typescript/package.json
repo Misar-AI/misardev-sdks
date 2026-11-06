@@ -1,6 +1,6 @@
 {
   "name": "@misardev/sdk",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Misar.Dev's API in TypeScript: create, build and deploy projects, manage files, domains, environment variables and collaborators, run templates, search code, stream OpenAI-compatible chat completions — every route generated from the live API, retries, typed plan-limit errors with upgrade offers, SSE streaming, ESM+CJS.",
   "type": "module",
   "main": "./dist/index.cjs",

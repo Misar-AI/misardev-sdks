@@ -21,7 +21,7 @@ describe("authentication and client setup", () => {
     );
     expect(code).toBe(0);
     expect(calls[0].headers.Authorization).toBe(`Bearer ${API_KEY}`);
-    expect(calls[0].headers["X-Misar-SDK"]).toBe("misardev-cli/1.0.0");
+    expect(calls[0].headers["X-Misar-SDK"]).toBe("misardev-cli/1.1.0");
     expect(calls[0].url).toBe(`${BASE}/projects`);
   });
 
@@ -234,7 +234,7 @@ describe("output", () => {
     expect(help.stdout).toContain("api-keys");
     const version = await cli(["--version"]);
     expect(version.code).toBe(0);
-    expect(version.stdout.trim()).toBe("1.0.0");
+    expect(version.stdout.trim()).toBe("1.1.0");
   });
 });
 

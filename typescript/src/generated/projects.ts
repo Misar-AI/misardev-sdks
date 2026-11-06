@@ -6,7 +6,7 @@ import type { CallOptions } from "../core/types.js";
 import type { QueryValue, Transport } from "../core/transport.js";
 import type { SSEEvent } from "../core/sse.js";
 
-/** The `projects` resource — 41 operation(s). */
+/** The `projects` resource — 42 operation(s). */
 export class ProjectsResource {
   constructor(private readonly t: Transport) {}
 
@@ -260,6 +260,15 @@ export class ProjectsResource {
    */
   async provisionBackend<T = unknown>(id: string, body: Record<string, unknown> = {}, opts: CallOptions = {}): Promise<T> {
     return this.t.request("POST", `/projects/${encodeURIComponent(id)}/backend`, { ...opts, body }) as Promise<T>;
+  }
+
+  /**
+   * `GET /projects/:id/domains/recommend`
+   *
+   * misardev:method projects.recommendDomains
+   */
+  async recommendDomains<T = unknown>(id: string, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("GET", `/projects/${encodeURIComponent(id)}/domains/recommend`, { ...opts }) as Promise<T>;
   }
 
   /**

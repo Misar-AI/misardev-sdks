@@ -6,12 +6,22 @@ using System.Text.Json.Nodes;
 
 namespace MisarDev;
 
-/// <summary>The <c>notifications</c> resource — 3 operation(s).</summary>
+/// <summary>The <c>notifications</c> resource — 5 operation(s).</summary>
 public sealed class NotificationsResource
 {
     private readonly Transport _t;
 
     internal NotificationsResource(Transport transport) => _t = transport;
+
+    /// <summary>
+    /// <c>GET /notifications/preferences</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method notifications.getPreferences
+    /// </remarks>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> GetPreferences(CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("GET", "/notifications/preferences", cancellationToken: cancellationToken);
 
     /// <summary>
     /// <c>GET /notifications</c>
@@ -46,4 +56,15 @@ public sealed class NotificationsResource
     /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
     public Task<JsonNode?> MarkRead(string id, object? body = null, CancellationToken cancellationToken = default) =>
         _t.RequestAsync("PATCH", $"/notifications/{Transport.EncodePath(id)}", body: body ?? Transport.EmptyBody(), cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>PATCH /notifications/preferences</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method notifications.updatePreferences
+    /// </remarks>
+    /// <param name="body">JSON body: an anonymous object, dictionary or <see cref="JsonNode"/>. Defaults to <c>{}</c>.</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> UpdatePreferences(object? body = null, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("PATCH", "/notifications/preferences", body: body ?? Transport.EmptyBody(), cancellationToken: cancellationToken);
 }

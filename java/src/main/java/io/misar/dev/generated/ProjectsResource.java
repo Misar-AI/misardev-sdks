@@ -10,7 +10,7 @@ import io.misar.dev.Transport;
 import java.util.Collections;
 import java.util.Map;
 
-/** The {@code projects} resource — 41 operation(s). */
+/** The {@code projects} resource — 42 operation(s). */
 public final class ProjectsResource {
     private final Transport t;
 
@@ -324,6 +324,15 @@ public final class ProjectsResource {
      */
     public JsonNode provisionBackend(String id) {
         return provisionBackend(id, Collections.emptyMap());
+    }
+
+    /**
+     * {@code GET /projects/:id/domains/recommend}
+     *
+     * misardev:method projects.recommendDomains
+     */
+    public JsonNode recommendDomains(String id) {
+        return t.request("GET", "/projects/" + Transport.encode(id) + "/domains/recommend", null, null);
     }
 
     /**

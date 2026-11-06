@@ -12,7 +12,7 @@ type SearchResource struct{ c *Client }
 
 // Code calls `GET /search`.
 //
-// Optional query: limit, q, types.
+// Optional query: cursor, limit, q, type, types.
 //
 // misardev:method search.code
 func (r *SearchResource) Code(ctx context.Context, query Query, opts ...CallOption) (any, error) {

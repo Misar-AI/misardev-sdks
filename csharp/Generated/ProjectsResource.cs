@@ -6,7 +6,7 @@ using System.Text.Json.Nodes;
 
 namespace MisarDev;
 
-/// <summary>The <c>projects</c> resource — 41 operation(s).</summary>
+/// <summary>The <c>projects</c> resource — 42 operation(s).</summary>
 public sealed class ProjectsResource
 {
     private readonly Transport _t;
@@ -329,6 +329,17 @@ public sealed class ProjectsResource
     /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
     public Task<JsonNode?> ProvisionBackend(string id, object? body = null, CancellationToken cancellationToken = default) =>
         _t.RequestAsync("POST", $"/projects/{Transport.EncodePath(id)}/backend", body: body ?? Transport.EmptyBody(), cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>GET /projects/:id/domains/recommend</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method projects.recommendDomains
+    /// </remarks>
+    /// <param name="id">Path parameter <c>id</c> (URL-encoded for you).</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> RecommendDomains(string id, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("GET", $"/projects/{Transport.EncodePath(id)}/domains/recommend", cancellationToken: cancellationToken);
 
     /// <summary>
     /// <c>DELETE /projects/:id/collaborators</c>

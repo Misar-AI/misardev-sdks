@@ -1,6 +1,6 @@
 name: misardev_flutter
 description: "Build, deploy and chat with your apps from Flutter: the MisarDev API with secure key storage, typed plan-limit errors, retries and SSE streaming on iOS, Android, macOS and web."
-version: 1.0.0
+version: 1.1.0
 homepage: https://www.misar.dev
 repository: https://github.com/Misar-AI/misardev-sdks/tree/main/flutter
 issue_tracker: https://github.com/Misar-AI/misardev-sdks/issues

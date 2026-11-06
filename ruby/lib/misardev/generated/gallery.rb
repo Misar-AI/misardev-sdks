@@ -31,7 +31,7 @@ module MisarDev
       #
       # misardev:method gallery.list
       #
-      # @param query [Hash] optional query parameters (limit, offset, q, search); nils are dropped
+      # @param query [Hash] optional query parameters (limit, offset, public, q, search); nils are dropped
       # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
       # @raise [MisarDev::MisarDevError]
       def list(query = {})

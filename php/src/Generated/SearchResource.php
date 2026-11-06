@@ -21,7 +21,7 @@ final class SearchResource
      *
      * misardev:method search.code
      *
-     * @param array{limit?: mixed, q?: mixed, types?: mixed} $query Optional query parameters; nulls are dropped.
+     * @param array{cursor?: mixed, limit?: mixed, q?: mixed, type?: mixed, types?: mixed} $query Optional query parameters; nulls are dropped.
      * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
      * @throws \MisarDev\MisarDevError
      */

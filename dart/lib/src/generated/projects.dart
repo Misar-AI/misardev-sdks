@@ -5,7 +5,7 @@ import '../core/query.dart';
 import '../core/sse.dart';
 import '../core/transport.dart';
 
-/// The `projects` resource — 41 operation(s).
+/// The `projects` resource — 42 operation(s).
 class ProjectsResource {
   /// Wraps the client's [Transport]; reach it as `dev.projects`.
   ProjectsResource(this._t);
@@ -189,6 +189,12 @@ class ProjectsResource {
   /// misardev:method projects.provisionBackend
   Future<dynamic> provisionBackend(String id, [Map<String, dynamic>? body]) =>
       _t.request('POST', '/projects/${encodePathSegment(id)}/backend', body: body ?? const <String, dynamic>{});
+
+  /// `GET /projects/:id/domains/recommend`
+  ///
+  /// misardev:method projects.recommendDomains
+  Future<dynamic> recommendDomains(String id) =>
+      _t.request('GET', '/projects/${encodePathSegment(id)}/domains/recommend');
 
   /// `DELETE /projects/:id/collaborators`
   ///

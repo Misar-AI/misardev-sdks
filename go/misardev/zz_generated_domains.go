@@ -5,14 +5,64 @@ package misardev
 
 import (
 	"context"
+	"net/url"
 )
 
-// DomainsResource is the `domains` resource — 1 operation(s). Custom-domain availability lookup.
+// DomainsResource is the `domains` resource — 8 operation(s). Domains: availability lookup, search, checkout, your domains, and their DNS records.
 type DomainsResource struct{ c *Client }
+
+// Checkout calls `POST /domains/checkout`.
+//
+// misardev:method domains.checkout
+func (r *DomainsResource) Checkout(ctx context.Context, body Body, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "POST", "/domains/checkout", nil, orEmpty(body), opts...)
+}
+
+// CreateDnsRecord calls `POST /domains/:id/dns`.
+//
+// misardev:method domains.createDnsRecord
+func (r *DomainsResource) CreateDnsRecord(ctx context.Context, id string, body Body, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "POST", "/domains/"+url.PathEscape(id)+"/dns", nil, orEmpty(body), opts...)
+}
+
+// DeleteDnsRecord calls `DELETE /domains/:id/dns`.
+//
+// misardev:method domains.deleteDnsRecord
+func (r *DomainsResource) DeleteDnsRecord(ctx context.Context, id string, recordID string, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "DELETE", "/domains/"+url.PathEscape(id)+"/dns", Query{"recordId": recordID}, nil, opts...)
+}
+
+// List calls `GET /domains`.
+//
+// misardev:method domains.list
+func (r *DomainsResource) List(ctx context.Context, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "GET", "/domains", nil, nil, opts...)
+}
+
+// ListDnsRecords calls `GET /domains/:id/dns`.
+//
+// misardev:method domains.listDnsRecords
+func (r *DomainsResource) ListDnsRecords(ctx context.Context, id string, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "GET", "/domains/"+url.PathEscape(id)+"/dns", nil, nil, opts...)
+}
 
 // Lookup calls `GET /domains/lookup`.
 //
 // misardev:method domains.lookup
 func (r *DomainsResource) Lookup(ctx context.Context, domain string, opts ...CallOption) (any, error) {
 	return r.c.Request(ctx, "GET", "/domains/lookup", Query{"domain": domain}, nil, opts...)
+}
+
+// Search calls `POST /domains/search`.
+//
+// misardev:method domains.search
+func (r *DomainsResource) Search(ctx context.Context, body Body, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "POST", "/domains/search", nil, orEmpty(body), opts...)
+}
+
+// Update calls `PATCH /domains/:id`.
+//
+// misardev:method domains.update
+func (r *DomainsResource) Update(ctx context.Context, id string, body Body, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "PATCH", "/domains/"+url.PathEscape(id), nil, orEmpty(body), opts...)
 }

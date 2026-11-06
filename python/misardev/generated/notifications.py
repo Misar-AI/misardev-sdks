@@ -10,10 +10,26 @@ from ..core.transport import encode_path as _p  # noqa: F401
 
 
 class NotificationsResource:
-    """The ``notifications`` resource — 3 operation(s), each with an ``a``-prefixed async twin."""
+    """The ``notifications`` resource — 5 operation(s), each with an ``a``-prefixed async twin."""
 
     def __init__(self, transport: Transport) -> None:
         self._t = transport
+
+    def get_preferences(self, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /notifications/preferences``
+
+        misardev:method notifications.getPreferences
+        """
+        return self._t.request("GET", "/notifications/preferences", headers=headers)
+
+    async def aget_preferences(self, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /notifications/preferences``
+
+        Async twin of :meth:`get_preferences`.
+
+        misardev:method notifications.getPreferences
+        """
+        return await self._t.arequest("GET", "/notifications/preferences", headers=headers)
 
     def list(self, query: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
         """``GET /notifications``
@@ -66,3 +82,19 @@ class NotificationsResource:
         misardev:method notifications.markRead
         """
         return await self._t.arequest("PATCH", f"/notifications/{_p(id_)}", body=dict(body or {}), headers=headers)
+
+    def update_preferences(self, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``PATCH /notifications/preferences``
+
+        misardev:method notifications.updatePreferences
+        """
+        return self._t.request("PATCH", "/notifications/preferences", body=dict(body or {}), headers=headers)
+
+    async def aupdate_preferences(self, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``PATCH /notifications/preferences``
+
+        Async twin of :meth:`update_preferences`.
+
+        misardev:method notifications.updatePreferences
+        """
+        return await self._t.arequest("PATCH", "/notifications/preferences", body=dict(body or {}), headers=headers)

@@ -4,7 +4,7 @@
 
 module MisarDev
   module Generated
-    # The `domains` resource — 1 operation(s).
+    # The `domains` resource — 8 operation(s).
     class DomainsResource
       def initialize(transport)
         @t = transport
@@ -12,6 +12,62 @@ module MisarDev
 
       def inspect
         "#<#{self.class.name}>"
+      end
+
+      # `POST /domains/checkout`
+      #
+      # misardev:method domains.checkout
+      #
+      # @param body [Hash] JSON request body
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def checkout(body = {})
+        @t.request("POST", "/domains/checkout", body: body)
+      end
+
+      # `POST /domains/:id/dns`
+      #
+      # misardev:method domains.createDnsRecord
+      #
+      # @param id [String] path parameter `id`
+      # @param body [Hash] JSON request body
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def create_dns_record(id, body = {})
+        @t.request("POST", "/domains/#{Core::Transport.segment(id)}/dns", body: body)
+      end
+
+      # `DELETE /domains/:id/dns`
+      #
+      # misardev:method domains.deleteDnsRecord
+      #
+      # @param id [String] path parameter `id`
+      # @param record_id [String, Numeric, Boolean] required query parameter `recordId`
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def delete_dns_record(id, record_id)
+        @t.request("DELETE", "/domains/#{Core::Transport.segment(id)}/dns", query: { "recordId" => record_id })
+      end
+
+      # `GET /domains`
+      #
+      # misardev:method domains.list
+      #
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def list
+        @t.request("GET", "/domains")
+      end
+
+      # `GET /domains/:id/dns`
+      #
+      # misardev:method domains.listDnsRecords
+      #
+      # @param id [String] path parameter `id`
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def list_dns_records(id)
+        @t.request("GET", "/domains/#{Core::Transport.segment(id)}/dns")
       end
 
       # `GET /domains/lookup`
@@ -23,6 +79,29 @@ module MisarDev
       # @raise [MisarDev::MisarDevError]
       def lookup(domain)
         @t.request("GET", "/domains/lookup", query: { "domain" => domain })
+      end
+
+      # `POST /domains/search`
+      #
+      # misardev:method domains.search
+      #
+      # @param body [Hash] JSON request body
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def search(body = {})
+        @t.request("POST", "/domains/search", body: body)
+      end
+
+      # `PATCH /domains/:id`
+      #
+      # misardev:method domains.update
+      #
+      # @param id [String] path parameter `id`
+      # @param body [Hash] JSON request body
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def update(id, body = {})
+        @t.request("PATCH", "/domains/#{Core::Transport.segment(id)}", body: body)
       end
     end
   end

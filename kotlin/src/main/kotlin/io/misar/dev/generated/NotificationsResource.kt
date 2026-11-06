@@ -6,8 +6,16 @@ package io.misar.dev.generated
 import com.fasterxml.jackson.databind.JsonNode
 import io.misar.dev.Transport
 
-/** The `notifications` resource — 3 operation(s). */
+/** The `notifications` resource — 5 operation(s). */
 class NotificationsResource internal constructor(private val t: Transport) {
+    /**
+     * `GET /notifications/preferences`
+     *
+     * misardev:method notifications.getPreferences
+     */
+    suspend fun getPreferences(): JsonNode? =
+        t.request("GET", "/notifications/preferences", null, null)
+
     /**
      * `GET /notifications`
      *
@@ -31,4 +39,12 @@ class NotificationsResource internal constructor(private val t: Transport) {
      */
     suspend fun markRead(id: String, body: Map<String, Any?> = emptyMap()): JsonNode? =
         t.request("PATCH", "/notifications/${Transport.encode(id)}", null, body)
+
+    /**
+     * `PATCH /notifications/preferences`
+     *
+     * misardev:method notifications.updatePreferences
+     */
+    suspend fun updatePreferences(body: Map<String, Any?> = emptyMap()): JsonNode? =
+        t.request("PATCH", "/notifications/preferences", null, body)
 }

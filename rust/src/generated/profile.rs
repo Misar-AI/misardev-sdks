@@ -3,13 +3,15 @@
 
 use crate::error::MisarDevError;
 use crate::transport::Transport;
+use crate::transport::body_or_empty;
+use crate::transport::build_query;
 use crate::transport::encode_path;
 use reqwest::Method;
 use serde_json::Value;
 
-/// The `profile` resource — 3 operation(s).
+/// The `profile` resource — 10 operation(s).
 ///
-/// Public builder profiles, follow and unfollow.
+/// Public builder profiles; follow, block and mute people.
 ///
 /// Reached through [`crate::MisarDev::profile`].
 #[derive(Debug, Clone, Copy)]
@@ -18,11 +20,18 @@ pub struct ProfileResource<'a> {
 }
 
 impl ProfileResource<'_> {
+    /// `POST /blocks/:handle`
+    ///
+    /// misardev:method profile.block
+    pub async fn block(self, handle: &str) -> Result<Value, MisarDevError> {
+        self.t.request(Method::POST, &format!("/blocks/{}", encode_path(handle)), "", None).await
+    }
+
     /// `POST /follow/:handle`
     ///
     /// misardev:method profile.follow
-    pub async fn follow(self, handle: &str) -> Result<Value, MisarDevError> {
-        self.t.request(Method::POST, &format!("/follow/{}", encode_path(handle)), "", None).await
+    pub async fn follow(self, handle: &str, body: Option<Value>) -> Result<Value, MisarDevError> {
+        self.t.request(Method::POST, &format!("/follow/{}", encode_path(handle)), "", Some(body_or_empty(body))).await
     }
 
     /// `GET /profile/:handle`
@@ -34,10 +43,54 @@ impl ProfileResource<'_> {
         self.t.request(Method::GET, &format!("/profile/{}", encode_path(handle)), "", None).await
     }
 
+    /// `GET /blocks`
+    ///
+    /// misardev:method profile.listBlocks
+    pub async fn list_blocks(self) -> Result<Value, MisarDevError> {
+        self.t.request(Method::GET, "/blocks", "", None).await
+    }
+
+    /// `GET /profile/:handle/:list`
+    ///
+    /// Optional query: `cursor`, `limit`.
+    ///
+    /// misardev:method profile.listConnections
+    pub async fn list_connections(self, handle: &str, list: &str, query: Option<Value>) -> Result<Value, MisarDevError> {
+        self.t.request(Method::GET, &format!("/profile/{}/{}", encode_path(handle), encode_path(list)), &build_query(query.as_ref(), &[]), None).await
+    }
+
+    /// `GET /profile/:handle/highlights`
+    ///
+    /// misardev:method profile.listHighlights
+    pub async fn list_highlights(self, handle: &str) -> Result<Value, MisarDevError> {
+        self.t.request(Method::GET, &format!("/profile/{}/highlights", encode_path(handle)), "", None).await
+    }
+
+    /// `POST /mutes/:handle`
+    ///
+    /// misardev:method profile.mute
+    pub async fn mute(self, handle: &str, body: Option<Value>) -> Result<Value, MisarDevError> {
+        self.t.request(Method::POST, &format!("/mutes/{}", encode_path(handle)), "", Some(body_or_empty(body))).await
+    }
+
+    /// `DELETE /blocks/:handle`
+    ///
+    /// misardev:method profile.unblock
+    pub async fn unblock(self, handle: &str) -> Result<Value, MisarDevError> {
+        self.t.request(Method::DELETE, &format!("/blocks/{}", encode_path(handle)), "", None).await
+    }
+
     /// `DELETE /follow/:handle`
     ///
     /// misardev:method profile.unfollow
     pub async fn unfollow(self, handle: &str) -> Result<Value, MisarDevError> {
         self.t.request(Method::DELETE, &format!("/follow/{}", encode_path(handle)), "", None).await
+    }
+
+    /// `DELETE /mutes/:handle`
+    ///
+    /// misardev:method profile.unmute
+    pub async fn unmute(self, handle: &str) -> Result<Value, MisarDevError> {
+        self.t.request(Method::DELETE, &format!("/mutes/{}", encode_path(handle)), "", None).await
     }
 }

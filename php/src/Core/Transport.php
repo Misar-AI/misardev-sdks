@@ -28,7 +28,7 @@ use MisarDev\ValidationError;
 final class Transport
 {
     public const DEFAULT_BASE_URL = 'https://api.misar.io/dev';
-    public const SDK_VERSION = '1.0.0';
+    public const SDK_VERSION = '1.1.0';
 
     /** Statuses worth retrying. 429 only when it is NOT a plan limit. */
     private const RETRYABLE = [429, 500, 502, 503, 504];

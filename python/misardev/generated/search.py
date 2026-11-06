@@ -18,7 +18,7 @@ class SearchResource:
     def code(self, query: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
         """``GET /search``
 
-        Optional query: ``limit``, ``q``, ``types``.
+        Optional query: ``cursor``, ``limit``, ``q``, ``type``, ``types``.
 
         misardev:method search.code
         """
@@ -27,7 +27,7 @@ class SearchResource:
     async def acode(self, query: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
         """``GET /search``
 
-        Optional query: ``limit``, ``q``, ``types``.
+        Optional query: ``cursor``, ``limit``, ``q``, ``type``, ``types``.
 
         Async twin of :meth:`code`.
 

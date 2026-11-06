@@ -195,7 +195,7 @@ class Transport {
   /// Per-attempt timeout.
   final Duration timeout;
 
-  /// Value of the `X-Misar-SDK` header, e.g. `misardev-dart/1.0.0`.
+  /// Value of the `X-Misar-SDK` header, e.g. `misardev-dart/1.1.0`.
   final String sdkHeader;
 
   final String _apiKey;

@@ -1,6 +1,6 @@
 {
   "name": "@misardev/cli",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Misar.Dev from the terminal: every API route as a command — create, build and deploy projects, write files, manage domains and env vars, start from templates, search code, stream chat completions. Plan refusals render as an upgrade card.",
   "type": "module",
   "bin": {

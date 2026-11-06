@@ -9,7 +9,7 @@ use crate::transport::encode_path;
 use reqwest::Method;
 use serde_json::Value;
 
-/// The `notifications` resource — 3 operation(s).
+/// The `notifications` resource — 5 operation(s).
 ///
 /// In-app notifications and read state.
 ///
@@ -20,6 +20,13 @@ pub struct NotificationsResource<'a> {
 }
 
 impl NotificationsResource<'_> {
+    /// `GET /notifications/preferences`
+    ///
+    /// misardev:method notifications.getPreferences
+    pub async fn get_preferences(self) -> Result<Value, MisarDevError> {
+        self.t.request(Method::GET, "/notifications/preferences", "", None).await
+    }
+
     /// `GET /notifications`
     ///
     /// Optional query: `before`, `count`.
@@ -41,5 +48,12 @@ impl NotificationsResource<'_> {
     /// misardev:method notifications.markRead
     pub async fn mark_read(self, id: &str, body: Option<Value>) -> Result<Value, MisarDevError> {
         self.t.request(Method::PATCH, &format!("/notifications/{}", encode_path(id)), "", Some(body_or_empty(body))).await
+    }
+
+    /// `PATCH /notifications/preferences`
+    ///
+    /// misardev:method notifications.updatePreferences
+    pub async fn update_preferences(self, body: Option<Value>) -> Result<Value, MisarDevError> {
+        self.t.request(Method::PATCH, "/notifications/preferences", "", Some(body_or_empty(body))).await
     }
 }

@@ -5,9 +5,18 @@
 import type { CallOptions } from "../core/types.js";
 import type { QueryValue, Transport } from "../core/transport.js";
 
-/** The `notifications` resource — 3 operation(s). */
+/** The `notifications` resource — 5 operation(s). */
 export class NotificationsResource {
   constructor(private readonly t: Transport) {}
+
+  /**
+   * `GET /notifications/preferences`
+   *
+   * misardev:method notifications.getPreferences
+   */
+  async getPreferences<T = unknown>(opts: CallOptions = {}): Promise<T> {
+    return this.t.request("GET", "/notifications/preferences", { ...opts }) as Promise<T>;
+  }
 
   /**
    * `GET /notifications`
@@ -34,5 +43,14 @@ export class NotificationsResource {
    */
   async markRead<T = unknown>(id: string, body: Record<string, unknown> = {}, opts: CallOptions = {}): Promise<T> {
     return this.t.request("PATCH", `/notifications/${encodeURIComponent(id)}`, { ...opts, body }) as Promise<T>;
+  }
+
+  /**
+   * `PATCH /notifications/preferences`
+   *
+   * misardev:method notifications.updatePreferences
+   */
+  async updatePreferences<T = unknown>(body: Record<string, unknown> = {}, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("PATCH", "/notifications/preferences", { ...opts, body }) as Promise<T>;
   }
 }

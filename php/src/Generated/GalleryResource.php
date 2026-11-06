@@ -37,7 +37,7 @@ final class GalleryResource
      *
      * misardev:method gallery.list
      *
-     * @param array{limit?: mixed, offset?: mixed, q?: mixed, search?: mixed} $query Optional query parameters; nulls are dropped.
+     * @param array{limit?: mixed, offset?: mixed, public?: mixed, q?: mixed, search?: mixed} $query Optional query parameters; nulls are dropped.
      * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
      * @throws \MisarDev\MisarDevError
      */

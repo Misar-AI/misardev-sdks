@@ -10,26 +10,42 @@ from ..core.transport import encode_path as _p  # noqa: F401
 
 
 class ProfileResource:
-    """The ``profile`` resource — 3 operation(s), each with an ``a``-prefixed async twin."""
+    """The ``profile`` resource — 10 operation(s), each with an ``a``-prefixed async twin."""
 
     def __init__(self, transport: Transport) -> None:
         self._t = transport
 
-    def follow(self, handle: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+    def block(self, handle: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``POST /blocks/:handle``
+
+        misardev:method profile.block
+        """
+        return self._t.request("POST", f"/blocks/{_p(handle)}", headers=headers)
+
+    async def ablock(self, handle: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``POST /blocks/:handle``
+
+        Async twin of :meth:`block`.
+
+        misardev:method profile.block
+        """
+        return await self._t.arequest("POST", f"/blocks/{_p(handle)}", headers=headers)
+
+    def follow(self, handle: str, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
         """``POST /follow/:handle``
 
         misardev:method profile.follow
         """
-        return self._t.request("POST", f"/follow/{_p(handle)}", headers=headers)
+        return self._t.request("POST", f"/follow/{_p(handle)}", body=dict(body or {}), headers=headers)
 
-    async def afollow(self, handle: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+    async def afollow(self, handle: str, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
         """``POST /follow/:handle``
 
         Async twin of :meth:`follow`.
 
         misardev:method profile.follow
         """
-        return await self._t.arequest("POST", f"/follow/{_p(handle)}", headers=headers)
+        return await self._t.arequest("POST", f"/follow/{_p(handle)}", body=dict(body or {}), headers=headers)
 
     def get(self, handle: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
         """``GET /profile/:handle``
@@ -51,6 +67,90 @@ class ProfileResource:
         """
         return await self._t.arequest("GET", f"/profile/{_p(handle)}", headers=headers)
 
+    def list_blocks(self, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /blocks``
+
+        misardev:method profile.listBlocks
+        """
+        return self._t.request("GET", "/blocks", headers=headers)
+
+    async def alist_blocks(self, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /blocks``
+
+        Async twin of :meth:`list_blocks`.
+
+        misardev:method profile.listBlocks
+        """
+        return await self._t.arequest("GET", "/blocks", headers=headers)
+
+    def list_connections(self, handle: str, list_: str, query: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /profile/:handle/:list``
+
+        Optional query: ``cursor``, ``limit``.
+
+        misardev:method profile.listConnections
+        """
+        return self._t.request("GET", f"/profile/{_p(handle)}/{_p(list_)}", query=query, headers=headers)
+
+    async def alist_connections(self, handle: str, list_: str, query: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /profile/:handle/:list``
+
+        Optional query: ``cursor``, ``limit``.
+
+        Async twin of :meth:`list_connections`.
+
+        misardev:method profile.listConnections
+        """
+        return await self._t.arequest("GET", f"/profile/{_p(handle)}/{_p(list_)}", query=query, headers=headers)
+
+    def list_highlights(self, handle: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /profile/:handle/highlights``
+
+        misardev:method profile.listHighlights
+        """
+        return self._t.request("GET", f"/profile/{_p(handle)}/highlights", headers=headers)
+
+    async def alist_highlights(self, handle: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /profile/:handle/highlights``
+
+        Async twin of :meth:`list_highlights`.
+
+        misardev:method profile.listHighlights
+        """
+        return await self._t.arequest("GET", f"/profile/{_p(handle)}/highlights", headers=headers)
+
+    def mute(self, handle: str, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``POST /mutes/:handle``
+
+        misardev:method profile.mute
+        """
+        return self._t.request("POST", f"/mutes/{_p(handle)}", body=dict(body or {}), headers=headers)
+
+    async def amute(self, handle: str, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``POST /mutes/:handle``
+
+        Async twin of :meth:`mute`.
+
+        misardev:method profile.mute
+        """
+        return await self._t.arequest("POST", f"/mutes/{_p(handle)}", body=dict(body or {}), headers=headers)
+
+    def unblock(self, handle: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``DELETE /blocks/:handle``
+
+        misardev:method profile.unblock
+        """
+        return self._t.request("DELETE", f"/blocks/{_p(handle)}", headers=headers)
+
+    async def aunblock(self, handle: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``DELETE /blocks/:handle``
+
+        Async twin of :meth:`unblock`.
+
+        misardev:method profile.unblock
+        """
+        return await self._t.arequest("DELETE", f"/blocks/{_p(handle)}", headers=headers)
+
     def unfollow(self, handle: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
         """``DELETE /follow/:handle``
 
@@ -66,3 +166,19 @@ class ProfileResource:
         misardev:method profile.unfollow
         """
         return await self._t.arequest("DELETE", f"/follow/{_p(handle)}", headers=headers)
+
+    def unmute(self, handle: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``DELETE /mutes/:handle``
+
+        misardev:method profile.unmute
+        """
+        return self._t.request("DELETE", f"/mutes/{_p(handle)}", headers=headers)
+
+    async def aunmute(self, handle: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``DELETE /mutes/:handle``
+
+        Async twin of :meth:`unmute`.
+
+        misardev:method profile.unmute
+        """
+        return await self._t.arequest("DELETE", f"/mutes/{_p(handle)}", headers=headers)

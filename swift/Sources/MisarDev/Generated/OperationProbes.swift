@@ -118,6 +118,58 @@ enum OperationProbes {
             _ = try await c.checkpoints.update("id-1", ["probe": true])
             return 0
         },
+        OperationProbe(resource: "closeFriends", name: "add", verb: "POST", path: "/close-friends", hasBody: true, stream: false) { c in
+            _ = try await c.closeFriends.add(["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "closeFriends", name: "list", verb: "GET", path: "/close-friends", hasBody: false, stream: false) { c in
+            _ = try await c.closeFriends.list()
+            return 0
+        },
+        OperationProbe(resource: "closeFriends", name: "remove", verb: "DELETE", path: "/close-friends", hasBody: true, stream: false) { c in
+            _ = try await c.closeFriends.remove(["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "collections", name: "addPost", verb: "POST", path: "/collections/id-1/items", hasBody: true, stream: false) { c in
+            _ = try await c.collections.addPost("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "collections", name: "create", verb: "POST", path: "/collections", hasBody: true, stream: false) { c in
+            _ = try await c.collections.create(["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "collections", name: "delete", verb: "DELETE", path: "/collections/id-1", hasBody: false, stream: false) { c in
+            _ = try await c.collections.delete("id-1")
+            return 0
+        },
+        OperationProbe(resource: "collections", name: "list", verb: "GET", path: "/collections", hasBody: false, stream: false) { c in
+            _ = try await c.collections.list()
+            return 0
+        },
+        OperationProbe(resource: "collections", name: "removePost", verb: "DELETE", path: "/collections/id-1/items", hasBody: true, stream: false) { c in
+            _ = try await c.collections.removePost("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "collections", name: "update", verb: "PATCH", path: "/collections/id-1", hasBody: true, stream: false) { c in
+            _ = try await c.collections.update("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "comments", name: "delete", verb: "DELETE", path: "/comments/id-1", hasBody: false, stream: false) { c in
+            _ = try await c.comments.delete("id-1")
+            return 0
+        },
+        OperationProbe(resource: "comments", name: "like", verb: "POST", path: "/comments/id-1/like", hasBody: false, stream: false) { c in
+            _ = try await c.comments.like("id-1")
+            return 0
+        },
+        OperationProbe(resource: "comments", name: "unlike", verb: "DELETE", path: "/comments/id-1/like", hasBody: false, stream: false) { c in
+            _ = try await c.comments.unlike("id-1")
+            return 0
+        },
+        OperationProbe(resource: "comments", name: "update", verb: "PATCH", path: "/comments/id-1", hasBody: true, stream: false) { c in
+            _ = try await c.comments.update("id-1", ["probe": true])
+            return 0
+        },
         OperationProbe(resource: "connectors", name: "available", verb: "GET", path: "/connectors/available", hasBody: false, stream: false) { c in
             _ = try await c.connectors.available()
             return 0
@@ -150,8 +202,84 @@ enum OperationProbes {
             _ = try await c.connectors.updateConnection("id-1", ["probe": true])
             return 0
         },
+        OperationProbe(resource: "dm", name: "acceptThread", verb: "POST", path: "/dm/threads/id-1/accept", hasBody: false, stream: false) { c in
+            _ = try await c.dm.acceptThread("id-1")
+            return 0
+        },
+        OperationProbe(resource: "dm", name: "createThread", verb: "POST", path: "/dm/threads", hasBody: true, stream: false) { c in
+            _ = try await c.dm.createThread(["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "dm", name: "createThreadsMute", verb: "POST", path: "/dm/threads/id-1/mute", hasBody: false, stream: false) { c in
+            _ = try await c.dm.createThreadsMute("id-1")
+            return 0
+        },
+        OperationProbe(resource: "dm", name: "declineThread", verb: "POST", path: "/dm/threads/id-1/decline", hasBody: false, stream: false) { c in
+            _ = try await c.dm.declineThread("id-1")
+            return 0
+        },
+        OperationProbe(resource: "dm", name: "deleteThreadsMute", verb: "DELETE", path: "/dm/threads/id-1/mute", hasBody: false, stream: false) { c in
+            _ = try await c.dm.deleteThreadsMute("id-1")
+            return 0
+        },
+        OperationProbe(resource: "dm", name: "listMessages", verb: "GET", path: "/dm/threads/id-1/messages", hasBody: false, stream: false) { c in
+            _ = try await c.dm.listMessages("id-1")
+            return 0
+        },
+        OperationProbe(resource: "dm", name: "listThreads", verb: "GET", path: "/dm/threads", hasBody: false, stream: false) { c in
+            _ = try await c.dm.listThreads()
+            return 0
+        },
+        OperationProbe(resource: "dm", name: "markThreadRead", verb: "POST", path: "/dm/threads/id-1/read", hasBody: false, stream: false) { c in
+            _ = try await c.dm.markThreadRead("id-1")
+            return 0
+        },
+        OperationProbe(resource: "dm", name: "sendMessage", verb: "POST", path: "/dm/threads/id-1/messages", hasBody: true, stream: false) { c in
+            _ = try await c.dm.sendMessage("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "dm", name: "unreadCounts", verb: "GET", path: "/dm/unread", hasBody: false, stream: false) { c in
+            _ = try await c.dm.unreadCounts()
+            return 0
+        },
+        OperationProbe(resource: "domains", name: "checkout", verb: "POST", path: "/domains/checkout", hasBody: true, stream: false) { c in
+            _ = try await c.domains.checkout(["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "domains", name: "createDnsRecord", verb: "POST", path: "/domains/id-1/dns", hasBody: true, stream: false) { c in
+            _ = try await c.domains.createDnsRecord("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "domains", name: "deleteDnsRecord", verb: "DELETE", path: "/domains/id-1/dns?recordId=recordId-v", hasBody: false, stream: false) { c in
+            _ = try await c.domains.deleteDnsRecord("id-1", recordId: "recordId-v")
+            return 0
+        },
+        OperationProbe(resource: "domains", name: "list", verb: "GET", path: "/domains", hasBody: false, stream: false) { c in
+            _ = try await c.domains.list()
+            return 0
+        },
+        OperationProbe(resource: "domains", name: "listDnsRecords", verb: "GET", path: "/domains/id-1/dns", hasBody: false, stream: false) { c in
+            _ = try await c.domains.listDnsRecords("id-1")
+            return 0
+        },
         OperationProbe(resource: "domains", name: "lookup", verb: "GET", path: "/domains/lookup?domain=domain-v", hasBody: false, stream: false) { c in
             _ = try await c.domains.lookup(domain: "domain-v")
+            return 0
+        },
+        OperationProbe(resource: "domains", name: "search", verb: "POST", path: "/domains/search", hasBody: true, stream: false) { c in
+            _ = try await c.domains.search(["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "domains", name: "update", verb: "PATCH", path: "/domains/id-1", hasBody: true, stream: false) { c in
+            _ = try await c.domains.update("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "feed", name: "following", verb: "GET", path: "/feed", hasBody: false, stream: false) { c in
+            _ = try await c.feed.following()
+            return 0
+        },
+        OperationProbe(resource: "feed", name: "forYou", verb: "GET", path: "/feed/for-you", hasBody: false, stream: false) { c in
+            _ = try await c.feed.forYou()
             return 0
         },
         OperationProbe(resource: "gallery", name: "like", verb: "POST", path: "/gallery/projectId-1/like", hasBody: false, stream: false) { c in
@@ -174,6 +302,34 @@ enum OperationProbes {
             _ = try await c.github.getConnection()
             return 0
         },
+        OperationProbe(resource: "highlights", name: "addStory", verb: "POST", path: "/highlights/id-1/items", hasBody: true, stream: false) { c in
+            _ = try await c.highlights.addStory("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "highlights", name: "create", verb: "POST", path: "/highlights", hasBody: true, stream: false) { c in
+            _ = try await c.highlights.create(["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "highlights", name: "delete", verb: "DELETE", path: "/highlights/id-1", hasBody: false, stream: false) { c in
+            _ = try await c.highlights.delete("id-1")
+            return 0
+        },
+        OperationProbe(resource: "highlights", name: "list", verb: "GET", path: "/highlights", hasBody: false, stream: false) { c in
+            _ = try await c.highlights.list()
+            return 0
+        },
+        OperationProbe(resource: "highlights", name: "removeStory", verb: "DELETE", path: "/highlights/id-1/items", hasBody: true, stream: false) { c in
+            _ = try await c.highlights.removeStory("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "highlights", name: "update", verb: "PATCH", path: "/highlights/id-1", hasBody: true, stream: false) { c in
+            _ = try await c.highlights.update("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "notifications", name: "getPreferences", verb: "GET", path: "/notifications/preferences", hasBody: false, stream: false) { c in
+            _ = try await c.notifications.getPreferences()
+            return 0
+        },
         OperationProbe(resource: "notifications", name: "list", verb: "GET", path: "/notifications", hasBody: false, stream: false) { c in
             _ = try await c.notifications.list()
             return 0
@@ -184,6 +340,10 @@ enum OperationProbes {
         },
         OperationProbe(resource: "notifications", name: "markRead", verb: "PATCH", path: "/notifications/id-1", hasBody: true, stream: false) { c in
             _ = try await c.notifications.markRead("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "notifications", name: "updatePreferences", verb: "PATCH", path: "/notifications/preferences", hasBody: true, stream: false) { c in
+            _ = try await c.notifications.updatePreferences(["probe": true])
             return 0
         },
         OperationProbe(resource: "organizations", name: "acceptInvitation", verb: "POST", path: "/invitations/accept", hasBody: true, stream: false) { c in
@@ -222,16 +382,92 @@ enum OperationProbes {
             _ = try await c.organizations.updateMember("id-1", ["probe": true])
             return 0
         },
-        OperationProbe(resource: "profile", name: "follow", verb: "POST", path: "/follow/handle-1", hasBody: false, stream: false) { c in
-            _ = try await c.profile.follow("handle-1")
+        OperationProbe(resource: "posts", name: "create", verb: "POST", path: "/posts", hasBody: true, stream: false) { c in
+            _ = try await c.posts.create(["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "posts", name: "createComment", verb: "POST", path: "/posts/id-1/comments", hasBody: true, stream: false) { c in
+            _ = try await c.posts.createComment("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "posts", name: "get", verb: "GET", path: "/posts/id-1", hasBody: false, stream: false) { c in
+            _ = try await c.posts.get("id-1")
+            return 0
+        },
+        OperationProbe(resource: "posts", name: "like", verb: "POST", path: "/posts/id-1/like", hasBody: false, stream: false) { c in
+            _ = try await c.posts.like("id-1")
+            return 0
+        },
+        OperationProbe(resource: "posts", name: "list", verb: "GET", path: "/posts", hasBody: false, stream: false) { c in
+            _ = try await c.posts.list()
+            return 0
+        },
+        OperationProbe(resource: "posts", name: "listComments", verb: "GET", path: "/posts/id-1/comments", hasBody: false, stream: false) { c in
+            _ = try await c.posts.listComments("id-1")
+            return 0
+        },
+        OperationProbe(resource: "posts", name: "listSaved", verb: "GET", path: "/me/saved", hasBody: false, stream: false) { c in
+            _ = try await c.posts.listSaved()
+            return 0
+        },
+        OperationProbe(resource: "posts", name: "save", verb: "POST", path: "/posts/id-1/save", hasBody: true, stream: false) { c in
+            _ = try await c.posts.save("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "posts", name: "shareToDm", verb: "POST", path: "/posts/id-1/share-dm", hasBody: true, stream: false) { c in
+            _ = try await c.posts.shareToDm("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "posts", name: "unlike", verb: "DELETE", path: "/posts/id-1/like", hasBody: false, stream: false) { c in
+            _ = try await c.posts.unlike("id-1")
+            return 0
+        },
+        OperationProbe(resource: "posts", name: "unsave", verb: "DELETE", path: "/posts/id-1/save", hasBody: false, stream: false) { c in
+            _ = try await c.posts.unsave("id-1")
+            return 0
+        },
+        OperationProbe(resource: "posts", name: "update", verb: "PATCH", path: "/posts/id-1", hasBody: true, stream: false) { c in
+            _ = try await c.posts.update("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "profile", name: "block", verb: "POST", path: "/blocks/handle-1", hasBody: false, stream: false) { c in
+            _ = try await c.profile.block("handle-1")
+            return 0
+        },
+        OperationProbe(resource: "profile", name: "follow", verb: "POST", path: "/follow/handle-1", hasBody: true, stream: false) { c in
+            _ = try await c.profile.follow("handle-1", ["probe": true])
             return 0
         },
         OperationProbe(resource: "profile", name: "get", verb: "GET", path: "/profile/handle-1", hasBody: false, stream: false) { c in
             _ = try await c.profile.get("handle-1")
             return 0
         },
+        OperationProbe(resource: "profile", name: "listBlocks", verb: "GET", path: "/blocks", hasBody: false, stream: false) { c in
+            _ = try await c.profile.listBlocks()
+            return 0
+        },
+        OperationProbe(resource: "profile", name: "listConnections", verb: "GET", path: "/profile/handle-1/list-1", hasBody: false, stream: false) { c in
+            _ = try await c.profile.listConnections("handle-1", "list-1")
+            return 0
+        },
+        OperationProbe(resource: "profile", name: "listHighlights", verb: "GET", path: "/profile/handle-1/highlights", hasBody: false, stream: false) { c in
+            _ = try await c.profile.listHighlights("handle-1")
+            return 0
+        },
+        OperationProbe(resource: "profile", name: "mute", verb: "POST", path: "/mutes/handle-1", hasBody: true, stream: false) { c in
+            _ = try await c.profile.mute("handle-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "profile", name: "unblock", verb: "DELETE", path: "/blocks/handle-1", hasBody: false, stream: false) { c in
+            _ = try await c.profile.unblock("handle-1")
+            return 0
+        },
         OperationProbe(resource: "profile", name: "unfollow", verb: "DELETE", path: "/follow/handle-1", hasBody: false, stream: false) { c in
             _ = try await c.profile.unfollow("handle-1")
+            return 0
+        },
+        OperationProbe(resource: "profile", name: "unmute", verb: "DELETE", path: "/mutes/handle-1", hasBody: false, stream: false) { c in
+            _ = try await c.profile.unmute("handle-1")
             return 0
         },
         OperationProbe(resource: "projects", name: "addCollaborator", verb: "POST", path: "/projects/id-1/collaborators", hasBody: true, stream: false) { c in
@@ -346,6 +582,10 @@ enum OperationProbes {
             _ = try await c.projects.provisionBackend("id-1", ["probe": true])
             return 0
         },
+        OperationProbe(resource: "projects", name: "recommendDomains", verb: "GET", path: "/projects/id-1/domains/recommend", hasBody: false, stream: false) { c in
+            _ = try await c.projects.recommendDomains("id-1")
+            return 0
+        },
         OperationProbe(resource: "projects", name: "removeCollaborator", verb: "DELETE", path: "/projects/id-1/collaborators?collaboratorId=collaboratorId-v", hasBody: false, stream: false) { c in
             _ = try await c.projects.removeCollaborator("id-1", collaboratorId: "collaboratorId-v")
             return 0
@@ -429,6 +669,58 @@ enum OperationProbes {
         },
         OperationProbe(resource: "skills", name: "list", verb: "GET", path: "/skills/misarai", hasBody: false, stream: false) { c in
             _ = try await c.skills.list()
+            return 0
+        },
+        OperationProbe(resource: "social", name: "dismissSuggestion", verb: "POST", path: "/social/suggestions/handle-1/dismiss", hasBody: false, stream: false) { c in
+            _ = try await c.social.dismissSuggestion("handle-1")
+            return 0
+        },
+        OperationProbe(resource: "social", name: "listSuggestions", verb: "GET", path: "/social/suggestions", hasBody: false, stream: false) { c in
+            _ = try await c.social.listSuggestions()
+            return 0
+        },
+        OperationProbe(resource: "social", name: "meMutuals", verb: "GET", path: "/social/me/mutuals", hasBody: false, stream: false) { c in
+            _ = try await c.social.meMutuals()
+            return 0
+        },
+        OperationProbe(resource: "social", name: "relationship", verb: "GET", path: "/social/relationship/handle-1", hasBody: false, stream: false) { c in
+            _ = try await c.social.relationship("handle-1")
+            return 0
+        },
+        OperationProbe(resource: "stories", name: "create", verb: "POST", path: "/stories", hasBody: true, stream: false) { c in
+            _ = try await c.stories.create(["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "stories", name: "delete", verb: "DELETE", path: "/stories/id-1", hasBody: false, stream: false) { c in
+            _ = try await c.stories.delete("id-1")
+            return 0
+        },
+        OperationProbe(resource: "stories", name: "get", verb: "GET", path: "/stories/id-1", hasBody: false, stream: false) { c in
+            _ = try await c.stories.get("id-1")
+            return 0
+        },
+        OperationProbe(resource: "stories", name: "listMyPosts", verb: "GET", path: "/stories/my-posts", hasBody: false, stream: false) { c in
+            _ = try await c.stories.listMyPosts()
+            return 0
+        },
+        OperationProbe(resource: "stories", name: "listViewers", verb: "GET", path: "/stories/id-1/viewers", hasBody: false, stream: false) { c in
+            _ = try await c.stories.listViewers("id-1")
+            return 0
+        },
+        OperationProbe(resource: "stories", name: "markSeen", verb: "POST", path: "/stories/id-1/view", hasBody: false, stream: false) { c in
+            _ = try await c.stories.markSeen("id-1")
+            return 0
+        },
+        OperationProbe(resource: "stories", name: "reply", verb: "POST", path: "/stories/id-1/reply", hasBody: true, stream: false) { c in
+            _ = try await c.stories.reply("id-1", ["probe": true])
+            return 0
+        },
+        OperationProbe(resource: "stories", name: "tray", verb: "GET", path: "/stories/tray", hasBody: false, stream: false) { c in
+            _ = try await c.stories.tray()
+            return 0
+        },
+        OperationProbe(resource: "tags", name: "get", verb: "GET", path: "/tags/tag-1", hasBody: false, stream: false) { c in
+            _ = try await c.tags.get("tag-1")
             return 0
         },
         OperationProbe(resource: "templates", name: "create", verb: "POST", path: "/templates", hasBody: true, stream: false) { c in

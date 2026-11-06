@@ -4,18 +4,24 @@
 import '../core/query.dart';
 import '../core/transport.dart';
 
-/// The `profile` resource — 3 operation(s).
+/// The `profile` resource — 10 operation(s).
 class ProfileResource {
   /// Wraps the client's [Transport]; reach it as `dev.profile`.
   ProfileResource(this._t);
 
   final Transport _t;
 
+  /// `POST /blocks/:handle`
+  ///
+  /// misardev:method profile.block
+  Future<dynamic> block(String handle) =>
+      _t.request('POST', '/blocks/${encodePathSegment(handle)}');
+
   /// `POST /follow/:handle`
   ///
   /// misardev:method profile.follow
-  Future<dynamic> follow(String handle) =>
-      _t.request('POST', '/follow/${encodePathSegment(handle)}');
+  Future<dynamic> follow(String handle, [Map<String, dynamic>? body]) =>
+      _t.request('POST', '/follow/${encodePathSegment(handle)}', body: body ?? const <String, dynamic>{});
 
   /// `GET /profile/:handle`
   ///
@@ -25,9 +31,47 @@ class ProfileResource {
   Future<dynamic> get(String handle) =>
       _t.request('GET', '/profile/${encodePathSegment(handle)}');
 
+  /// `GET /blocks`
+  ///
+  /// misardev:method profile.listBlocks
+  Future<dynamic> listBlocks() =>
+      _t.request('GET', '/blocks');
+
+  /// `GET /profile/:handle/:list`
+  ///
+  /// Optional [query] keys: `cursor`, `limit`.
+  ///
+  /// misardev:method profile.listConnections
+  Future<dynamic> listConnections(String handle, String list, [Map<String, Object?>? query]) =>
+      _t.request('GET', '/profile/${encodePathSegment(handle)}/${encodePathSegment(list)}', query: query);
+
+  /// `GET /profile/:handle/highlights`
+  ///
+  /// misardev:method profile.listHighlights
+  Future<dynamic> listHighlights(String handle) =>
+      _t.request('GET', '/profile/${encodePathSegment(handle)}/highlights');
+
+  /// `POST /mutes/:handle`
+  ///
+  /// misardev:method profile.mute
+  Future<dynamic> mute(String handle, [Map<String, dynamic>? body]) =>
+      _t.request('POST', '/mutes/${encodePathSegment(handle)}', body: body ?? const <String, dynamic>{});
+
+  /// `DELETE /blocks/:handle`
+  ///
+  /// misardev:method profile.unblock
+  Future<dynamic> unblock(String handle) =>
+      _t.request('DELETE', '/blocks/${encodePathSegment(handle)}');
+
   /// `DELETE /follow/:handle`
   ///
   /// misardev:method profile.unfollow
   Future<dynamic> unfollow(String handle) =>
       _t.request('DELETE', '/follow/${encodePathSegment(handle)}');
+
+  /// `DELETE /mutes/:handle`
+  ///
+  /// misardev:method profile.unmute
+  Future<dynamic> unmute(String handle) =>
+      _t.request('DELETE', '/mutes/${encodePathSegment(handle)}');
 }

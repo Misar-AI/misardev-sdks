@@ -34,7 +34,7 @@ struct AuthenticationCases {
         let call = try unwrap(StubURLProtocol.calls.first)
         expectEqual(StubURLProtocol.calls.count, 1)
         expectEqual(call.header("Authorization"), "Bearer mdk_test_key")
-        expectEqual(call.header("X-Misar-SDK"), "misardev-swift/1.0.0")
+        expectEqual(call.header("X-Misar-SDK"), "misardev-swift/1.1.0")
         expectEqual(call.header("Accept"), "application/json")
         expectEqual(call.header("Content-Type"), "application/json")
         expectEqual(call.url, "https://api.test/dev/projects")
@@ -360,7 +360,7 @@ struct ResourceCases {
             for s in manifest["streams"]?["sse"]?.arrayValue ?? [] {
                 expected.insert("\(s["resource"]?.stringValue ?? "").\(s["name"]?.stringValue ?? "")")
             }
-            expectEqual(expected.count, 109)
+            expectEqual(expected.count, 182)
             expectEqual(Set(probes.map { "\($0.resource).\($0.name)" }), expected)
         }
 

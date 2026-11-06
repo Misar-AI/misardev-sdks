@@ -3,13 +3,15 @@
 
 use crate::error::MisarDevError;
 use crate::transport::Transport;
+use crate::transport::body_or_empty;
 use crate::transport::build_query;
+use crate::transport::encode_path;
 use reqwest::Method;
 use serde_json::Value;
 
-/// The `domains` resource — 1 operation(s).
+/// The `domains` resource — 8 operation(s).
 ///
-/// Custom-domain availability lookup.
+/// Domains: availability lookup, search, checkout, your domains, and their DNS records.
 ///
 /// Reached through [`crate::MisarDev::domains`].
 #[derive(Debug, Clone, Copy)]
@@ -18,10 +20,59 @@ pub struct DomainsResource<'a> {
 }
 
 impl DomainsResource<'_> {
+    /// `POST /domains/checkout`
+    ///
+    /// misardev:method domains.checkout
+    pub async fn checkout(self, body: Option<Value>) -> Result<Value, MisarDevError> {
+        self.t.request(Method::POST, "/domains/checkout", "", Some(body_or_empty(body))).await
+    }
+
+    /// `POST /domains/:id/dns`
+    ///
+    /// misardev:method domains.createDnsRecord
+    pub async fn create_dns_record(self, id: &str, body: Option<Value>) -> Result<Value, MisarDevError> {
+        self.t.request(Method::POST, &format!("/domains/{}/dns", encode_path(id)), "", Some(body_or_empty(body))).await
+    }
+
+    /// `DELETE /domains/:id/dns`
+    ///
+    /// misardev:method domains.deleteDnsRecord
+    pub async fn delete_dns_record(self, id: &str, record_id: &str) -> Result<Value, MisarDevError> {
+        self.t.request(Method::DELETE, &format!("/domains/{}/dns", encode_path(id)), &build_query(None, &[("recordId", record_id)]), None).await
+    }
+
+    /// `GET /domains`
+    ///
+    /// misardev:method domains.list
+    pub async fn list(self) -> Result<Value, MisarDevError> {
+        self.t.request(Method::GET, "/domains", "", None).await
+    }
+
+    /// `GET /domains/:id/dns`
+    ///
+    /// misardev:method domains.listDnsRecords
+    pub async fn list_dns_records(self, id: &str) -> Result<Value, MisarDevError> {
+        self.t.request(Method::GET, &format!("/domains/{}/dns", encode_path(id)), "", None).await
+    }
+
     /// `GET /domains/lookup`
     ///
     /// misardev:method domains.lookup
     pub async fn lookup(self, domain: &str) -> Result<Value, MisarDevError> {
         self.t.request(Method::GET, "/domains/lookup", &build_query(None, &[("domain", domain)]), None).await
+    }
+
+    /// `POST /domains/search`
+    ///
+    /// misardev:method domains.search
+    pub async fn search(self, body: Option<Value>) -> Result<Value, MisarDevError> {
+        self.t.request(Method::POST, "/domains/search", "", Some(body_or_empty(body))).await
+    }
+
+    /// `PATCH /domains/:id`
+    ///
+    /// misardev:method domains.update
+    pub async fn update(self, id: &str, body: Option<Value>) -> Result<Value, MisarDevError> {
+        self.t.request(Method::PATCH, &format!("/domains/{}", encode_path(id)), "", Some(body_or_empty(body))).await
     }
 }

@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// The `profile` resource — 3 operation(s).
+/// The `profile` resource — 10 operation(s).
 public struct ProfileResource: Sendable {
     let transport: Transport
 
@@ -11,12 +11,20 @@ public struct ProfileResource: Sendable {
         self.transport = transport
     }
 
+    /// `POST /blocks/:handle`
+    ///
+    /// misardev:method profile.block
+    @discardableResult
+    public func block(_ handle: String) async throws -> JSONValue {
+        try await transport.request("POST", "/blocks/\(Transport.encodePath(handle))")
+    }
+
     /// `POST /follow/:handle`
     ///
     /// misardev:method profile.follow
     @discardableResult
-    public func follow(_ handle: String) async throws -> JSONValue {
-        try await transport.request("POST", "/follow/\(Transport.encodePath(handle))")
+    public func follow(_ handle: String, _ body: [String: JSONValue] = [:]) async throws -> JSONValue {
+        try await transport.request("POST", "/follow/\(Transport.encodePath(handle))", body: .object(body))
     }
 
     /// `GET /profile/:handle`
@@ -29,11 +37,61 @@ public struct ProfileResource: Sendable {
         try await transport.request("GET", "/profile/\(Transport.encodePath(handle))")
     }
 
+    /// `GET /blocks`
+    ///
+    /// misardev:method profile.listBlocks
+    @discardableResult
+    public func listBlocks() async throws -> JSONValue {
+        try await transport.request("GET", "/blocks")
+    }
+
+    /// `GET /profile/:handle/:list`
+    ///
+    /// Optional query: `cursor`, `limit`.
+    ///
+    /// misardev:method profile.listConnections
+    @discardableResult
+    public func listConnections(_ handle: String, _ list: String, query: [String: JSONValue] = [:]) async throws -> JSONValue {
+        try await transport.request("GET", "/profile/\(Transport.encodePath(handle))/\(Transport.encodePath(list))", query: query)
+    }
+
+    /// `GET /profile/:handle/highlights`
+    ///
+    /// misardev:method profile.listHighlights
+    @discardableResult
+    public func listHighlights(_ handle: String) async throws -> JSONValue {
+        try await transport.request("GET", "/profile/\(Transport.encodePath(handle))/highlights")
+    }
+
+    /// `POST /mutes/:handle`
+    ///
+    /// misardev:method profile.mute
+    @discardableResult
+    public func mute(_ handle: String, _ body: [String: JSONValue] = [:]) async throws -> JSONValue {
+        try await transport.request("POST", "/mutes/\(Transport.encodePath(handle))", body: .object(body))
+    }
+
+    /// `DELETE /blocks/:handle`
+    ///
+    /// misardev:method profile.unblock
+    @discardableResult
+    public func unblock(_ handle: String) async throws -> JSONValue {
+        try await transport.request("DELETE", "/blocks/\(Transport.encodePath(handle))")
+    }
+
     /// `DELETE /follow/:handle`
     ///
     /// misardev:method profile.unfollow
     @discardableResult
     public func unfollow(_ handle: String) async throws -> JSONValue {
         try await transport.request("DELETE", "/follow/\(Transport.encodePath(handle))")
+    }
+
+    /// `DELETE /mutes/:handle`
+    ///
+    /// misardev:method profile.unmute
+    @discardableResult
+    public func unmute(_ handle: String) async throws -> JSONValue {
+        try await transport.request("DELETE", "/mutes/\(Transport.encodePath(handle))")
     }
 }

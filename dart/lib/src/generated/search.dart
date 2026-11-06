@@ -12,7 +12,7 @@ class SearchResource {
 
   /// `GET /search`
   ///
-  /// Optional [query] keys: `limit`, `q`, `types`.
+  /// Optional [query] keys: `cursor`, `limit`, `q`, `type`, `types`.
   ///
   /// misardev:method search.code
   Future<dynamic> code([Map<String, Object?>? query]) =>

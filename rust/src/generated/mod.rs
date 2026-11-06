@@ -11,18 +11,28 @@ mod billing;
 mod builds;
 mod chat;
 mod checkpoints;
+mod close_friends;
+mod collections;
+mod comments;
 mod connectors;
+mod dm;
 mod domains;
+mod feed;
 mod gallery;
 mod github;
+mod highlights;
 mod notifications;
 mod organizations;
+mod posts;
 mod profile;
 mod projects;
 mod rag;
 mod reports;
 mod search;
 mod skills;
+mod social;
+mod stories;
+mod tags;
 mod templates;
 mod usage;
 
@@ -36,24 +46,34 @@ pub use billing::BillingResource;
 pub use builds::BuildsResource;
 pub use chat::ChatResource;
 pub use checkpoints::CheckpointsResource;
+pub use close_friends::CloseFriendsResource;
+pub use collections::CollectionsResource;
+pub use comments::CommentsResource;
 pub use connectors::ConnectorsResource;
+pub use dm::DmResource;
 pub use domains::DomainsResource;
+pub use feed::FeedResource;
 pub use gallery::GalleryResource;
 pub use github::GithubResource;
+pub use highlights::HighlightsResource;
 pub use notifications::NotificationsResource;
 pub use organizations::OrganizationsResource;
+pub use posts::PostsResource;
 pub use profile::ProfileResource;
 pub use projects::ProjectsResource;
 pub use rag::RagResource;
 pub use reports::ReportsResource;
 pub use search::SearchResource;
 pub use skills::SkillsResource;
+pub use social::SocialResource;
+pub use stories::StoriesResource;
+pub use tags::TagsResource;
 pub use templates::TemplatesResource;
 pub use usage::UsageResource;
 
 /// Number of methods and streams the generated layer covers — every
 /// operation in `sdks/manifest.json`.
-pub const OPERATION_COUNT: usize = 109;
+pub const OPERATION_COUNT: usize = 182;
 
 impl crate::MisarDev {
     /// Account API keys (with expiry and IP allowlists) and your data export.
@@ -91,14 +111,39 @@ impl crate::MisarDev {
         CheckpointsResource { t: &self.transport }
     }
 
+    /// Your close-friends list for stories.
+    pub fn close_friends(&self) -> CloseFriendsResource<'_> {
+        CloseFriendsResource { t: &self.transport }
+    }
+
+    /// Saved-post collections: create, rename, delete, add and remove posts.
+    pub fn collections(&self) -> CollectionsResource<'_> {
+        CollectionsResource { t: &self.transport }
+    }
+
+    /// Your comments: edit, delete; like and unlike any comment.
+    pub fn comments(&self) -> CommentsResource<'_> {
+        CommentsResource { t: &self.transport }
+    }
+
     /// Connector catalogue, per-account enable state, and per-project connections.
     pub fn connectors(&self) -> ConnectorsResource<'_> {
         ConnectorsResource { t: &self.transport }
     }
 
-    /// Custom-domain availability lookup.
+    /// Direct messages: threads and requests, messages, read state, unread counts.
+    pub fn dm(&self) -> DmResource<'_> {
+        DmResource { t: &self.transport }
+    }
+
+    /// Domains: availability lookup, search, checkout, your domains, and their DNS records.
     pub fn domains(&self) -> DomainsResource<'_> {
         DomainsResource { t: &self.transport }
+    }
+
+    /// The Following feed and the ranked For you feed.
+    pub fn feed(&self) -> FeedResource<'_> {
+        FeedResource { t: &self.transport }
     }
 
     /// The public community gallery, and likes.
@@ -111,6 +156,11 @@ impl crate::MisarDev {
         GithubResource { t: &self.transport }
     }
 
+    /// Story highlights on a profile: create, edit, delete, add and remove stories.
+    pub fn highlights(&self) -> HighlightsResource<'_> {
+        HighlightsResource { t: &self.transport }
+    }
+
     /// In-app notifications and read state.
     pub fn notifications(&self) -> NotificationsResource<'_> {
         NotificationsResource { t: &self.transport }
@@ -121,7 +171,12 @@ impl crate::MisarDev {
         OrganizationsResource { t: &self.transport }
     }
 
-    /// Public builder profiles, follow and unfollow.
+    /// Posts: the explore grid, one post, share to feed, edit; likes, saves, comments, saved posts, share to a DM.
+    pub fn posts(&self) -> PostsResource<'_> {
+        PostsResource { t: &self.transport }
+    }
+
+    /// Public builder profiles; follow, block and mute people.
     pub fn profile(&self) -> ProfileResource<'_> {
         ProfileResource { t: &self.transport }
     }
@@ -149,6 +204,21 @@ impl crate::MisarDev {
     /// Your Misar.AI skills library, read-only.
     pub fn skills(&self) -> SkillsResource<'_> {
         SkillsResource { t: &self.transport }
+    }
+
+    /// Your relationship with a person, and people suggestions.
+    pub fn social(&self) -> SocialResource<'_> {
+        SocialResource { t: &self.transport }
+    }
+
+    /// Stories: post, the tray, read one, mark seen, viewers, reply, and your posts to share.
+    pub fn stories(&self) -> StoriesResource<'_> {
+        StoriesResource { t: &self.transport }
+    }
+
+    /// One hashtag's posts.
+    pub fn tags(&self) -> TagsResource<'_> {
+        TagsResource { t: &self.transport }
     }
 
     /// Starter templates: browse, create, remix, and start a project from one.

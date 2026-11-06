@@ -4,7 +4,7 @@
 
 module MisarDev
   module Generated
-    # The `profile` resource — 3 operation(s).
+    # The `profile` resource — 10 operation(s).
     class ProfileResource
       def initialize(transport)
         @t = transport
@@ -14,15 +14,27 @@ module MisarDev
         "#<#{self.class.name}>"
       end
 
+      # `POST /blocks/:handle`
+      #
+      # misardev:method profile.block
+      #
+      # @param handle [String] path parameter `handle`
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def block(handle)
+        @t.request("POST", "/blocks/#{Core::Transport.segment(handle)}")
+      end
+
       # `POST /follow/:handle`
       #
       # misardev:method profile.follow
       #
       # @param handle [String] path parameter `handle`
+      # @param body [Hash] JSON request body
       # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
       # @raise [MisarDev::MisarDevError]
-      def follow(handle)
-        @t.request("POST", "/follow/#{Core::Transport.segment(handle)}")
+      def follow(handle, body = {})
+        @t.request("POST", "/follow/#{Core::Transport.segment(handle)}", body: body)
       end
 
       # `GET /profile/:handle`
@@ -38,6 +50,63 @@ module MisarDev
         @t.request("GET", "/profile/#{Core::Transport.segment(handle)}")
       end
 
+      # `GET /blocks`
+      #
+      # misardev:method profile.listBlocks
+      #
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def list_blocks
+        @t.request("GET", "/blocks")
+      end
+
+      # `GET /profile/:handle/:list`
+      #
+      # misardev:method profile.listConnections
+      #
+      # @param handle [String] path parameter `handle`
+      # @param list [String] path parameter `list`
+      # @param query [Hash] optional query parameters (cursor, limit); nils are dropped
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def list_connections(handle, list, query = {})
+        @t.request("GET", "/profile/#{Core::Transport.segment(handle)}/#{Core::Transport.segment(list)}", query: query)
+      end
+
+      # `GET /profile/:handle/highlights`
+      #
+      # misardev:method profile.listHighlights
+      #
+      # @param handle [String] path parameter `handle`
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def list_highlights(handle)
+        @t.request("GET", "/profile/#{Core::Transport.segment(handle)}/highlights")
+      end
+
+      # `POST /mutes/:handle`
+      #
+      # misardev:method profile.mute
+      #
+      # @param handle [String] path parameter `handle`
+      # @param body [Hash] JSON request body
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def mute(handle, body = {})
+        @t.request("POST", "/mutes/#{Core::Transport.segment(handle)}", body: body)
+      end
+
+      # `DELETE /blocks/:handle`
+      #
+      # misardev:method profile.unblock
+      #
+      # @param handle [String] path parameter `handle`
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def unblock(handle)
+        @t.request("DELETE", "/blocks/#{Core::Transport.segment(handle)}")
+      end
+
       # `DELETE /follow/:handle`
       #
       # misardev:method profile.unfollow
@@ -47,6 +116,17 @@ module MisarDev
       # @raise [MisarDev::MisarDevError]
       def unfollow(handle)
         @t.request("DELETE", "/follow/#{Core::Transport.segment(handle)}")
+      end
+
+      # `DELETE /mutes/:handle`
+      #
+      # misardev:method profile.unmute
+      #
+      # @param handle [String] path parameter `handle`
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def unmute(handle)
+        @t.request("DELETE", "/mutes/#{Core::Transport.segment(handle)}")
       end
     end
   end

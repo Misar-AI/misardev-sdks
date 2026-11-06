@@ -4,12 +4,18 @@
 import '../core/query.dart';
 import '../core/transport.dart';
 
-/// The `notifications` resource — 3 operation(s).
+/// The `notifications` resource — 5 operation(s).
 class NotificationsResource {
   /// Wraps the client's [Transport]; reach it as `dev.notifications`.
   NotificationsResource(this._t);
 
   final Transport _t;
+
+  /// `GET /notifications/preferences`
+  ///
+  /// misardev:method notifications.getPreferences
+  Future<dynamic> getPreferences() =>
+      _t.request('GET', '/notifications/preferences');
 
   /// `GET /notifications`
   ///
@@ -30,4 +36,10 @@ class NotificationsResource {
   /// misardev:method notifications.markRead
   Future<dynamic> markRead(String id, [Map<String, dynamic>? body]) =>
       _t.request('PATCH', '/notifications/${encodePathSegment(id)}', body: body ?? const <String, dynamic>{});
+
+  /// `PATCH /notifications/preferences`
+  ///
+  /// misardev:method notifications.updatePreferences
+  Future<dynamic> updatePreferences([Map<String, dynamic>? body]) =>
+      _t.request('PATCH', '/notifications/preferences', body: body ?? const <String, dynamic>{});
 }

@@ -22,7 +22,7 @@ func (r *GalleryResource) Like(ctx context.Context, projectID string, opts ...Ca
 //
 // Public — works without a key, but the client still sends it.
 //
-// Optional query: limit, offset, q, search.
+// Optional query: limit, offset, public, q, search.
 //
 // misardev:method gallery.list
 func (r *GalleryResource) List(ctx context.Context, query Query, opts ...CallOption) (any, error) {

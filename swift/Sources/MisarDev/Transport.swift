@@ -17,7 +17,7 @@ import FoundationNetworking
 /// which swift-corelibs-foundation lacks — one implementation on every platform.
 final class Transport: @unchecked Sendable {
     static let defaultBaseURL = "https://api.misar.io/dev"
-    static let sdkVersion = "1.0.0"
+    static let sdkVersion = "1.1.0"
     static let sdkHeader = "misardev-swift/\(sdkVersion)"
 
     /// Statuses worth retrying. 429 only when it is NOT a plan limit.

@@ -18,7 +18,7 @@ module MisarDev
       #
       # misardev:method search.code
       #
-      # @param query [Hash] optional query parameters (limit, q, types); nils are dropped
+      # @param query [Hash] optional query parameters (cursor, limit, q, type, types); nils are dropped
       # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
       # @raise [MisarDev::MisarDevError]
       def code(query = {})

@@ -32,7 +32,7 @@ RSpec.describe "generated resources" do
 
   it "covers every manifest operation" do
     expect(MisarDev::Generated::Resources::OPERATION_COUNT).to eq(ops.length + manifest["streams"]["sse"].length)
-    expect(MisarDev::Generated::Resources::OPERATION_COUNT).to eq(109)
+    expect(MisarDev::Generated::Resources::OPERATION_COUNT).to eq(182)
   end
 
   ops.each do |resource, m|

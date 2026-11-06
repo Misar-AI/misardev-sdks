@@ -14,7 +14,7 @@ export class SearchResource {
    *
    * misardev:method search.code
    */
-  async code<T = unknown>(query: { "limit"?: QueryValue; "q"?: QueryValue; "types"?: QueryValue } = {}, opts: CallOptions = {}): Promise<T> {
+  async code<T = unknown>(query: { "cursor"?: QueryValue; "limit"?: QueryValue; "q"?: QueryValue; "type"?: QueryValue; "types"?: QueryValue } = {}, opts: CallOptions = {}): Promise<T> {
     return this.t.request("GET", "/search", { ...opts, query: { ...query } }) as Promise<T>;
   }
 

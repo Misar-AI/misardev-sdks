@@ -36,7 +36,7 @@ class GalleryResource:
 
         Public — works without a key, but the client still sends it.
 
-        Optional query: ``limit``, ``offset``, ``q``, ``search``.
+        Optional query: ``limit``, ``offset``, ``public``, ``q``, ``search``.
 
         misardev:method gallery.list
         """
@@ -47,7 +47,7 @@ class GalleryResource:
 
         Public — works without a key, but the client still sends it.
 
-        Optional query: ``limit``, ``offset``, ``q``, ``search``.
+        Optional query: ``limit``, ``offset``, ``public``, ``q``, ``search``.
 
         Async twin of :meth:`list`.
 

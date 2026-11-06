@@ -10,10 +10,10 @@
 
     <!-- NuGet metadata -->
     <PackageId>MisarDev</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Misar.AI</Authors>
     <Company>Misar.AI</Company>
-    <Description>.NET client for the MisarDev API: create projects, write files, build and deploy, start from templates, OpenAI-compatible chat completions with streaming, code search, and usage and plan reads. Every route in 21 resources, async/await with cancellation, Retry-After-aware retries, typed plan-limit errors carrying the upgrade offer, and SSE streaming.</Description>
+    <Description>.NET client for the MisarDev API: create projects, write files, build and deploy, start from templates, OpenAI-compatible chat completions with streaming, code search, and usage and plan reads. Every route in 31 resources, async/await with cancellation, Retry-After-aware retries, typed plan-limit errors carrying the upgrade offer, and SSE streaming.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Copyright (c) 2026 Misar.AI</Copyright>

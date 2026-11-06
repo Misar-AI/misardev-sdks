@@ -5,4 +5,4 @@
 # from there — see scripts/sdk-versions.mjs. Bump this line to cut a release for
 # the three below; CI mirrors it as `go/vX.Y.Z`, `vX.Y.Z` (Swift) and `vX.Y.Z`
 # (PHP) on the github.com/Misar-AI/misardev-sdks mirror.
-1.0.0
+1.1.0

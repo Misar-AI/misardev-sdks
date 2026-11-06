@@ -43,7 +43,7 @@ public final class Transport {
     /** Default API base URL. Override with the builder or {@code MISARDEV_BASE_URL}. */
     public static final String DEFAULT_BASE_URL = "https://api.misar.io/dev";
     /** This SDK's version, sent in {@code X-Misar-SDK}. */
-    public static final String SDK_VERSION = "1.0.0";
+    public static final String SDK_VERSION = "1.1.0";
     /** Where users create API keys; quoted in the missing-key error. */
     public static final String API_KEYS_URL = "https://www.misar.dev/settings/api-keys";
 

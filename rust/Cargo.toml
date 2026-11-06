@@ -1,6 +1,6 @@
 [package]
 name = "misardev"
-version = "1.0.0"
+version = "1.1.0"
 edition = "2021"
 rust-version = "1.75"
 description = "Async Rust client for the Misar.Dev API: create projects, write files, build and deploy, start from templates, run OpenAI-compatible chat completions, search code and read usage. Retries, typed plan-limit errors, SSE streaming."

@@ -58,7 +58,7 @@ STREAMS = MANIFEST["streams"]["sse"]
 
 
 def test_operation_count_matches_manifest():
-    assert len(OPS) + len(STREAMS) == 109
+    assert len(OPS) + len(STREAMS) == 182
     assert OPERATION_COUNT == len(OPS) + len(STREAMS)
 
 

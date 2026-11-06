@@ -13,18 +13,28 @@ type resources struct {
 	Builds        *BuildsResource
 	Chat          *ChatResource
 	Checkpoints   *CheckpointsResource
+	CloseFriends  *CloseFriendsResource
+	Collections   *CollectionsResource
+	Comments      *CommentsResource
 	Connectors    *ConnectorsResource
+	Dm            *DmResource
 	Domains       *DomainsResource
+	Feed          *FeedResource
 	Gallery       *GalleryResource
 	GitHub        *GitHubResource
+	Highlights    *HighlightsResource
 	Notifications *NotificationsResource
 	Organizations *OrganizationsResource
+	Posts         *PostsResource
 	Profile       *ProfileResource
 	Projects      *ProjectsResource
 	RAG           *RAGResource
 	Reports       *ReportsResource
 	Search        *SearchResource
 	Skills        *SkillsResource
+	Social        *SocialResource
+	Stories       *StoriesResource
+	Tags          *TagsResource
 	Templates     *TemplatesResource
 	Usage         *UsageResource
 }
@@ -38,18 +48,28 @@ func newResources(c *Client) resources {
 	r.Builds = &BuildsResource{c: c}
 	r.Chat = &ChatResource{c: c}
 	r.Checkpoints = &CheckpointsResource{c: c}
+	r.CloseFriends = &CloseFriendsResource{c: c}
+	r.Collections = &CollectionsResource{c: c}
+	r.Comments = &CommentsResource{c: c}
 	r.Connectors = &ConnectorsResource{c: c}
+	r.Dm = &DmResource{c: c}
 	r.Domains = &DomainsResource{c: c}
+	r.Feed = &FeedResource{c: c}
 	r.Gallery = &GalleryResource{c: c}
 	r.GitHub = &GitHubResource{c: c}
+	r.Highlights = &HighlightsResource{c: c}
 	r.Notifications = &NotificationsResource{c: c}
 	r.Organizations = &OrganizationsResource{c: c}
+	r.Posts = &PostsResource{c: c}
 	r.Profile = &ProfileResource{c: c}
 	r.Projects = &ProjectsResource{c: c}
 	r.RAG = &RAGResource{c: c}
 	r.Reports = &ReportsResource{c: c}
 	r.Search = &SearchResource{c: c}
 	r.Skills = &SkillsResource{c: c}
+	r.Social = &SocialResource{c: c}
+	r.Stories = &StoriesResource{c: c}
+	r.Tags = &TagsResource{c: c}
 	r.Templates = &TemplatesResource{c: c}
 	r.Usage = &UsageResource{c: c}
 	return r
@@ -57,4 +77,4 @@ func newResources(c *Client) resources {
 
 // OperationCount is the number of methods and streams the generated layer
 // covers — every operation in sdks/manifest.json.
-const OperationCount = 109
+const OperationCount = 182

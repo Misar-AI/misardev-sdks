@@ -9,11 +9,25 @@ namespace MisarDev\Generated;
 
 use MisarDev\Core\Transport;
 
-/** The `profile` resource — 3 operation(s). */
+/** The `profile` resource — 10 operation(s). */
 final class ProfileResource
 {
     public function __construct(private readonly Transport $t)
     {
+    }
+
+    /**
+     * `POST /blocks/:handle`
+     *
+     * misardev:method profile.block
+     *
+     * @param string|int $handle Path parameter `handle`.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function block(string|int $handle): mixed
+    {
+        return $this->t->request('POST', '/blocks/' . Transport::segment($handle));
     }
 
     /**
@@ -22,12 +36,13 @@ final class ProfileResource
      * misardev:method profile.follow
      *
      * @param string|int $handle Path parameter `handle`.
+     * @param array<string,mixed> $body JSON request body.
      * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
      * @throws \MisarDev\MisarDevError
      */
-    public function follow(string|int $handle): mixed
+    public function follow(string|int $handle, array $body = []): mixed
     {
-        return $this->t->request('POST', '/follow/' . Transport::segment($handle));
+        return $this->t->request('POST', '/follow/' . Transport::segment($handle), body: $body);
     }
 
     /**
@@ -47,6 +62,78 @@ final class ProfileResource
     }
 
     /**
+     * `GET /blocks`
+     *
+     * misardev:method profile.listBlocks
+     *
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function listBlocks(): mixed
+    {
+        return $this->t->request('GET', '/blocks');
+    }
+
+    /**
+     * `GET /profile/:handle/:list`
+     *
+     * misardev:method profile.listConnections
+     *
+     * @param string|int $handle Path parameter `handle`.
+     * @param string|int $list Path parameter `list`.
+     * @param array{cursor?: mixed, limit?: mixed} $query Optional query parameters; nulls are dropped.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function listConnections(string|int $handle, string|int $list, array $query = []): mixed
+    {
+        return $this->t->request('GET', '/profile/' . Transport::segment($handle) . '/' . Transport::segment($list), query: [...$query]);
+    }
+
+    /**
+     * `GET /profile/:handle/highlights`
+     *
+     * misardev:method profile.listHighlights
+     *
+     * @param string|int $handle Path parameter `handle`.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function listHighlights(string|int $handle): mixed
+    {
+        return $this->t->request('GET', '/profile/' . Transport::segment($handle) . '/highlights');
+    }
+
+    /**
+     * `POST /mutes/:handle`
+     *
+     * misardev:method profile.mute
+     *
+     * @param string|int $handle Path parameter `handle`.
+     * @param array<string,mixed> $body JSON request body.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function mute(string|int $handle, array $body = []): mixed
+    {
+        return $this->t->request('POST', '/mutes/' . Transport::segment($handle), body: $body);
+    }
+
+    /**
+     * `DELETE /blocks/:handle`
+     *
+     * misardev:method profile.unblock
+     *
+     * @param string|int $handle Path parameter `handle`.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function unblock(string|int $handle): mixed
+    {
+        return $this->t->request('DELETE', '/blocks/' . Transport::segment($handle));
+    }
+
+    /**
      * `DELETE /follow/:handle`
      *
      * misardev:method profile.unfollow
@@ -58,5 +145,19 @@ final class ProfileResource
     public function unfollow(string|int $handle): mixed
     {
         return $this->t->request('DELETE', '/follow/' . Transport::segment($handle));
+    }
+
+    /**
+     * `DELETE /mutes/:handle`
+     *
+     * misardev:method profile.unmute
+     *
+     * @param string|int $handle Path parameter `handle`.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function unmute(string|int $handle): mixed
+    {
+        return $this->t->request('DELETE', '/mutes/' . Transport::segment($handle));
     }
 }

@@ -24,7 +24,7 @@ import {
 import { parseSSE, type SSEEvent } from "./sse.js";
 
 export const DEFAULT_BASE_URL = "https://api.misar.io/dev";
-export const SDK_VERSION = "1.0.0";
+export const SDK_VERSION = "1.1.0";
 
 export type QueryValue = string | number | boolean | null | undefined;
 export type Query = Record<string, QueryValue>;

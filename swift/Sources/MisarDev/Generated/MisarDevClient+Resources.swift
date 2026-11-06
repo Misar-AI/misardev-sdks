@@ -5,7 +5,7 @@ import Foundation
 
 extension MisarDevClient {
     /// Operation count, for the coverage gate and the README.
-    public static let operationCount = 109
+    public static let operationCount = 182
 
     /// The `account` resource.
     public var account: AccountResource { AccountResource(transport: transport) }
@@ -28,11 +28,26 @@ extension MisarDevClient {
     /// The `checkpoints` resource.
     public var checkpoints: CheckpointsResource { CheckpointsResource(transport: transport) }
 
+    /// The `closeFriends` resource.
+    public var closeFriends: CloseFriendsResource { CloseFriendsResource(transport: transport) }
+
+    /// The `collections` resource.
+    public var collections: CollectionsResource { CollectionsResource(transport: transport) }
+
+    /// The `comments` resource.
+    public var comments: CommentsResource { CommentsResource(transport: transport) }
+
     /// The `connectors` resource.
     public var connectors: ConnectorsResource { ConnectorsResource(transport: transport) }
 
+    /// The `dm` resource.
+    public var dm: DmResource { DmResource(transport: transport) }
+
     /// The `domains` resource.
     public var domains: DomainsResource { DomainsResource(transport: transport) }
+
+    /// The `feed` resource.
+    public var feed: FeedResource { FeedResource(transport: transport) }
 
     /// The `gallery` resource.
     public var gallery: GalleryResource { GalleryResource(transport: transport) }
@@ -40,11 +55,17 @@ extension MisarDevClient {
     /// The `github` resource.
     public var github: GithubResource { GithubResource(transport: transport) }
 
+    /// The `highlights` resource.
+    public var highlights: HighlightsResource { HighlightsResource(transport: transport) }
+
     /// The `notifications` resource.
     public var notifications: NotificationsResource { NotificationsResource(transport: transport) }
 
     /// The `organizations` resource.
     public var organizations: OrganizationsResource { OrganizationsResource(transport: transport) }
+
+    /// The `posts` resource.
+    public var posts: PostsResource { PostsResource(transport: transport) }
 
     /// The `profile` resource.
     public var profile: ProfileResource { ProfileResource(transport: transport) }
@@ -63,6 +84,15 @@ extension MisarDevClient {
 
     /// The `skills` resource.
     public var skills: SkillsResource { SkillsResource(transport: transport) }
+
+    /// The `social` resource.
+    public var social: SocialResource { SocialResource(transport: transport) }
+
+    /// The `stories` resource.
+    public var stories: StoriesResource { StoriesResource(transport: transport) }
+
+    /// The `tags` resource.
+    public var tags: TagsResource { TagsResource(transport: transport) }
 
     /// The `templates` resource.
     public var templates: TemplatesResource { TemplatesResource(transport: transport) }

@@ -9,11 +9,24 @@ namespace MisarDev\Generated;
 
 use MisarDev\Core\Transport;
 
-/** The `notifications` resource — 3 operation(s). */
+/** The `notifications` resource — 5 operation(s). */
 final class NotificationsResource
 {
     public function __construct(private readonly Transport $t)
     {
+    }
+
+    /**
+     * `GET /notifications/preferences`
+     *
+     * misardev:method notifications.getPreferences
+     *
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function getPreferences(): mixed
+    {
+        return $this->t->request('GET', '/notifications/preferences');
     }
 
     /**
@@ -57,5 +70,19 @@ final class NotificationsResource
     public function markRead(string|int $id, array $body = []): mixed
     {
         return $this->t->request('PATCH', '/notifications/' . Transport::segment($id), body: $body);
+    }
+
+    /**
+     * `PATCH /notifications/preferences`
+     *
+     * misardev:method notifications.updatePreferences
+     *
+     * @param array<string,mixed> $body JSON request body.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function updatePreferences(array $body = []): mixed
+    {
+        return $this->t->request('PATCH', '/notifications/preferences', body: $body);
     }
 }

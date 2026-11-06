@@ -6,8 +6,48 @@ package io.misar.dev.generated
 import com.fasterxml.jackson.databind.JsonNode
 import io.misar.dev.Transport
 
-/** The `domains` resource — 1 operation(s). */
+/** The `domains` resource — 8 operation(s). */
 class DomainsResource internal constructor(private val t: Transport) {
+    /**
+     * `POST /domains/checkout`
+     *
+     * misardev:method domains.checkout
+     */
+    suspend fun checkout(body: Map<String, Any?> = emptyMap()): JsonNode? =
+        t.request("POST", "/domains/checkout", null, body)
+
+    /**
+     * `POST /domains/:id/dns`
+     *
+     * misardev:method domains.createDnsRecord
+     */
+    suspend fun createDnsRecord(id: String, body: Map<String, Any?> = emptyMap()): JsonNode? =
+        t.request("POST", "/domains/${Transport.encode(id)}/dns", null, body)
+
+    /**
+     * `DELETE /domains/:id/dns`
+     *
+     * misardev:method domains.deleteDnsRecord
+     */
+    suspend fun deleteDnsRecord(id: String, recordId: String): JsonNode? =
+        t.request("DELETE", "/domains/${Transport.encode(id)}/dns", Transport.query(null, "recordId" to recordId), null)
+
+    /**
+     * `GET /domains`
+     *
+     * misardev:method domains.list
+     */
+    suspend fun list(): JsonNode? =
+        t.request("GET", "/domains", null, null)
+
+    /**
+     * `GET /domains/:id/dns`
+     *
+     * misardev:method domains.listDnsRecords
+     */
+    suspend fun listDnsRecords(id: String): JsonNode? =
+        t.request("GET", "/domains/${Transport.encode(id)}/dns", null, null)
+
     /**
      * `GET /domains/lookup`
      *
@@ -15,4 +55,20 @@ class DomainsResource internal constructor(private val t: Transport) {
      */
     suspend fun lookup(domain: String): JsonNode? =
         t.request("GET", "/domains/lookup", Transport.query(null, "domain" to domain), null)
+
+    /**
+     * `POST /domains/search`
+     *
+     * misardev:method domains.search
+     */
+    suspend fun search(body: Map<String, Any?> = emptyMap()): JsonNode? =
+        t.request("POST", "/domains/search", null, body)
+
+    /**
+     * `PATCH /domains/:id`
+     *
+     * misardev:method domains.update
+     */
+    suspend fun update(id: String, body: Map<String, Any?> = emptyMap()): JsonNode? =
+        t.request("PATCH", "/domains/${Transport.encode(id)}", null, body)
 }

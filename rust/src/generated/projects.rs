@@ -10,7 +10,7 @@ use crate::transport::encode_path;
 use reqwest::Method;
 use serde_json::Value;
 
-/// The `projects` resource — 41 operation(s).
+/// The `projects` resource — 42 operation(s).
 ///
 /// Projects end to end: create, edit, files, builds, deploys, domains, env vars, collaborators, knowledge, skills, tools, export.
 ///
@@ -219,6 +219,13 @@ impl ProjectsResource<'_> {
     /// misardev:method projects.provisionBackend
     pub async fn provision_backend(self, id: &str, body: Option<Value>) -> Result<Value, MisarDevError> {
         self.t.request(Method::POST, &format!("/projects/{}/backend", encode_path(id)), "", Some(body_or_empty(body))).await
+    }
+
+    /// `GET /projects/:id/domains/recommend`
+    ///
+    /// misardev:method projects.recommendDomains
+    pub async fn recommend_domains(self, id: &str) -> Result<Value, MisarDevError> {
+        self.t.request(Method::GET, &format!("/projects/{}/domains/recommend", encode_path(id)), "", None).await
     }
 
     /// `DELETE /projects/:id/collaborators`

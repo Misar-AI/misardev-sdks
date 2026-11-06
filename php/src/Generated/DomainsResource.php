@@ -9,11 +9,82 @@ namespace MisarDev\Generated;
 
 use MisarDev\Core\Transport;
 
-/** The `domains` resource — 1 operation(s). */
+/** The `domains` resource — 8 operation(s). */
 final class DomainsResource
 {
     public function __construct(private readonly Transport $t)
     {
+    }
+
+    /**
+     * `POST /domains/checkout`
+     *
+     * misardev:method domains.checkout
+     *
+     * @param array<string,mixed> $body JSON request body.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function checkout(array $body = []): mixed
+    {
+        return $this->t->request('POST', '/domains/checkout', body: $body);
+    }
+
+    /**
+     * `POST /domains/:id/dns`
+     *
+     * misardev:method domains.createDnsRecord
+     *
+     * @param string|int $id Path parameter `id`.
+     * @param array<string,mixed> $body JSON request body.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function createDnsRecord(string|int $id, array $body = []): mixed
+    {
+        return $this->t->request('POST', '/domains/' . Transport::segment($id) . '/dns', body: $body);
+    }
+
+    /**
+     * `DELETE /domains/:id/dns`
+     *
+     * misardev:method domains.deleteDnsRecord
+     *
+     * @param string|int $id Path parameter `id`.
+     * @param string|int|float|bool $recordId Required query parameter `recordId`.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function deleteDnsRecord(string|int $id, string|int|float|bool $recordId): mixed
+    {
+        return $this->t->request('DELETE', '/domains/' . Transport::segment($id) . '/dns', query: ['recordId' => $recordId]);
+    }
+
+    /**
+     * `GET /domains`
+     *
+     * misardev:method domains.list
+     *
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function list(): mixed
+    {
+        return $this->t->request('GET', '/domains');
+    }
+
+    /**
+     * `GET /domains/:id/dns`
+     *
+     * misardev:method domains.listDnsRecords
+     *
+     * @param string|int $id Path parameter `id`.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function listDnsRecords(string|int $id): mixed
+    {
+        return $this->t->request('GET', '/domains/' . Transport::segment($id) . '/dns');
     }
 
     /**
@@ -28,5 +99,34 @@ final class DomainsResource
     public function lookup(string|int|float|bool $domain): mixed
     {
         return $this->t->request('GET', '/domains/lookup', query: ['domain' => $domain]);
+    }
+
+    /**
+     * `POST /domains/search`
+     *
+     * misardev:method domains.search
+     *
+     * @param array<string,mixed> $body JSON request body.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function search(array $body = []): mixed
+    {
+        return $this->t->request('POST', '/domains/search', body: $body);
+    }
+
+    /**
+     * `PATCH /domains/:id`
+     *
+     * misardev:method domains.update
+     *
+     * @param string|int $id Path parameter `id`.
+     * @param array<string,mixed> $body JSON request body.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function update(string|int $id, array $body = []): mixed
+    {
+        return $this->t->request('PATCH', '/domains/' . Transport::segment($id), body: $body);
     }
 }

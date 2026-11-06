@@ -19,7 +19,7 @@ public sealed class SearchResource
     /// <remarks>
     /// misardev:method search.code
     /// </remarks>
-    /// <param name="query">Optional query parameters (limit, q, types) as an anonymous object or dictionary; null values are dropped.</param>
+    /// <param name="query">Optional query parameters (cursor, limit, q, type, types) as an anonymous object or dictionary; null values are dropped.</param>
     /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
     public Task<JsonNode?> Code(object? query = null, CancellationToken cancellationToken = default) =>
         _t.RequestAsync("GET", "/search", query: Transport.Query(query), cancellationToken: cancellationToken);

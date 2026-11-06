@@ -9,18 +9,28 @@ import 'billing.dart';
 import 'builds.dart';
 import 'chat.dart';
 import 'checkpoints.dart';
+import 'close_friends.dart';
+import 'collections.dart';
+import 'comments.dart';
 import 'connectors.dart';
+import 'dm.dart';
 import 'domains.dart';
+import 'feed.dart';
 import 'gallery.dart';
 import 'github.dart';
+import 'highlights.dart';
 import 'notifications.dart';
 import 'organizations.dart';
+import 'posts.dart';
 import 'profile.dart';
 import 'projects.dart';
 import 'rag.dart';
 import 'reports.dart';
 import 'search.dart';
 import 'skills.dart';
+import 'social.dart';
+import 'stories.dart';
+import 'tags.dart';
 import 'templates.dart';
 import 'usage.dart';
 
@@ -31,23 +41,33 @@ export 'billing.dart';
 export 'builds.dart';
 export 'chat.dart';
 export 'checkpoints.dart';
+export 'close_friends.dart';
+export 'collections.dart';
+export 'comments.dart';
 export 'connectors.dart';
+export 'dm.dart';
 export 'domains.dart';
+export 'feed.dart';
 export 'gallery.dart';
 export 'github.dart';
+export 'highlights.dart';
 export 'notifications.dart';
 export 'organizations.dart';
+export 'posts.dart';
 export 'profile.dart';
 export 'projects.dart';
 export 'rag.dart';
 export 'reports.dart';
 export 'search.dart';
 export 'skills.dart';
+export 'social.dart';
+export 'stories.dart';
+export 'tags.dart';
 export 'templates.dart';
 export 'usage.dart';
 
 /// Operation count (methods + streams), for the coverage gate and the README.
-const int operationCount = 109;
+const int operationCount = 182;
 
 /// Every MisarDev resource, attached to the client by name.
 abstract class MisarDevResources {
@@ -60,18 +80,28 @@ abstract class MisarDevResources {
         builds = BuildsResource(transport),
         chat = ChatResource(transport),
         checkpoints = CheckpointsResource(transport),
+        closeFriends = CloseFriendsResource(transport),
+        collections = CollectionsResource(transport),
+        comments = CommentsResource(transport),
         connectors = ConnectorsResource(transport),
+        dm = DmResource(transport),
         domains = DomainsResource(transport),
+        feed = FeedResource(transport),
         gallery = GalleryResource(transport),
         github = GithubResource(transport),
+        highlights = HighlightsResource(transport),
         notifications = NotificationsResource(transport),
         organizations = OrganizationsResource(transport),
+        posts = PostsResource(transport),
         profile = ProfileResource(transport),
         projects = ProjectsResource(transport),
         rag = RagResource(transport),
         reports = ReportsResource(transport),
         search = SearchResource(transport),
         skills = SkillsResource(transport),
+        social = SocialResource(transport),
+        stories = StoriesResource(transport),
+        tags = TagsResource(transport),
         templates = TemplatesResource(transport),
         usage = UsageResource(transport);
 
@@ -96,11 +126,26 @@ abstract class MisarDevResources {
   /// The `checkpoints` resource.
   final CheckpointsResource checkpoints;
 
+  /// The `closeFriends` resource.
+  final CloseFriendsResource closeFriends;
+
+  /// The `collections` resource.
+  final CollectionsResource collections;
+
+  /// The `comments` resource.
+  final CommentsResource comments;
+
   /// The `connectors` resource.
   final ConnectorsResource connectors;
 
+  /// The `dm` resource.
+  final DmResource dm;
+
   /// The `domains` resource.
   final DomainsResource domains;
+
+  /// The `feed` resource.
+  final FeedResource feed;
 
   /// The `gallery` resource.
   final GalleryResource gallery;
@@ -108,11 +153,17 @@ abstract class MisarDevResources {
   /// The `github` resource.
   final GithubResource github;
 
+  /// The `highlights` resource.
+  final HighlightsResource highlights;
+
   /// The `notifications` resource.
   final NotificationsResource notifications;
 
   /// The `organizations` resource.
   final OrganizationsResource organizations;
+
+  /// The `posts` resource.
+  final PostsResource posts;
 
   /// The `profile` resource.
   final ProfileResource profile;
@@ -131,6 +182,15 @@ abstract class MisarDevResources {
 
   /// The `skills` resource.
   final SkillsResource skills;
+
+  /// The `social` resource.
+  final SocialResource social;
+
+  /// The `stories` resource.
+  final StoriesResource stories;
+
+  /// The `tags` resource.
+  final TagsResource tags;
 
   /// The `templates` resource.
   final TemplatesResource templates;

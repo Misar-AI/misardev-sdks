@@ -13,7 +13,7 @@ public struct SearchResource: Sendable {
 
     /// `GET /search`
     ///
-    /// Optional query: `limit`, `q`, `types`.
+    /// Optional query: `cursor`, `limit`, `q`, `type`, `types`.
     ///
     /// misardev:method search.code
     @discardableResult

@@ -15,7 +15,7 @@ public sealed class AuthenticationTests
         await dev.Projects.List();
         var call = Assert.Single(h.Calls);
         Assert.Equal("Bearer mdk_test_key", call.Headers["Authorization"]);
-        Assert.Equal("misardev-csharp/1.0.0", call.Headers["X-Misar-SDK"]);
+        Assert.Equal("misardev-csharp/1.1.0", call.Headers["X-Misar-SDK"]);
         Assert.Equal("application/json", call.Headers["Accept"]);
         Assert.StartsWith("application/json", call.Headers["Content-Type"]);
         Assert.Equal("https://api.test/dev/projects", call.Url);

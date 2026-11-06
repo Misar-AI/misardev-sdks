@@ -10,10 +10,90 @@ from ..core.transport import encode_path as _p  # noqa: F401
 
 
 class DomainsResource:
-    """The ``domains`` resource — 1 operation(s), each with an ``a``-prefixed async twin."""
+    """The ``domains`` resource — 8 operation(s), each with an ``a``-prefixed async twin."""
 
     def __init__(self, transport: Transport) -> None:
         self._t = transport
+
+    def checkout(self, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``POST /domains/checkout``
+
+        misardev:method domains.checkout
+        """
+        return self._t.request("POST", "/domains/checkout", body=dict(body or {}), headers=headers)
+
+    async def acheckout(self, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``POST /domains/checkout``
+
+        Async twin of :meth:`checkout`.
+
+        misardev:method domains.checkout
+        """
+        return await self._t.arequest("POST", "/domains/checkout", body=dict(body or {}), headers=headers)
+
+    def create_dns_record(self, id_: str, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``POST /domains/:id/dns``
+
+        misardev:method domains.createDnsRecord
+        """
+        return self._t.request("POST", f"/domains/{_p(id_)}/dns", body=dict(body or {}), headers=headers)
+
+    async def acreate_dns_record(self, id_: str, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``POST /domains/:id/dns``
+
+        Async twin of :meth:`create_dns_record`.
+
+        misardev:method domains.createDnsRecord
+        """
+        return await self._t.arequest("POST", f"/domains/{_p(id_)}/dns", body=dict(body or {}), headers=headers)
+
+    def delete_dns_record(self, id_: str, record_id: Any, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``DELETE /domains/:id/dns``
+
+        misardev:method domains.deleteDnsRecord
+        """
+        return self._t.request("DELETE", f"/domains/{_p(id_)}/dns", query={"recordId": record_id}, headers=headers)
+
+    async def adelete_dns_record(self, id_: str, record_id: Any, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``DELETE /domains/:id/dns``
+
+        Async twin of :meth:`delete_dns_record`.
+
+        misardev:method domains.deleteDnsRecord
+        """
+        return await self._t.arequest("DELETE", f"/domains/{_p(id_)}/dns", query={"recordId": record_id}, headers=headers)
+
+    def list(self, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /domains``
+
+        misardev:method domains.list
+        """
+        return self._t.request("GET", "/domains", headers=headers)
+
+    async def alist(self, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /domains``
+
+        Async twin of :meth:`list`.
+
+        misardev:method domains.list
+        """
+        return await self._t.arequest("GET", "/domains", headers=headers)
+
+    def list_dns_records(self, id_: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /domains/:id/dns``
+
+        misardev:method domains.listDnsRecords
+        """
+        return self._t.request("GET", f"/domains/{_p(id_)}/dns", headers=headers)
+
+    async def alist_dns_records(self, id_: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /domains/:id/dns``
+
+        Async twin of :meth:`list_dns_records`.
+
+        misardev:method domains.listDnsRecords
+        """
+        return await self._t.arequest("GET", f"/domains/{_p(id_)}/dns", headers=headers)
 
     def lookup(self, domain: Any, *, headers: Optional[Mapping[str, str]] = None) -> Any:
         """``GET /domains/lookup``
@@ -30,3 +110,35 @@ class DomainsResource:
         misardev:method domains.lookup
         """
         return await self._t.arequest("GET", "/domains/lookup", query={"domain": domain}, headers=headers)
+
+    def search(self, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``POST /domains/search``
+
+        misardev:method domains.search
+        """
+        return self._t.request("POST", "/domains/search", body=dict(body or {}), headers=headers)
+
+    async def asearch(self, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``POST /domains/search``
+
+        Async twin of :meth:`search`.
+
+        misardev:method domains.search
+        """
+        return await self._t.arequest("POST", "/domains/search", body=dict(body or {}), headers=headers)
+
+    def update(self, id_: str, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``PATCH /domains/:id``
+
+        misardev:method domains.update
+        """
+        return self._t.request("PATCH", f"/domains/{_p(id_)}", body=dict(body or {}), headers=headers)
+
+    async def aupdate(self, id_: str, body: Optional[Mapping[str, Any]] = None, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``PATCH /domains/:id``
+
+        Async twin of :meth:`update`.
+
+        misardev:method domains.update
+        """
+        return await self._t.arequest("PATCH", f"/domains/{_p(id_)}", body=dict(body or {}), headers=headers)

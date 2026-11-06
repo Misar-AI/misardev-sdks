@@ -6,12 +6,23 @@ using System.Text.Json.Nodes;
 
 namespace MisarDev;
 
-/// <summary>The <c>profile</c> resource — 3 operation(s).</summary>
+/// <summary>The <c>profile</c> resource — 10 operation(s).</summary>
 public sealed class ProfileResource
 {
     private readonly Transport _t;
 
     internal ProfileResource(Transport transport) => _t = transport;
+
+    /// <summary>
+    /// <c>POST /blocks/:handle</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method profile.block
+    /// </remarks>
+    /// <param name="handle">Path parameter <c>handle</c> (URL-encoded for you).</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> Block(string handle, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("POST", $"/blocks/{Transport.EncodePath(handle)}", cancellationToken: cancellationToken);
 
     /// <summary>
     /// <c>POST /follow/:handle</c>
@@ -20,9 +31,10 @@ public sealed class ProfileResource
     /// misardev:method profile.follow
     /// </remarks>
     /// <param name="handle">Path parameter <c>handle</c> (URL-encoded for you).</param>
+    /// <param name="body">JSON body: an anonymous object, dictionary or <see cref="JsonNode"/>. Defaults to <c>{}</c>.</param>
     /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
-    public Task<JsonNode?> Follow(string handle, CancellationToken cancellationToken = default) =>
-        _t.RequestAsync("POST", $"/follow/{Transport.EncodePath(handle)}", cancellationToken: cancellationToken);
+    public Task<JsonNode?> Follow(string handle, object? body = null, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("POST", $"/follow/{Transport.EncodePath(handle)}", body: body ?? Transport.EmptyBody(), cancellationToken: cancellationToken);
 
     /// <summary>
     /// <c>GET /profile/:handle</c>
@@ -37,6 +49,63 @@ public sealed class ProfileResource
         _t.RequestAsync("GET", $"/profile/{Transport.EncodePath(handle)}", cancellationToken: cancellationToken);
 
     /// <summary>
+    /// <c>GET /blocks</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method profile.listBlocks
+    /// </remarks>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> ListBlocks(CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("GET", "/blocks", cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>GET /profile/:handle/:list</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method profile.listConnections
+    /// </remarks>
+    /// <param name="handle">Path parameter <c>handle</c> (URL-encoded for you).</param>
+    /// <param name="list">Path parameter <c>list</c> (URL-encoded for you).</param>
+    /// <param name="query">Optional query parameters (cursor, limit) as an anonymous object or dictionary; null values are dropped.</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> ListConnections(string handle, string list, object? query = null, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("GET", $"/profile/{Transport.EncodePath(handle)}/{Transport.EncodePath(list)}", query: Transport.Query(query), cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>GET /profile/:handle/highlights</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method profile.listHighlights
+    /// </remarks>
+    /// <param name="handle">Path parameter <c>handle</c> (URL-encoded for you).</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> ListHighlights(string handle, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("GET", $"/profile/{Transport.EncodePath(handle)}/highlights", cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>POST /mutes/:handle</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method profile.mute
+    /// </remarks>
+    /// <param name="handle">Path parameter <c>handle</c> (URL-encoded for you).</param>
+    /// <param name="body">JSON body: an anonymous object, dictionary or <see cref="JsonNode"/>. Defaults to <c>{}</c>.</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> Mute(string handle, object? body = null, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("POST", $"/mutes/{Transport.EncodePath(handle)}", body: body ?? Transport.EmptyBody(), cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>DELETE /blocks/:handle</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method profile.unblock
+    /// </remarks>
+    /// <param name="handle">Path parameter <c>handle</c> (URL-encoded for you).</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> Unblock(string handle, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("DELETE", $"/blocks/{Transport.EncodePath(handle)}", cancellationToken: cancellationToken);
+
+    /// <summary>
     /// <c>DELETE /follow/:handle</c>
     /// </summary>
     /// <remarks>
@@ -46,4 +115,15 @@ public sealed class ProfileResource
     /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
     public Task<JsonNode?> Unfollow(string handle, CancellationToken cancellationToken = default) =>
         _t.RequestAsync("DELETE", $"/follow/{Transport.EncodePath(handle)}", cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>DELETE /mutes/:handle</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method profile.unmute
+    /// </remarks>
+    /// <param name="handle">Path parameter <c>handle</c> (URL-encoded for you).</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> Unmute(string handle, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("DELETE", $"/mutes/{Transport.EncodePath(handle)}", cancellationToken: cancellationToken);
 }

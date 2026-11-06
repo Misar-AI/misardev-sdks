@@ -3,12 +3,52 @@
 
 import Foundation
 
-/// The `domains` resource — 1 operation(s).
+/// The `domains` resource — 8 operation(s).
 public struct DomainsResource: Sendable {
     let transport: Transport
 
     init(transport: Transport) {
         self.transport = transport
+    }
+
+    /// `POST /domains/checkout`
+    ///
+    /// misardev:method domains.checkout
+    @discardableResult
+    public func checkout(_ body: [String: JSONValue] = [:]) async throws -> JSONValue {
+        try await transport.request("POST", "/domains/checkout", body: .object(body))
+    }
+
+    /// `POST /domains/:id/dns`
+    ///
+    /// misardev:method domains.createDnsRecord
+    @discardableResult
+    public func createDnsRecord(_ id: String, _ body: [String: JSONValue] = [:]) async throws -> JSONValue {
+        try await transport.request("POST", "/domains/\(Transport.encodePath(id))/dns", body: .object(body))
+    }
+
+    /// `DELETE /domains/:id/dns`
+    ///
+    /// misardev:method domains.deleteDnsRecord
+    @discardableResult
+    public func deleteDnsRecord(_ id: String, recordId: String) async throws -> JSONValue {
+        try await transport.request("DELETE", "/domains/\(Transport.encodePath(id))/dns", query: ["recordId": .string(recordId)])
+    }
+
+    /// `GET /domains`
+    ///
+    /// misardev:method domains.list
+    @discardableResult
+    public func list() async throws -> JSONValue {
+        try await transport.request("GET", "/domains")
+    }
+
+    /// `GET /domains/:id/dns`
+    ///
+    /// misardev:method domains.listDnsRecords
+    @discardableResult
+    public func listDnsRecords(_ id: String) async throws -> JSONValue {
+        try await transport.request("GET", "/domains/\(Transport.encodePath(id))/dns")
     }
 
     /// `GET /domains/lookup`
@@ -17,5 +57,21 @@ public struct DomainsResource: Sendable {
     @discardableResult
     public func lookup(domain: String) async throws -> JSONValue {
         try await transport.request("GET", "/domains/lookup", query: ["domain": .string(domain)])
+    }
+
+    /// `POST /domains/search`
+    ///
+    /// misardev:method domains.search
+    @discardableResult
+    public func search(_ body: [String: JSONValue] = [:]) async throws -> JSONValue {
+        try await transport.request("POST", "/domains/search", body: .object(body))
+    }
+
+    /// `PATCH /domains/:id`
+    ///
+    /// misardev:method domains.update
+    @discardableResult
+    public func update(_ id: String, _ body: [String: JSONValue] = [:]) async throws -> JSONValue {
+        try await transport.request("PATCH", "/domains/\(Transport.encodePath(id))", body: .object(body))
     }
 }

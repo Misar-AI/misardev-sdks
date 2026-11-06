@@ -89,7 +89,7 @@ class ResourcesTest {
         int methods = 0;
         for (JsonNode r : (Iterable<JsonNode>) MANIFEST.get("resources")::elements) methods += r.get("methods").size();
         assertEquals(methods + MANIFEST.at("/streams/sse").size(), MisarDevResources.OPERATION_COUNT);
-        assertEquals(109, MisarDevResources.OPERATION_COUNT);
+        assertEquals(182, MisarDevResources.OPERATION_COUNT);
     }
 
     @TestFactory
