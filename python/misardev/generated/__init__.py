@@ -143,4 +143,4 @@ class MisarDevResources:
 
 
 #: Operation count (methods + streams), for the coverage gate and the README.
-OPERATION_COUNT = 182
+OPERATION_COUNT = 183

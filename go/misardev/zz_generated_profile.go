@@ -8,7 +8,7 @@ import (
 	"net/url"
 )
 
-// ProfileResource is the `profile` resource — 10 operation(s). Public builder profiles; follow, block and mute people.
+// ProfileResource is the `profile` resource — 11 operation(s). Public builder profiles; follow, block and mute people.
 type ProfileResource struct{ c *Client }
 
 // Block calls `POST /blocks/:handle`.
@@ -32,6 +32,13 @@ func (r *ProfileResource) Follow(ctx context.Context, handle string, body Body, 
 // misardev:method profile.get
 func (r *ProfileResource) Get(ctx context.Context, handle string, opts ...CallOption) (any, error) {
 	return r.c.Request(ctx, "GET", "/profile/"+url.PathEscape(handle), nil, nil, opts...)
+}
+
+// GetHighlight calls `GET /profile/:handle/highlights/:id`.
+//
+// misardev:method profile.getHighlight
+func (r *ProfileResource) GetHighlight(ctx context.Context, handle string, id string, opts ...CallOption) (any, error) {
+	return r.c.Request(ctx, "GET", "/profile/"+url.PathEscape(handle)+"/highlights/"+url.PathEscape(id), nil, nil, opts...)
 }
 
 // ListBlocks calls `GET /blocks`.

@@ -77,4 +77,4 @@ func newResources(c *Client) resources {
 
 // OperationCount is the number of methods and streams the generated layer
 // covers — every operation in sdks/manifest.json.
-const OperationCount = 182
+const OperationCount = 183

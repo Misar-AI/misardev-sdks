@@ -6,7 +6,7 @@ package io.misar.dev.generated
 import com.fasterxml.jackson.databind.JsonNode
 import io.misar.dev.Transport
 
-/** The `profile` resource — 10 operation(s). */
+/** The `profile` resource — 11 operation(s). */
 class ProfileResource internal constructor(private val t: Transport) {
     /**
      * `POST /blocks/:handle`
@@ -33,6 +33,14 @@ class ProfileResource internal constructor(private val t: Transport) {
      */
     suspend fun get(handle: String): JsonNode? =
         t.request("GET", "/profile/${Transport.encode(handle)}", null, null)
+
+    /**
+     * `GET /profile/:handle/highlights/:id`
+     *
+     * misardev:method profile.getHighlight
+     */
+    suspend fun getHighlight(handle: String, id: String): JsonNode? =
+        t.request("GET", "/profile/${Transport.encode(handle)}/highlights/${Transport.encode(id)}", null, null)
 
     /**
      * `GET /blocks`

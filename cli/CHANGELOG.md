@@ -24,7 +24,8 @@ All notable changes to this CLI are documented here. The format follows
   - `misardev domains`: `checkout`, `create-dns-record`, `delete-dns-record`, `list`, `list-dns-records`, `search`, `update`
   - `misardev projects`: `recommend-domains`
 - `misardev search code` now takes the `cursor` and `type` query parameters the route already read.
-- The surface is now 31 resources, 179 methods and 3 streams (182 operations).
+- `misardev profile`: `get-highlight` — one profile highlight's stories, ready to play, read when its circle is opened. `list-highlights` now answers the circles only (`id`, `title`, `coverUrl`, `createdAt`, `storyCount`, `closeFriends`), without stories.
+- The surface is now 31 resources, 180 methods and 3 streams (183 operations).
 
 ### Notes
 

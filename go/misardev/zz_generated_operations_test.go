@@ -325,6 +325,9 @@ var generatedOperations = []generatedOperation{
 	{"profile.get", "GET", "/profile/handle-1", false, func(ctx context.Context, c *Client) (any, error) {
 		return c.Profile.Get(ctx, "handle-1")
 	}},
+	{"profile.getHighlight", "GET", "/profile/handle-1/highlights/id-1", false, func(ctx context.Context, c *Client) (any, error) {
+		return c.Profile.GetHighlight(ctx, "handle-1", "id-1")
+	}},
 	{"profile.listBlocks", "GET", "/blocks", false, func(ctx context.Context, c *Client) (any, error) {
 		return c.Profile.ListBlocks(ctx)
 	}},

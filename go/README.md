@@ -89,7 +89,7 @@ names the route it calls. The signature is always
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | `dev.Organizations` | `AcceptInvitation`, `Create`, `CreateInvitation`, `List`, `ListInvitations`, `ListMembers`, `RemoveMember`, `RevokeInvitation`, `UpdateMember` | Organizations, members and invitations.                 |
 | `dev.Gallery`       | `Like`, `List`, `Unlike`                                                                                                                       | The public community gallery, and likes.                |
-| `dev.Profile`       | `Block`, `Follow`, `Get`, `ListBlocks`, `ListConnections`, `ListHighlights`, `Mute`, `Unblock`, `Unfollow`, `Unmute`                           | Public builder profiles; follow, block and mute people. |
+| `dev.Profile`       | `Block`, `Follow`, `Get`, `GetHighlight`, `ListBlocks`, `ListConnections`, `ListHighlights`, `Mute`, `Unblock`, `Unfollow`, `Unmute`           | Public builder profiles; follow, block and mute people. |
 | `dev.Notifications` | `GetPreferences`, `List`, `MarkAllRead`, `MarkRead`, `UpdatePreferences`                                                                       | In-app notifications and read state.                    |
 | `dev.Reports`       | `Create`                                                                                                                                       | Report abusive content.                                 |
 

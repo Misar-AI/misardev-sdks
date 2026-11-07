@@ -5,7 +5,7 @@ import Foundation
 
 extension MisarDevClient {
     /// Operation count, for the coverage gate and the README.
-    public static let operationCount = 182
+    public static let operationCount = 183
 
     /// The `account` resource.
     public var account: AccountResource { AccountResource(transport: transport) }

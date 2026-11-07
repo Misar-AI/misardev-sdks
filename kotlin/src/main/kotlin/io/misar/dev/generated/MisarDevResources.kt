@@ -41,6 +41,6 @@ abstract class MisarDevResources internal constructor(transport: Transport) {
 
     companion object {
         /** Operation count, for the coverage gate and the README. */
-        const val OPERATION_COUNT: Int = 182
+        const val OPERATION_COUNT: Int = 183
     }
 }

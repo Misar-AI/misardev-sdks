@@ -360,7 +360,7 @@ struct ResourceCases {
             for s in manifest["streams"]?["sse"]?.arrayValue ?? [] {
                 expected.insert("\(s["resource"]?.stringValue ?? "").\(s["name"]?.stringValue ?? "")")
             }
-            expectEqual(expected.count, 182)
+            expectEqual(expected.count, 183)
             expectEqual(Set(probes.map { "\($0.resource).\($0.name)" }), expected)
         }
 

@@ -24,7 +24,8 @@ All notable changes to this SDK are documented here. The format follows
   - `dev.domains`: `checkout`, `create_dns_record`, `delete_dns_record`, `list`, `list_dns_records`, `search`, `update`
   - `dev.projects`: `recommend_domains`
 - `dev.search.code` now takes the `cursor` and `type` query parameters the route already read.
-- The surface is now 31 resources, 179 methods and 3 streams (182 operations).
+- `dev.profile`: `get_highlight` — one profile highlight's stories, ready to play, read when its circle is opened. `list_highlights` now answers the circles only (`id`, `title`, `coverUrl`, `createdAt`, `storyCount`, `closeFriends`), without stories.
+- The surface is now 31 resources, 180 methods and 3 streams (183 operations).
 
 ### Notes
 

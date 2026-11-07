@@ -122,7 +122,7 @@ misardev <resource> <method> [path-params...] [required-query...] [--body <json|
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | `misardev organizations` | `accept-invitation`, `create`, `create-invitation`, `list`, `list-invitations`, `list-members`, `remove-member`, `revoke-invitation`, `update-member` | Organizations, members and invitations.                 |
 | `misardev gallery`       | `like`, `list`, `unlike`                                                                                                                              | The public community gallery, and likes.                |
-| `misardev profile`       | `block`, `follow`, `get`, `list-blocks`, `list-connections`, `list-highlights`, `mute`, `unblock`, `unfollow`, `unmute`                               | Public builder profiles; follow, block and mute people. |
+| `misardev profile`       | `block`, `follow`, `get`, `get-highlight`, `list-blocks`, `list-connections`, `list-highlights`, `mute`, `unblock`, `unfollow`, `unmute`              | Public builder profiles; follow, block and mute people. |
 | `misardev notifications` | `get-preferences`, `list`, `mark-all-read`, `mark-read`, `update-preferences`                                                                         | In-app notifications and read state.                    |
 | `misardev reports`       | `create`                                                                                                                                              | Report abusive content.                                 |
 

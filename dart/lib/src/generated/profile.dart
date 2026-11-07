@@ -4,7 +4,7 @@
 import '../core/query.dart';
 import '../core/transport.dart';
 
-/// The `profile` resource — 10 operation(s).
+/// The `profile` resource — 11 operation(s).
 class ProfileResource {
   /// Wraps the client's [Transport]; reach it as `dev.profile`.
   ProfileResource(this._t);
@@ -30,6 +30,12 @@ class ProfileResource {
   /// misardev:method profile.get
   Future<dynamic> get(String handle) =>
       _t.request('GET', '/profile/${encodePathSegment(handle)}');
+
+  /// `GET /profile/:handle/highlights/:id`
+  ///
+  /// misardev:method profile.getHighlight
+  Future<dynamic> getHighlight(String handle, String id) =>
+      _t.request('GET', '/profile/${encodePathSegment(handle)}/highlights/${encodePathSegment(id)}');
 
   /// `GET /blocks`
   ///

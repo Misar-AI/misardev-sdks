@@ -7,7 +7,7 @@ namespace MisarDev;
 public sealed partial class MisarDevClient
 {
     /// <summary>Operation count, for the coverage gate and the README.</summary>
-    public const int OperationCount = 182;
+    public const int OperationCount = 183;
 
     /// <summary>The <c>account</c> resource.</summary>
     public AccountResource Account { get; private set; } = null!;

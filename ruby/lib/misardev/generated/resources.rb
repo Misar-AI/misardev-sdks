@@ -39,7 +39,7 @@ module MisarDev
     # Every MisarDev resource, attached to the client by name.
     module Resources
       # Operation count, for the coverage gate and the README.
-      OPERATION_COUNT = 182
+      OPERATION_COUNT = 183
 
       # @return [AccountResource]
       attr_reader :account

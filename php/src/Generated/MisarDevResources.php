@@ -13,7 +13,7 @@ use MisarDev\Core\Transport;
 abstract class MisarDevResources
 {
     /** Operation count, for the coverage gate and the README. */
-    public const OPERATION_COUNT = 182;
+    public const OPERATION_COUNT = 183;
 
     public readonly AccountResource $account;
     public readonly ApiKeysResource $apiKeys;

@@ -87,7 +87,7 @@ the route it calls.
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | `$dev->organizations` | `acceptInvitation`, `create`, `createInvitation`, `list`, `listInvitations`, `listMembers`, `removeMember`, `revokeInvitation`, `updateMember` | Organizations, members and invitations.                 |
 | `$dev->gallery`       | `like`, `list`, `unlike`                                                                                                                       | The public community gallery, and likes.                |
-| `$dev->profile`       | `block`, `follow`, `get`, `listBlocks`, `listConnections`, `listHighlights`, `mute`, `unblock`, `unfollow`, `unmute`                           | Public builder profiles; follow, block and mute people. |
+| `$dev->profile`       | `block`, `follow`, `get`, `getHighlight`, `listBlocks`, `listConnections`, `listHighlights`, `mute`, `unblock`, `unfollow`, `unmute`           | Public builder profiles; follow, block and mute people. |
 | `$dev->notifications` | `getPreferences`, `list`, `markAllRead`, `markRead`, `updatePreferences`                                                                       | In-app notifications and read state.                    |
 | `$dev->reports`       | `create`                                                                                                                                       | Report abusive content.                                 |
 

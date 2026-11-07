@@ -78,7 +78,7 @@ final class ResourcesTest extends TestCase
     {
         $m = self::manifest();
         $this->assertSame(count(self::methods()) + count($m['streams']['sse']), MisarDevResources::OPERATION_COUNT);
-        $this->assertSame(182, MisarDevResources::OPERATION_COUNT);
+        $this->assertSame(183, MisarDevResources::OPERATION_COUNT);
     }
 
     #[DataProvider('methods')]

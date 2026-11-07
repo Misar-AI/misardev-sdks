@@ -9,7 +9,7 @@ namespace MisarDev\Generated;
 
 use MisarDev\Core\Transport;
 
-/** The `profile` resource — 10 operation(s). */
+/** The `profile` resource — 11 operation(s). */
 final class ProfileResource
 {
     public function __construct(private readonly Transport $t)
@@ -59,6 +59,21 @@ final class ProfileResource
     public function get(string|int $handle): mixed
     {
         return $this->t->request('GET', '/profile/' . Transport::segment($handle));
+    }
+
+    /**
+     * `GET /profile/:handle/highlights/:id`
+     *
+     * misardev:method profile.getHighlight
+     *
+     * @param string|int $handle Path parameter `handle`.
+     * @param string|int $id Path parameter `id`.
+     * @return mixed Decoded JSON (associative arrays), a raw string, or null for an empty answer.
+     * @throws \MisarDev\MisarDevError
+     */
+    public function getHighlight(string|int $handle, string|int $id): mixed
+    {
+        return $this->t->request('GET', '/profile/' . Transport::segment($handle) . '/highlights/' . Transport::segment($id));
     }
 
     /**

@@ -3,7 +3,7 @@
 
 import Foundation
 
-/// The `profile` resource — 10 operation(s).
+/// The `profile` resource — 11 operation(s).
 public struct ProfileResource: Sendable {
     let transport: Transport
 
@@ -35,6 +35,14 @@ public struct ProfileResource: Sendable {
     @discardableResult
     public func get(_ handle: String) async throws -> JSONValue {
         try await transport.request("GET", "/profile/\(Transport.encodePath(handle))")
+    }
+
+    /// `GET /profile/:handle/highlights/:id`
+    ///
+    /// misardev:method profile.getHighlight
+    @discardableResult
+    public func getHighlight(_ handle: String, _ id: String) async throws -> JSONValue {
+        try await transport.request("GET", "/profile/\(Transport.encodePath(handle))/highlights/\(Transport.encodePath(id))")
     }
 
     /// `GET /blocks`

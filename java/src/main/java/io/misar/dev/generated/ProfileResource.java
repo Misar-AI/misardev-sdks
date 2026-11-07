@@ -9,7 +9,7 @@ import io.misar.dev.Transport;
 import java.util.Collections;
 import java.util.Map;
 
-/** The {@code profile} resource — 10 operation(s). */
+/** The {@code profile} resource — 11 operation(s). */
 public final class ProfileResource {
     private final Transport t;
 
@@ -51,6 +51,15 @@ public final class ProfileResource {
      */
     public JsonNode get(String handle) {
         return t.request("GET", "/profile/" + Transport.encode(handle), null, null);
+    }
+
+    /**
+     * {@code GET /profile/:handle/highlights/:id}
+     *
+     * misardev:method profile.getHighlight
+     */
+    public JsonNode getHighlight(String handle, String id) {
+        return t.request("GET", "/profile/" + Transport.encode(handle) + "/highlights/" + Transport.encode(id), null, null);
     }
 
     /**

@@ -10,7 +10,7 @@ from ..core.transport import encode_path as _p  # noqa: F401
 
 
 class ProfileResource:
-    """The ``profile`` resource — 10 operation(s), each with an ``a``-prefixed async twin."""
+    """The ``profile`` resource — 11 operation(s), each with an ``a``-prefixed async twin."""
 
     def __init__(self, transport: Transport) -> None:
         self._t = transport
@@ -66,6 +66,22 @@ class ProfileResource:
         misardev:method profile.get
         """
         return await self._t.arequest("GET", f"/profile/{_p(handle)}", headers=headers)
+
+    def get_highlight(self, handle: str, id_: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /profile/:handle/highlights/:id``
+
+        misardev:method profile.getHighlight
+        """
+        return self._t.request("GET", f"/profile/{_p(handle)}/highlights/{_p(id_)}", headers=headers)
+
+    async def aget_highlight(self, handle: str, id_: str, *, headers: Optional[Mapping[str, str]] = None) -> Any:
+        """``GET /profile/:handle/highlights/:id``
+
+        Async twin of :meth:`get_highlight`.
+
+        misardev:method profile.getHighlight
+        """
+        return await self._t.arequest("GET", f"/profile/{_p(handle)}/highlights/{_p(id_)}", headers=headers)
 
     def list_blocks(self, *, headers: Optional[Mapping[str, str]] = None) -> Any:
         """``GET /blocks``

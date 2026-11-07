@@ -442,6 +442,10 @@ enum OperationProbes {
             _ = try await c.profile.get("handle-1")
             return 0
         },
+        OperationProbe(resource: "profile", name: "getHighlight", verb: "GET", path: "/profile/handle-1/highlights/id-1", hasBody: false, stream: false) { c in
+            _ = try await c.profile.getHighlight("handle-1", "id-1")
+            return 0
+        },
         OperationProbe(resource: "profile", name: "listBlocks", verb: "GET", path: "/blocks", hasBody: false, stream: false) { c in
             _ = try await c.profile.listBlocks()
             return 0

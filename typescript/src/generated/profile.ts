@@ -5,7 +5,7 @@
 import type { CallOptions } from "../core/types.js";
 import type { QueryValue, Transport } from "../core/transport.js";
 
-/** The `profile` resource — 10 operation(s). */
+/** The `profile` resource — 11 operation(s). */
 export class ProfileResource {
   constructor(private readonly t: Transport) {}
 
@@ -36,6 +36,15 @@ export class ProfileResource {
    */
   async get<T = unknown>(handle: string, opts: CallOptions = {}): Promise<T> {
     return this.t.request("GET", `/profile/${encodeURIComponent(handle)}`, { ...opts }) as Promise<T>;
+  }
+
+  /**
+   * `GET /profile/:handle/highlights/:id`
+   *
+   * misardev:method profile.getHighlight
+   */
+  async getHighlight<T = unknown>(handle: string, id: string, opts: CallOptions = {}): Promise<T> {
+    return this.t.request("GET", `/profile/${encodeURIComponent(handle)}/highlights/${encodeURIComponent(id)}`, { ...opts }) as Promise<T>;
   }
 
   /**

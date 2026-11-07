@@ -73,7 +73,7 @@ pub use usage::UsageResource;
 
 /// Number of methods and streams the generated layer covers — every
 /// operation in `sdks/manifest.json`.
-pub const OPERATION_COUNT: usize = 182;
+pub const OPERATION_COUNT: usize = 183;
 
 impl crate::MisarDev {
     /// Account API keys (with expiry and IP allowlists) and your data export.

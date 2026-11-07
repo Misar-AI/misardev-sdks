@@ -137,4 +137,4 @@ export class MisarDevResources {
 }
 
 /** Operation count, for the coverage gate and the README. */
-export const OPERATION_COUNT = 182;
+export const OPERATION_COUNT = 183;

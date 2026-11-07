@@ -6,7 +6,7 @@ using System.Text.Json.Nodes;
 
 namespace MisarDev;
 
-/// <summary>The <c>profile</c> resource — 10 operation(s).</summary>
+/// <summary>The <c>profile</c> resource — 11 operation(s).</summary>
 public sealed class ProfileResource
 {
     private readonly Transport _t;
@@ -47,6 +47,18 @@ public sealed class ProfileResource
     /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
     public Task<JsonNode?> Get(string handle, CancellationToken cancellationToken = default) =>
         _t.RequestAsync("GET", $"/profile/{Transport.EncodePath(handle)}", cancellationToken: cancellationToken);
+
+    /// <summary>
+    /// <c>GET /profile/:handle/highlights/:id</c>
+    /// </summary>
+    /// <remarks>
+    /// misardev:method profile.getHighlight
+    /// </remarks>
+    /// <param name="handle">Path parameter <c>handle</c> (URL-encoded for you).</param>
+    /// <param name="id">Path parameter <c>id</c> (URL-encoded for you).</param>
+    /// <param name="cancellationToken">Cancels the call, including any pending retry.</param>
+    public Task<JsonNode?> GetHighlight(string handle, string id, CancellationToken cancellationToken = default) =>
+        _t.RequestAsync("GET", $"/profile/{Transport.EncodePath(handle)}/highlights/{Transport.EncodePath(id)}", cancellationToken: cancellationToken);
 
     /// <summary>
     /// <c>GET /blocks</c>

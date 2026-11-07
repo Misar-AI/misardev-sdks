@@ -24,7 +24,8 @@ All notable changes to this SDK are documented here. The format follows
   - `dev.Domains`: `Checkout`, `CreateDnsRecord`, `DeleteDnsRecord`, `List`, `ListDnsRecords`, `Search`, `Update`
   - `dev.Projects`: `RecommendDomains`
 - `dev.Search.Code` now takes the `cursor` and `type` query parameters the route already read.
-- The surface is now 31 resources, 179 methods and 3 streams (182 operations).
+- `dev.Profile`: `GetHighlight` — one profile highlight's stories, ready to play, read when its circle is opened. `ListHighlights` now answers the circles only (`id`, `title`, `coverUrl`, `createdAt`, `storyCount`, `closeFriends`), without stories.
+- The surface is now 31 resources, 180 methods and 3 streams (183 operations).
 
 ### Notes
 

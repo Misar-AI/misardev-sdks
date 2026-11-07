@@ -1276,6 +1276,19 @@
           "note": "public builder profile"
         },
         {
+          "name": "getHighlight",
+          "verb": "GET",
+          "path": "/profile/:handle/highlights/:id",
+          "pathParams": [
+            "handle",
+            "id"
+          ],
+          "requiredQuery": [],
+          "queryParams": [],
+          "hasBody": false,
+          "auth": "api_key"
+        },
+        {
           "name": "listBlocks",
           "verb": "GET",
           "path": "/blocks",

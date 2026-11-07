@@ -67,7 +67,7 @@ export 'templates.dart';
 export 'usage.dart';
 
 /// Operation count (methods + streams), for the coverage gate and the README.
-const int operationCount = 182;
+const int operationCount = 183;
 
 /// Every MisarDev resource, attached to the client by name.
 abstract class MisarDevResources {

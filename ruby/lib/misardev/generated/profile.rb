@@ -4,7 +4,7 @@
 
 module MisarDev
   module Generated
-    # The `profile` resource — 10 operation(s).
+    # The `profile` resource — 11 operation(s).
     class ProfileResource
       def initialize(transport)
         @t = transport
@@ -48,6 +48,18 @@ module MisarDev
       # @raise [MisarDev::MisarDevError]
       def get(handle)
         @t.request("GET", "/profile/#{Core::Transport.segment(handle)}")
+      end
+
+      # `GET /profile/:handle/highlights/:id`
+      #
+      # misardev:method profile.getHighlight
+      #
+      # @param handle [String] path parameter `handle`
+      # @param id [String] path parameter `id`
+      # @return [Hash, Array, String, nil] decoded JSON, a raw string, or nil
+      # @raise [MisarDev::MisarDevError]
+      def get_highlight(handle, id)
+        @t.request("GET", "/profile/#{Core::Transport.segment(handle)}/highlights/#{Core::Transport.segment(id)}")
       end
 
       # `GET /blocks`

@@ -117,6 +117,7 @@ pub(crate) const OPERATIONS: &[(&str, &str, &str, bool, Call)] = &[
     ("profile.block", "POST", "/blocks/handle-1", false, |d| Box::pin(d.profile().block("handle-1"))),
     ("profile.follow", "POST", "/follow/handle-1", true, |d| Box::pin(d.profile().follow("handle-1", Some(json!({"probe": true}))))),
     ("profile.get", "GET", "/profile/handle-1", false, |d| Box::pin(d.profile().get("handle-1"))),
+    ("profile.getHighlight", "GET", "/profile/handle-1/highlights/id-1", false, |d| Box::pin(d.profile().get_highlight("handle-1", "id-1"))),
     ("profile.listBlocks", "GET", "/blocks", false, |d| Box::pin(d.profile().list_blocks())),
     ("profile.listConnections", "GET", "/profile/handle-1/list-1", false, |d| Box::pin(d.profile().list_connections("handle-1", "list-1", None))),
     ("profile.listHighlights", "GET", "/profile/handle-1/highlights", false, |d| Box::pin(d.profile().list_highlights("handle-1"))),

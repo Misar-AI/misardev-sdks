@@ -220,6 +220,8 @@ dynamic dispatchOperation(MisarDevResources dev, String operation, List<Object?>
       return dev.profile.follow(args[0] as String, _map(args, 1));
     case 'profile.get':
       return dev.profile.get(args[0] as String);
+    case 'profile.getHighlight':
+      return dev.profile.getHighlight(args[0] as String, args[1] as String);
     case 'profile.listBlocks':
       return dev.profile.listBlocks();
     case 'profile.listConnections':

@@ -8,7 +8,7 @@ import io.misar.dev.Transport;
 /** Every MisarDev resource, attached to the client by name. */
 public abstract class MisarDevResources {
     /** Operation count, for the coverage gate and the README. */
-    public static final int OPERATION_COUNT = 182;
+    public static final int OPERATION_COUNT = 183;
 
     public final AccountResource account;
     public final ApiKeysResource apiKeys;

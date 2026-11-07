@@ -9,7 +9,7 @@ use crate::transport::encode_path;
 use reqwest::Method;
 use serde_json::Value;
 
-/// The `profile` resource — 10 operation(s).
+/// The `profile` resource — 11 operation(s).
 ///
 /// Public builder profiles; follow, block and mute people.
 ///
@@ -41,6 +41,13 @@ impl ProfileResource<'_> {
     /// misardev:method profile.get
     pub async fn get(self, handle: &str) -> Result<Value, MisarDevError> {
         self.t.request(Method::GET, &format!("/profile/{}", encode_path(handle)), "", None).await
+    }
+
+    /// `GET /profile/:handle/highlights/:id`
+    ///
+    /// misardev:method profile.getHighlight
+    pub async fn get_highlight(self, handle: &str, id: &str) -> Result<Value, MisarDevError> {
+        self.t.request(Method::GET, &format!("/profile/{}/highlights/{}", encode_path(handle), encode_path(id)), "", None).await
     }
 
     /// `GET /blocks`

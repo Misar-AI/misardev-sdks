@@ -2009,6 +2009,25 @@ export const COMMANDS: readonly CommandSpec[] = [
     auth: "public",
     summary: "GET /profile/:handle",
   },
+  // misardev:method profile.getHighlight
+  // GET /profile/:handle/highlights/:id
+  {
+    resource: "profile",
+    method: "getHighlight",
+    accessor: "profile",
+    group: "profile",
+    command: "get-highlight",
+    verb: "GET",
+    path: "/profile/:handle/highlights/:id",
+    pathParams: ["handle","id"],
+    requiredQuery: [],
+    optionalQuery: [],
+    hasBody: false,
+    stream: false,
+    terminator: null,
+    auth: "api_key",
+    summary: "GET /profile/:handle/highlights/:id",
+  },
   // misardev:method profile.listBlocks
   // GET /blocks
   {
@@ -3532,4 +3551,4 @@ export const COMMANDS: readonly CommandSpec[] = [
 ];
 
 /** Operation count, for the coverage gate and the README. */
-export const OPERATION_COUNT = 182;
+export const OPERATION_COUNT = 183;

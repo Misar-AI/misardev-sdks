@@ -6,7 +6,7 @@
 [![python](https://img.shields.io/pypi/pyversions/misardev)](https://pypi.org/project/misardev/)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
-**31 resources · 179 methods · 3 SSE streams · 182 operations, each with an async twin**
+**31 resources · 180 methods · 3 SSE streams · 183 operations, each with an async twin**
 
 MisarDev turns a prompt into a deployed app. This SDK reaches every public route of its API: create and edit projects, write files, build and deploy them, start from templates, call the OpenAI-compatible chat endpoint, search your code, and read your usage and plan.
 
@@ -91,7 +91,7 @@ query parameters (a dict keyed by the API's own parameter names).
 | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | `dev.organizations` | `accept_invitation`, `create`, `create_invitation`, `list`, `list_invitations`, `list_members`, `remove_member`, `revoke_invitation`, `update_member` | Organizations, members and invitations.                 |
 | `dev.gallery`       | `like`, `list`, `unlike`                                                                                                                              | The public community gallery, and likes.                |
-| `dev.profile`       | `block`, `follow`, `get`, `list_blocks`, `list_connections`, `list_highlights`, `mute`, `unblock`, `unfollow`, `unmute`                               | Public builder profiles; follow, block and mute people. |
+| `dev.profile`       | `block`, `follow`, `get`, `get_highlight`, `list_blocks`, `list_connections`, `list_highlights`, `mute`, `unblock`, `unfollow`, `unmute`              | Public builder profiles; follow, block and mute people. |
 | `dev.notifications` | `get_preferences`, `list`, `mark_all_read`, `mark_read`, `update_preferences`                                                                         | In-app notifications and read state.                    |
 | `dev.reports`       | `create`                                                                                                                                              | Report abusive content.                                 |
 
