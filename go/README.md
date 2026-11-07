@@ -6,7 +6,7 @@
 [![go](https://img.shields.io/badge/go-1.22%2B-00ADD8)](https://pkg.go.dev/github.com/Misar-AI/misardev-sdks/go/misardev)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
-**31 resource groups · 171 methods · 3 streams · zero dependencies outside the standard library**
+**31 resource groups · 180 methods · 3 streams · zero dependencies outside the standard library**
 
 Misar.Dev turns a description into a working app and puts it online. This SDK is the same API the studio uses: create a project, write its files, deploy it to a subdomain or your own domain, start from a template, ask the AI with an OpenAI-compatible chat endpoint, and search across your code.
 

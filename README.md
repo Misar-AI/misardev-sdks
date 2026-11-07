@@ -5,7 +5,7 @@ build and deploy apps, manage their files, domains, environment variables and
 collaborators, start from templates, search your code, and call the
 OpenAI-compatible chat completions endpoint.
 
-Every SDK covers the full public API surface: **31 resources, 171 methods and 3
+Every SDK covers the full public API surface: **31 resources, 180 methods and 3
 Server-Sent Events streams**, generated from one manifest
 ([`manifest.json`](manifest.json)) that is itself derived from the API's route
 tree — so no language can fall behind another, or behind the server. They speak

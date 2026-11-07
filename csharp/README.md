@@ -6,7 +6,7 @@
 [![net](https://img.shields.io/badge/.NET-8.0-512BD4)](https://www.nuget.org/packages/MisarDev)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
-**31 resource groups · 171 methods · 3 streams · no dependencies beyond the BCL**
+**31 resource groups · 180 methods · 3 streams · no dependencies beyond the BCL**
 
 Misar.Dev turns a description into a working app and puts it online. This SDK is the same API the studio uses: create a project, write its files, deploy it to a subdomain or your own domain, start from a template, ask the AI with an OpenAI-compatible chat endpoint, and search across your code.
 

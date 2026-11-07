@@ -6,7 +6,7 @@
 [![node](https://img.shields.io/badge/node-%3E%3D18-blue)](https://www.npmjs.com/package/@misardev/cli)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
-**31 resources · 171 commands · 3 streaming commands · built on [`@misardev/sdk`](https://www.npmjs.com/package/@misardev/sdk)**
+**31 resources · 180 commands · 3 streaming commands · built on [`@misardev/sdk`](https://www.npmjs.com/package/@misardev/sdk)**
 
 Misar.Dev builds, hosts and deploys apps. The `misardev` CLI exposes its whole API as
 commands: every route in the API is a `misardev <resource> <method>` command, generated from

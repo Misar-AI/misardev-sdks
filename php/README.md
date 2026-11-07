@@ -6,7 +6,7 @@
 [![php](https://img.shields.io/badge/php-%3E%3D%208.1-777BB4)](https://packagist.org/packages/misarai/misardev-php)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
-**31 resource groups · 171 methods · 3 streams · typed plan-limit errors**
+**31 resource groups · 180 methods · 3 streams · typed plan-limit errors**
 
 Misar.Dev turns a description into a working app and puts it online. This SDK is the same API the studio uses: create a project, write its files, deploy it to a subdomain or your own domain, start from a template, ask the AI through an OpenAI-compatible chat endpoint, and search across your code.
 
@@ -55,8 +55,6 @@ $dev = new MisarDev(getenv('MISARDEV_API_KEY'));
 
 Every group the client exposes, and every public method on it. Each method's docblock names
 the route it calls.
-
-{"resources":31,"methods":171,"streams":3}
 
 ### Build and ship
 

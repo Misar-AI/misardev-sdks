@@ -6,7 +6,7 @@
 [![kotlin](https://img.shields.io/badge/kotlin-2.1%2B-7F52FF)](https://central.sonatype.com/artifact/io.misar/misardev-kotlin)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
-**31 resource groups · 171 suspend functions · 3 Flow streams · pagination**
+**31 resource groups · 180 suspend functions · 3 Flow streams · pagination**
 
 Misar.Dev turns a description into a working app and puts it online. This SDK is the same API the studio uses: create a project, write its files, deploy it to a subdomain or your own domain, start from a template, ask the AI with an OpenAI-compatible chat endpoint, and search across your code.
 

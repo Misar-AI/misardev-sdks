@@ -6,7 +6,7 @@
 [![dart](https://img.shields.io/badge/dart-%3E%3D3.0.0-0175C2)](https://pub.dev/packages/misardev)
 [![license](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
 
-**31 resource groups · 171 methods · 3 streams · typed plan-limit errors**
+**31 resource groups · 180 methods · 3 streams · typed plan-limit errors**
 
 Misar.Dev turns a description into a working app and puts it online. This SDK is the same API the studio uses: create a project, write its files, deploy it to a subdomain or your own domain, start from a template, ask the AI with an OpenAI-compatible chat endpoint, and search across your code.
 
