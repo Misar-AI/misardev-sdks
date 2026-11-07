@@ -214,14 +214,28 @@ jobs:
     environment: release
     permissions:
       id-token: write      # pub.dev automated publishing — no credentials file
+    env:
+      # misardev_flutter depends on the Flutter SDK, which `dart pub` cannot
+      # resolve ("Because misardev_flutter depends on flutter from sdk ...").
+      PUB: ${{ needs.resolve.outputs.sdk == 'flutter' && 'flutter' || 'dart' }}
     steps:
       - uses: actions/checkout@v4
+      # Still needed for flutter: it exchanges the job's OIDC token for pub.dev
+      # and stores it in pub's shared token config, which `flutter pub` reads.
       - uses: dart-lang/setup-dart@v1
-      - run: dart pub get
+      # No third-party action (subosito/flutter-action is one): the stable SDK
+      # is cloned, as in MisarDev's sdk-tests.yml.
+      - name: Install Flutter SDK
+        if: needs.resolve.outputs.sdk == 'flutter'
+        run: |
+          git clone -b stable --depth 1 https://github.com/flutter/flutter.git "$RUNNER_TEMP/flutter"
+          echo "$RUNNER_TEMP/flutter/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/flutter/bin/flutter" --version
+      - run: $PUB pub get
         working-directory: ${{ needs.resolve.outputs.sdk }}
-      - run: dart pub publish --dry-run
+      - run: $PUB pub publish --dry-run
         working-directory: ${{ needs.resolve.outputs.sdk }}
-      - run: dart pub publish --force
+      - run: $PUB pub publish --force
         working-directory: ${{ needs.resolve.outputs.sdk }}
 
   maven:
